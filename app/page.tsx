@@ -1,0 +1,51 @@
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { Hero } from "@/components/sections/hero";
+import { ClientLogos } from "@/components/sections/client-logos";
+import { Stats } from "@/components/sections/stats";
+import { WhySiteSolutions } from "@/components/sections/why-sitesolutions";
+import { Services } from "@/components/sections/services";
+import { Pricing } from "@/components/sections/pricing";
+import { TrustGuarantees } from "@/components/sections/trust-guarantees";
+import { Process } from "@/components/sections/process";
+import { CaseStudies } from "@/components/sections/case-studies";
+import { Testimonials } from "@/components/sections/testimonials";
+import { FAQ } from "@/components/sections/faq";
+import { Contact } from "@/components/sections/contact";
+import { CTABanner } from "@/components/sections/cta-banner";
+
+export default function HomePage() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <ClientLogos />
+        <Stats />
+        <WhySiteSolutions />
+        <Services />
+        <CTABanner
+          variant="subtle"
+          title="Precisa de um site novo ou de uma reformulação?"
+          subtitle="Criamos websites modernos, rápidos e otimizados para conversão."
+          primaryCTA={{ text: "Quero um site novo", href: "/contactos?tipo=site-novo" }}
+          secondaryCTA={{ text: "Ver portfólio", href: "/portfolio" }}
+        />
+        <Pricing />
+        <TrustGuarantees />
+        <Process />
+        <CaseStudies />
+        <Testimonials />
+        <CTABanner
+          title="Pronto para ter um site sem preocupações?"
+          subtitle="Peça uma proposta gratuita e descubra como podemos ajudar o seu negócio a crescer online."
+          primaryCTA={{ text: "Pedir proposta", href: "/contactos" }}
+          secondaryCTA={{ text: "Falar com um especialista", href: "/contactos?tipo=especialista" }}
+        />
+        <FAQ />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}

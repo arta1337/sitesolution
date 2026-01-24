@@ -19,14 +19,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      )}
+    return (
+      <header
+        className={cn(
+      "fixed top-0 left-0 right-0 z-[1000] transition-all duration-300",
+      isScrolled
+        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
+        : "bg-transparent"
+    )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between lg:h-20">
@@ -75,34 +75,40 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        <div
-          id="mobile-menu"
-          className={cn(
-            "lg:hidden overflow-hidden transition-all duration-300 ease-in-out",
-            isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
-          )}
-        >
-          <div className="space-y-1 pb-4 pt-2">
-            {navigation.main.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block rounded-md px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <div className="pt-3">
-              <Button asChild className="w-full">
-                <Link href="/contactos" onClick={() => setIsOpen(false)}>
-                  Pedir proposta
-                </Link>
-              </Button>
+
+          {/* Mobile Navigation (Overlay) */}
+          {isOpen && (
+            <div
+              id="mobile-menu"
+              className="lg:hidden absolute left-0 right-0 top-full z-[1100] bg-background border-t border-border"
+            >
+              <div className="max-h-[calc(100vh-4rem)] overflow-y-auto">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6">
+                  <div className="space-y-1">
+                    {navigation.main.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="block rounded-md px-3 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+
+                    <div className="pt-4">
+                      <Button asChild className="w-full">
+                        <Link href="/contactos" onClick={() => setIsOpen(false)}>
+                          Pedir proposta
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          )}
+
       </nav>
     </header>
   );

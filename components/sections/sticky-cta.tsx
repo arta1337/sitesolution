@@ -28,8 +28,8 @@ export function StickyCTA() {
     >
       <div className="border-t border-border bg-background/95 backdrop-blur-md px-4 py-3 shadow-lg">
         <Button asChild className="w-full" size="lg">
-          <Link href="/contactos">
-            Pedir proposta
+          <Link href="/auditoria-48h">
+            Auditoria 48h
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

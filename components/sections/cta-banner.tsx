@@ -18,9 +18,9 @@ interface CTABannerProps {
 
 export function CTABanner({
   title = "Pronto para ter um site sem preocupações?",
-  subtitle = "Peça uma proposta gratuita e descubra como podemos ajudar o seu negócio.",
-  primaryCTA = { text: "Pedir proposta", href: "/contactos" },
-  secondaryCTA = { text: "Falar com um especialista", href: "/contactos?tipo=especialista" },
+  subtitle = "Peça uma auditoria gratuita e descubra como podemos ajudar o seu negócio.",
+  primaryCTA = { text: "Auditoria 48h", href: "/auditoria-48h" },
+  secondaryCTA = { text: "Contacto rápido", href: "/auditoria-48h#contacto" },
   variant = "default",
 }: CTABannerProps) {
   if (variant === "subtle") {

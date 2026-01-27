@@ -171,7 +171,7 @@ export default function SobrePage() {
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Falar connosco</Link>
+                <Link href="/auditoria-48h#contacto">Falar connosco</Link>
               </Button>
             </div>
           </div>

@@ -35,13 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/contactos`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
+    }
     {
       url: `${baseUrl}/auditoria-48h`,
       lastModified: new Date(),

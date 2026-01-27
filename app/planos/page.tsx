@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { plans, seoMeta } from "@/lib/content";
+import { plans, seoMeta, plansFaq } from "@/lib/content";
 import { Check, X, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -94,50 +94,6 @@ const comparisonFeatures = [
     essencial: false,
     profissional: false,
     premium: true,
-  },
-];
-
-// Purchase-focused FAQ
-const purchaseFaq = [
-  {
-    question: "Fico preso a contrato?",
-    answer:
-      "Não. Os nossos planos são mensais e pode cancelar a qualquer momento com 30 dias de aviso prévio. Não há fidelização obrigatória nem penalizações por cancelamento.",
-  },
-  {
-    question: "O que conta como 'pequena alteração'?",
-    answer:
-      "Pequenas alterações incluem: atualização de textos, troca de imagens, ajustes de cores ou espaçamentos, adição de novos campos em formulários, correções de bugs. Não inclui: novas páginas, funcionalidades complexas, redesign de secções inteiras.",
-  },
-  {
-    question: "Qual o prazo médio de entrega para alterações?",
-    answer:
-      "Depende do plano: Essencial (até 5 dias úteis), Profissional (até 3 dias úteis), Premium (até 1 dia útil). Urgências são tratadas com prioridade conforme o SLA contratado.",
-  },
-  {
-    question: "O que acontece se precisar de mais horas?",
-    answer:
-      "Horas adicionais são faturadas à parte, com preço definido no contrato. Avisamos sempre antes de ultrapassar o limite mensal e pode optar por adiar trabalho não urgente para o mês seguinte.",
-  },
-  {
-    question: "Vocês tratam do domínio e hosting?",
-    answer:
-      "Sim, podemos gerir o domínio e hosting por si, incluído no plano. Se preferir manter o controlo, trabalhamos com o seu fornecedor atual sem problema.",
-  },
-  {
-    question: "Como funciona a migração?",
-    answer:
-      "Tratamos de toda a migração do seu site atual para os nossos servidores (ou para o alojamento da sua escolha). O processo é transparente, sem interrupções, e testamos tudo antes de fazer o switch.",
-  },
-  {
-    question: "Posso mudar de plano depois?",
-    answer:
-      "Sim, pode fazer upgrade ou downgrade do plano a qualquer momento. A alteração entra em vigor no mês seguinte.",
-  },
-  {
-    question: "Como é o processo de onboarding?",
-    answer:
-      "Após contratação, fazemos uma reunião de kickoff (30 min) para entender o seu site, prioridades e canais de comunicação preferidos. Em 48h o seu site está sob a nossa monitorização.",
   },
 ];
 
@@ -237,7 +193,7 @@ export default function PlanosPage() {
                       variant={plan.popular ? "default" : "outline"}
                       size="lg"
                     >
-                      <Link href={`/contactos?plano=${plan.id}`}>
+                      <Link href={`/auditoria-48h#contacto`}>
                         Escolher {plan.name}
                       </Link>
                     </Button>
@@ -343,6 +299,23 @@ export default function PlanosPage() {
 
         {/* Purchase FAQ */}
         <section className="py-16 lg:py-24 bg-secondary/30">
+          {/* FAQPage JSON-LD */}
+          <script
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: plansFaq.map((item) => ({
+                  "@type": "Question",
+                  name: item.question,
+                  acceptedAnswer: { "@type": "Answer", text: item.answer },
+                })),
+              }),
+            }}
+          />
+
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <div className="text-center">
@@ -358,7 +331,7 @@ export default function PlanosPage() {
               </div>
 
               <Accordion type="single" collapsible className="mt-8">
-                {purchaseFaq.map((item, index) => (
+                {plansFaq.map((item, index) => (
                   <AccordionItem
                     key={index}
                     value={`item-${index}`}
@@ -402,7 +375,7 @@ export default function PlanosPage() {
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Falar com especialista</Link>
+                <Link href="/auditoria-48h#contacto">Falar com especialista</Link>
               </Button>
               <Button
                 asChild

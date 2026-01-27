@@ -133,7 +133,7 @@ export default function SeoParaIaGeoPage() {
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg">
-                  <Link href="/contactos">
+                  <Link href="/auditoria-48h#contacto">
                     Saber mais
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -388,7 +388,7 @@ export default function SeoParaIaGeoPage() {
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Falar connosco</Link>
+                <Link href="/auditoria-48h#contacto">Falar connosco</Link>
               </Button>
             </div>
           </div>

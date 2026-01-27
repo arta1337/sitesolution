@@ -32,7 +32,6 @@ export const navigation = {
     { name: "Planos", href: "/planos" },
     { name: "Portfólio", href: "/portfolio" },
     { name: "Sobre", href: "/sobre" },
-    { name: "Contactos", href: "/contactos" },
   ],
   // Mega menu structure for services dropdown
   servicesMenu: [
@@ -75,8 +74,8 @@ export const navigation = {
     company: [
       { name: "Sobre Nós", href: "/sobre" },
       { name: "Portfólio", href: "/portfolio" },
-      { name: "Auditoria Gratuita", href: "/auditoria-48h" },
-      { name: "Contactos", href: "/contactos" },
+      { name: "Auditoria Gratuita 48h", href: "/auditoria-48h" },
+      { name: "Contacto", href: "/auditoria-48h#contacto" },
     ],
     legal: [
       { name: "Política de Privacidade", href: "/privacidade" },
@@ -422,39 +421,123 @@ export const testimonials = [
 
 export const faq = [
   {
-    question: "Quanto tempo demora a criar um website?",
-    answer: "Depende da complexidade do projeto. Um site institucional simples pode estar pronto em 2-3 semanas. Projetos mais complexos, como lojas online, podem demorar 4-8 semanas. Fornecemos sempre um cronograma detalhado na proposta.",
-  },
-  {
-    question: "Trabalham com WordPress?",
-    answer: "Sim, trabalhamos com WordPress, bem como outras tecnologias modernas como Next.js, dependendo das necessidades do projeto. Recomendamos a solução mais adequada para cada caso.",
-  },
-  {
-    question: "O que inclui a manutenção mensal?",
-    answer: "A manutenção inclui atualizações de segurança, backups regulares, monitorização de uptime, correções de bugs e um número de horas para pequenas alterações (varia conforme o plano). Consulte a página de planos para detalhes completos.",
-  },
-  {
-    question: "Posso cancelar a manutenção quando quiser?",
-    answer: "Sim, os nossos planos de manutenção são mensais e pode cancelar a qualquer momento com aviso prévio de 30 dias. Não há fidelização obrigatória.",
-  },
-  {
-    question: "Fazem migração de hosting?",
-    answer: "Sim, tratamos de toda a migração do seu site para os nossos servidores ou para o alojamento da sua preferência. O processo é transparente e sem interrupções.",
-  },
-  {
-    question: "O serviço inclui SEO?",
-    answer: "Todos os nossos sites são construídos com SEO técnico otimizado (estrutura, velocidade, metadados). Para estratégias de SEO mais avançadas e contínuas, oferecemos isso nos planos Profissional e Premium.",
-  },
-  {
-    question: "Fazem lojas online?",
-    answer: "Sim, desenvolvemos lojas online com WooCommerce, Shopify ou soluções personalizadas. O preço varia conforme o número de produtos, integrações necessárias e funcionalidades específicas.",
-  },
-  {
-    question: "Como funciona o suporte?",
+    question: "O que está incluído na manutenção?",
     answer:
-    "O suporte funciona por email e telefone durante o horário de expediente. O tempo de resposta varia conforme o plano: até 72h úteis (Essencial), até 24h úteis (Profissional) ou até 12h úteis (Premium). Urgências são tratadas com prioridade.",
+      "Atualizações de segurança, backups, monitorização, correções e um número de horas mensais para pequenas alterações (consoante o plano).",
+  },
+  {
+    question: "O que conta como pequena alteração?",
+    answer:
+      "Alterações simples como atualizar textos/imagens, ajustes de layout, correções pontuais e melhorias pequenas em formulários. Funcionalidades novas e redesigns completos são orçamentados à parte.",
+  },
+  {
+    question: "Em quanto tempo entregam um site?",
+    answer:
+      "Depende da complexidade. Um site institucional pode ficar pronto em 2–3 semanas; projetos mais complexos podem demorar 4–8 semanas. Definimos prazos no kickoff.",
+  },
+  {
+    question: "Trabalham com WordPress / Next.js / Shopify?",
+    answer:
+      "Sim. Recomendamos a stack mais adequada ao seu negócio e objetivos (WordPress, Next.js, Shopify/WooCommerce, entre outras).",
+  },
+  {
+    question: "Preciso de hosting? Vocês tratam disso?",
+    answer:
+      "Podemos gerir o alojamento e domínio por si, ou trabalhar com o seu fornecedor atual. O importante é garantir performance e segurança.",
+  },
+  {
+    question: "Posso cancelar quando quiser?",
+    answer:
+      "Sim. Os planos são mensais e pode cancelar com aviso prévio de 30 dias. Sem fidelizações obrigatórias.",
   },
 ];
+
+export const plansFaq = [
+  {
+    question: "Fico preso a contrato?",
+    answer:
+      "Não. Os planos são mensais e pode cancelar com 30 dias de aviso prévio. Sem fidelização obrigatória.",
+  },
+  {
+    question: "O que conta como 'pequena alteração'?",
+    answer:
+      "Pequenas alterações incluem: atualização de textos, troca de imagens, ajustes de layout, correções pontuais e melhorias pequenas em formulários. Não inclui novas funcionalidades complexas ou redesign completo.",
+  },
+  {
+    question: "Qual o prazo médio de entrega para alterações?",
+    answer:
+      "Depende do plano e da prioridade definida. Tipicamente, as alterações simples são tratadas dentro do SLA do seu plano.",
+  },
+  {
+    question: "O que acontece se precisar de mais horas?",
+    answer:
+      "Avisamos sempre antes de ultrapassar o limite mensal. Pode optar por faturação de horas extra, ou replanear para o mês seguinte.",
+  },
+  {
+    question: "Vocês tratam do domínio e hosting?",
+    answer:
+      "Sim, podemos gerir por si. Se preferir manter o controlo, trabalhamos com o seu fornecedor atual sem problema.",
+  },
+  {
+    question: "Como funciona a migração?",
+    answer:
+      "Planeamos a migração, testamos num ambiente seguro e fazemos o switch com o mínimo de impacto. Validamos tudo antes de publicar.",
+  },
+  {
+    question: "Posso mudar de plano depois?",
+    answer:
+      "Sim, pode fazer upgrade/downgrade a qualquer momento. A alteração aplica-se no ciclo seguinte.",
+  },
+  {
+    question: "Como é o processo de onboarding?",
+    answer:
+      "Começamos com um kickoff (30 min), recolhemos acessos, definimos prioridades e em 48h o seu site fica sob monitorização.",
+  },
+  {
+    question: "O que acontece aos meus dados se cancelar?",
+    answer:
+      "Entregamos os acessos e conteúdos do projeto conforme acordado. Podemos ajudar na transição para outro fornecedor, se necessário.",
+  },
+  {
+    question: "Fazem trabalhos urgentes fora do horário?",
+    answer:
+      "Casos críticos (ex.: downtime) têm prioridade. Para urgências fora do horário, podemos acordar um regime premium/extra conforme necessidade.",
+  },
+];
+
+export const auditFaq = [
+  {
+    question: "A auditoria é mesmo gratuita?",
+    answer:
+      "Sim. A auditoria é gratuita e serve para identificar oportunidades de melhoria. Não há compromisso de contratação.",
+  },
+  {
+    question: "Em quanto tempo recebo o relatório?",
+    answer:
+      "Em até 48 horas úteis após o envio do pedido (pode variar em períodos de maior procura).",
+  },
+  {
+    question: "Sou obrigado a contratar algo depois?",
+    answer:
+      "Não. Pode usar o relatório com a sua equipa atual ou outro fornecedor. Se fizer sentido, podemos ajudar na implementação.",
+  },
+  {
+    question: "Que tipo de sites analisam?",
+    answer:
+      "Sites institucionais, landing pages e e-commerce. Se o seu caso for muito específico, diga-nos no formulário.",
+  },
+  {
+    question: "Os meus dados ficam seguros?",
+    answer:
+      "Sim. Usamos os dados apenas para responder ao pedido e não partilhamos informação com terceiros. Consulte a Política de Privacidade para detalhes.",
+  },
+  {
+    question: "O que faço com o relatório depois?",
+    answer:
+      "Pode aplicar os quick wins por ordem de impacto, ou pedir-nos um plano de implementação e estimativa de esforço.",
+  },
+];
+
 
 export const contactForm = {
   title: "Peça uma proposta em 24h úteis",

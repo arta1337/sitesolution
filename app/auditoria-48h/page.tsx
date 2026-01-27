@@ -1,15 +1,16 @@
 "use client";
 
-import React from "react"
-
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Clock,
   CheckCircle,
@@ -23,7 +24,16 @@ import {
   Lock,
   Smartphone,
   AlertTriangle,
+  MessageSquare,
 } from "lucide-react";
+
+import { auditFaq } from "@/lib/content";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const auditItems = [
   {
@@ -66,25 +76,74 @@ const benefits = [
   "Sem compromisso de contratação",
 ];
 
+type LeadType = "auditoria" | "contacto";
+
 export default function Auditoria48hPage() {
-  const [formData, setFormData] = useState({
+  const searchParams = useSearchParams();
+  
+  // Determine initial tab based on URL hash
+  const [activeTab, setActiveTab] = useState<LeadType>("auditoria");
+  
+  useEffect(() => {
+    // Check for hash in URL
+    const hash = window.location.hash;
+    if (hash === "#contacto") {
+      setActiveTab("contacto");
+    } else if (hash === "#auditoria") {
+      setActiveTab("auditoria");
+    }
+  }, []);
+
+  // Auditoria form state
+  const [auditoriaForm, setAuditoriaForm] = useState({
     name: "",
     email: "",
     website: "",
     phone: "",
   });
+
+  // Contacto form state
+  const [contactoForm, setContactoForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedType, setSubmittedType] = useState<LeadType>("auditoria");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleAuditoriaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
+    // Simulate form submission with lead_type = "auditoria"
+    console.log("[v0] Auditoria form submitted:", { ...auditoriaForm, lead_type: "auditoria" });
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     setIsSubmitting(false);
     setIsSubmitted(true);
+    setSubmittedType("auditoria");
+  };
+
+  const handleContactoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission with lead_type = "contacto"
+    console.log("[v0] Contacto form submitted:", { ...contactoForm, lead_type: "contacto" });
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setSubmittedType("contacto");
+  };
+
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setAuditoriaForm({ name: "", email: "", website: "", phone: "" });
+    setContactoForm({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
@@ -142,8 +201,8 @@ export default function Auditoria48hPage() {
                 </div>
               </div>
 
-              {/* Form */}
-              <div className="lg:sticky lg:top-24">
+              {/* Form with Tabs */}
+              <div className="lg:sticky lg:top-24" id="form">
                 <Card className="border-2">
                   <CardContent className="p-6 lg:p-8">
                     {isSubmitted ? (
@@ -152,99 +211,205 @@ export default function Auditoria48hPage() {
                           <CheckCircle className="h-8 w-8 text-green-600" />
                         </div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          Pedido Recebido!
+                          {submittedType === "auditoria" ? "Pedido Recebido!" : "Mensagem Recebida!"}
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          Vamos analisar o seu website e enviar o relatório para {formData.email} dentro de 48 horas úteis.
+                          {submittedType === "auditoria" 
+                            ? `Vamos analisar o seu website e enviar o relatório para ${auditoriaForm.email} dentro de 48 horas úteis.`
+                            : `Respondemos em até 24 horas úteis para ${contactoForm.email}.`
+                          }
                         </p>
-                        <Button asChild variant="outline" className="bg-transparent">
-                          <Link href="/">Voltar à página inicial</Link>
+                        <Button variant="outline" className="bg-transparent" onClick={resetForm}>
+                          Enviar novo pedido
                         </Button>
                       </div>
                     ) : (
-                      <>
-                        <div className="mb-6">
-                          <h2 className="text-xl font-semibold text-foreground">
-                            Pedir Auditoria Gratuita
-                          </h2>
-                          <p className="mt-1 text-sm text-muted-foreground">
-                            Preencha o formulário e receba o relatório em 48h.
-                          </p>
-                        </div>
+                      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as LeadType)}>
+                        <TabsList className="grid w-full grid-cols-2 mb-6">
+                          <TabsTrigger value="auditoria" className="flex items-center gap-2">
+                            <FileText className="h-4 w-4" />
+                            Auditoria 48h
+                          </TabsTrigger>
+                          <TabsTrigger value="contacto" className="flex items-center gap-2">
+                            <MessageSquare className="h-4 w-4" />
+                            Contacto rápido
+                          </TabsTrigger>
+                        </TabsList>
 
-                        <form onSubmit={handleSubmit} className="space-y-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="name">Nome *</Label>
-                            <Input
-                              id="name"
-                              type="text"
-                              placeholder="O seu nome"
-                              required
-                              value={formData.name}
-                              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            />
+                        {/* Auditoria Tab */}
+                        <TabsContent value="auditoria">
+                          <div className="mb-6">
+                            <h2 className="text-xl font-semibold text-foreground">
+                              Pedir Auditoria Gratuita
+                            </h2>
+                            <p className="mt-1 text-sm text-muted-foreground">
+                              Preencha o formulário e receba o relatório em 48h.
+                            </p>
                           </div>
 
-                          <div className="space-y-2">
-                            <Label htmlFor="email">Email *</Label>
-                            <Input
-                              id="email"
-                              type="email"
-                              placeholder="email@exemplo.pt"
-                              required
-                              value={formData.email}
-                              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            />
+                          <form onSubmit={handleAuditoriaSubmit} className="space-y-4">
+                            <input type="hidden" name="lead_type" value="auditoria" />
+                            
+                            <div className="space-y-2">
+                              <Label htmlFor="audit-name">Nome *</Label>
+                              <Input
+                                id="audit-name"
+                                type="text"
+                                placeholder="O seu nome"
+                                required
+                                value={auditoriaForm.name}
+                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, name: e.target.value })}
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="audit-email">Email *</Label>
+                              <Input
+                                id="audit-email"
+                                type="email"
+                                placeholder="email@exemplo.pt"
+                                required
+                                value={auditoriaForm.email}
+                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, email: e.target.value })}
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="audit-website">URL do Website *</Label>
+                              <Input
+                                id="audit-website"
+                                type="url"
+                                placeholder="https://www.exemplo.pt"
+                                required
+                                value={auditoriaForm.website}
+                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, website: e.target.value })}
+                              />
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="audit-phone">Telefone (opcional)</Label>
+                              <Input
+                                id="audit-phone"
+                                type="tel"
+                                placeholder="+351 912 345 678"
+                                value={auditoriaForm.phone}
+                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, phone: e.target.value })}
+                              />
+                            </div>
+
+                            <Button 
+                              type="submit" 
+                              size="lg" 
+                              className="w-full mt-6"
+                              disabled={isSubmitting}
+                            >
+                              {isSubmitting ? (
+                                "A enviar..."
+                              ) : (
+                                <>
+                                  Receber Auditoria Gratuita
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </>
+                              )}
+                            </Button>
+
+                            <p className="text-xs text-center text-muted-foreground mt-4">
+                              Ao submeter, concorda com a nossa{" "}
+                              <Link href="/privacidade" className="underline hover:text-foreground">
+                                política de privacidade
+                              </Link>
+                              . Não enviamos spam.
+                            </p>
+                          </form>
+                        </TabsContent>
+
+                        {/* Contacto Tab */}
+                        <TabsContent value="contacto">
+                          <div className="mb-6">
+                            <h2 className="text-xl font-semibold text-foreground">
+                              Contacto Rápido
+                            </h2>
+                            <p className="mt-1 text-sm text-muted-foreground">
+                              Envie-nos uma mensagem e respondemos em até 24h.
+                            </p>
                           </div>
 
-                          <div className="space-y-2">
-                            <Label htmlFor="website">URL do Website *</Label>
-                            <Input
-                              id="website"
-                              type="url"
-                              placeholder="https://www.exemplo.pt"
-                              required
-                              value={formData.website}
-                              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                            />
-                          </div>
+                          <form onSubmit={handleContactoSubmit} className="space-y-4">
+                            <input type="hidden" name="lead_type" value="contacto" />
+                            
+                            <div className="space-y-2">
+                              <Label htmlFor="contact-name">Nome *</Label>
+                              <Input
+                                id="contact-name"
+                                type="text"
+                                placeholder="O seu nome"
+                                required
+                                value={contactoForm.name}
+                                onChange={(e) => setContactoForm({ ...contactoForm, name: e.target.value })}
+                              />
+                            </div>
 
-                          <div className="space-y-2">
-                            <Label htmlFor="phone">Telefone (opcional)</Label>
-                            <Input
-                              id="phone"
-                              type="tel"
-                              placeholder="+351 912 345 678"
-                              value={formData.phone}
-                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            />
-                          </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="contact-email">Email *</Label>
+                              <Input
+                                id="contact-email"
+                                type="email"
+                                placeholder="email@exemplo.pt"
+                                required
+                                value={contactoForm.email}
+                                onChange={(e) => setContactoForm({ ...contactoForm, email: e.target.value })}
+                              />
+                            </div>
 
-                          <Button 
-                            type="submit" 
-                            size="lg" 
-                            className="w-full mt-6"
-                            disabled={isSubmitting}
-                          >
-                            {isSubmitting ? (
-                              "A enviar..."
-                            ) : (
-                              <>
-                                Receber Auditoria Gratuita
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                              </>
-                            )}
-                          </Button>
+                            <div className="space-y-2">
+                              <Label htmlFor="contact-phone">Telefone (opcional)</Label>
+                              <Input
+                                id="contact-phone"
+                                type="tel"
+                                placeholder="+351 912 345 678"
+                                value={contactoForm.phone}
+                                onChange={(e) => setContactoForm({ ...contactoForm, phone: e.target.value })}
+                              />
+                            </div>
 
-                          <p className="text-xs text-center text-muted-foreground mt-4">
-                            Ao submeter, concorda com a nossa{" "}
-                            <Link href="/privacidade" className="underline hover:text-foreground">
-                              política de privacidade
-                            </Link>
-                            . Não enviamos spam.
-                          </p>
-                        </form>
-                      </>
+                            <div className="space-y-2">
+                              <Label htmlFor="contact-message">Mensagem *</Label>
+                              <Textarea
+                                id="contact-message"
+                                placeholder="Como podemos ajudar?"
+                                required
+                                rows={4}
+                                value={contactoForm.message}
+                                onChange={(e) => setContactoForm({ ...contactoForm, message: e.target.value })}
+                              />
+                            </div>
+
+                            <Button 
+                              type="submit" 
+                              size="lg" 
+                              className="w-full mt-6"
+                              disabled={isSubmitting}
+                            >
+                              {isSubmitting ? (
+                                "A enviar..."
+                              ) : (
+                                <>
+                                  Enviar Mensagem
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </>
+                              )}
+                            </Button>
+
+                            <p className="text-xs text-center text-muted-foreground mt-4">
+                              Ao submeter, concorda com a nossa{" "}
+                              <Link href="/privacidade" className="underline hover:text-foreground">
+                                política de privacidade
+                              </Link>
+                              . Não enviamos spam.
+                            </p>
+                          </form>
+                        </TabsContent>
+                      </Tabs>
                     )}
                   </CardContent>
                 </Card>
@@ -437,13 +602,20 @@ export default function Auditoria48hPage() {
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               Peça já a sua auditoria gratuita e receba um diagnóstico completo em 48 horas.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button asChild size="lg">
                 <a href="#form">
                   Pedir Auditoria Gratuita
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
+              <Link 
+                href="#form" 
+                onClick={() => setActiveTab("contacto")}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Ou envie uma mensagem rápida
+              </Link>
             </div>
           </div>
         </section>

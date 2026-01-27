@@ -40,25 +40,21 @@ export function Hero() {
               {hero.subtitle}
             </p>
 
-            {/* CTAs - Primary and Secondary */}
-            <div className="mt-8 flex flex-wrap gap-4">
+            {/* CTA - Single primary action */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <Button asChild size="lg" className="text-base">
-                <Link href="/contactos">
-                  Pedir proposta
+                <Link href="/auditoria-48h">
+                  <Clock className="mr-2 h-4 w-4" />
+                  Auditoria 48h
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="text-base bg-transparent"
+              <Link 
+                href="/auditoria-48h#contacto"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Link href="/auditoria-48h">
-                  <Clock className="mr-2 h-4 w-4" />
-                  Receber auditoria em 48h
-                </Link>
-              </Button>
+                Contacto rápido
+              </Link>
             </div>
 
             {/* Trust row with 3 key benefits */}
@@ -108,92 +104,81 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Visual - Dashboard mockup */}
+          {/* Visual - "Resultados e método" section */}
           <div className="relative lg:pl-8">
             <div className="relative mx-auto max-w-lg lg:max-w-none">
-              {/* Main dashboard card */}
               <div className="rounded-2xl border border-border bg-card p-6 shadow-2xl">
-                {/* Browser header */}
-                <div className="mb-4 flex items-center gap-2">
-                  <div className="h-3 w-3 rounded-full bg-red-400" />
-                  <div className="h-3 w-3 rounded-full bg-yellow-400" />
-                  <div className="h-3 w-3 rounded-full bg-green-400" />
-                  <div className="ml-4 h-6 flex-1 rounded bg-secondary" />
+                <h2 className="text-lg font-semibold text-foreground mb-4">
+                  Resultados e método
+                </h2>
+                
+                {/* Service cards */}
+                <div className="space-y-3">
+                  <Link 
+                    href="/servicos/performance-core-web-vitals"
+                    className="group flex items-start gap-4 rounded-xl bg-secondary/50 p-4 transition-colors hover:bg-secondary"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground flex-shrink-0">
+                      <Zap className="h-5 w-5 text-background" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-foreground group-hover:text-foreground/80">
+                        Performance (Core Web Vitals)
+                      </div>
+                      <div className="text-sm text-muted-foreground mt-0.5">
+                        Sites rápidos convertem mais
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link 
+                    href="/servicos/seo-tecnico"
+                    className="group flex items-start gap-4 rounded-xl bg-secondary/50 p-4 transition-colors hover:bg-secondary"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground flex-shrink-0">
+                      <TrendingUp className="h-5 w-5 text-background" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-foreground group-hover:text-foreground/80">
+                        SEO técnico
+                      </div>
+                      <div className="text-sm text-muted-foreground mt-0.5">
+                        Visibilidade nos motores de busca
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link 
+                    href="/servicos/seguranca-backups"
+                    className="group flex items-start gap-4 rounded-xl bg-secondary/50 p-4 transition-colors hover:bg-secondary"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground flex-shrink-0">
+                      <Shield className="h-5 w-5 text-background" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-foreground group-hover:text-foreground/80">
+                        Segurança & Backups
+                      </div>
+                      <div className="text-sm text-muted-foreground mt-0.5">
+                        Proteção contínua do seu site
+                      </div>
+                    </div>
+                  </Link>
                 </div>
 
-                {/* Dashboard content mockup */}
-                <div className="space-y-4">
-                  {/* Stats row */}
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="rounded-lg bg-secondary p-4">
-                      <div className="text-xs text-muted-foreground">
-                        Visitas
-                      </div>
-                      <div className="mt-1 text-xl font-bold">12.4k</div>
-                      <div className="mt-1 text-xs text-green-600">+23%</div>
-                    </div>
-                    <div className="rounded-lg bg-secondary p-4">
-                      <div className="text-xs text-muted-foreground">
-                        Conversões
-                      </div>
-                      <div className="mt-1 text-xl font-bold">847</div>
-                      <div className="mt-1 text-xs text-green-600">+18%</div>
-                    </div>
-                    <div className="rounded-lg bg-secondary p-4">
-                      <div className="text-xs text-muted-foreground">
-                        Velocidade
-                      </div>
-                      <div className="mt-1 text-xl font-bold">1.2s</div>
-                      <div className="mt-1 text-xs text-green-600">-45%</div>
-                    </div>
-                  </div>
-
-                  {/* Chart placeholder */}
-                  <div className="h-32 rounded-lg bg-secondary flex items-end justify-around px-4 pb-4">
-                    {[40, 65, 45, 80, 55, 90, 70].map((height, i) => (
-                      <div
-                        key={i}
-                        className="w-6 rounded-t bg-foreground/20"
-                        style={{ height: `${height}%` }}
-                      />
-                    ))}
-                  </div>
-
-                  {/* Status indicators */}
-                  <div className="flex items-center justify-between rounded-lg bg-green-50 dark:bg-green-950/20 p-3 border border-green-200 dark:border-green-900">
-                    <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                      <span className="text-sm font-medium text-green-700 dark:text-green-400">
-                        Site online
-                      </span>
-                    </div>
-                    <span className="text-xs text-green-600 dark:text-green-500">
-                      99.9% uptime
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating notification card */}
-              <div className="absolute -bottom-4 -left-4 rounded-xl border border-border bg-card p-4 shadow-lg">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                    <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-medium">Backup concluído</div>
-                    <div className="text-xs text-muted-foreground">
-                      Há 2 minutos
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating security card */}
-              <div className="absolute -top-2 -right-2 rounded-xl border border-border bg-card p-3 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <Shield className="h-5 w-5 text-foreground" />
-                  <span className="text-xs font-medium">SSL Ativo</span>
+                {/* CTA row */}
+                <div className="mt-6 pt-4 border-t border-border flex flex-wrap items-center gap-4">
+                  <Button asChild size="sm">
+                    <Link href="/auditoria-48h">
+                      Auditoria 48h
+                    </Link>
+                  </Button>
+                  <Link 
+                    href="/portfolio" 
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Ver portfólio
+                  </Link>
                 </div>
               </div>
             </div>

@@ -66,14 +66,17 @@ export function SectorPageTemplate({
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg">
-                  <Link href="/contactos">
-                    Pedir proposta
+                  <Link href="/auditoria-48h">
+                    Auditoria 48h
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg">
-                  <Link href="/auditoria-48h">Auditoria grátis em 48h</Link>
-                </Button>
+                <Link 
+                  href="/auditoria-48h#contacto"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center"
+                >
+                  Contacto rápido
+                </Link>
               </div>
             </div>
           </div>
@@ -214,7 +217,7 @@ export function SectorPageTemplate({
               Pronto para melhorar a sua presença digital?
             </h2>
             <p className="mt-4 text-lg text-background/70">
-              Peça uma proposta gratuita ou receba uma auditoria do seu site em 48h.
+              Peça uma auditoria gratuita do seu site em 48h.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button
@@ -223,16 +226,14 @@ export function SectorPageTemplate({
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Pedir proposta</Link>
+                <Link href="/auditoria-48h">Auditoria 48h</Link>
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-background/30 text-background hover:bg-background/10 bg-transparent"
+              <Link 
+                href="/auditoria-48h#contacto"
+                className="text-sm text-background/70 hover:text-background transition-colors flex items-center"
               >
-                <Link href="/auditoria-48h">Auditoria grátis</Link>
-              </Button>
+                Contacto rápido
+              </Link>
             </div>
           </div>
         </section>

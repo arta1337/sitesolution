@@ -137,16 +137,13 @@ export function Header() {
             ))}
           </div>
 
-          {/* Desktop CTAs */}
+          {/* Desktop CTA - Single primary CTA */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Button asChild variant="outline" size="sm" className="bg-transparent">
+            <Button asChild size="sm">
               <Link href="/auditoria-48h">
                 <Clock className="mr-2 h-4 w-4" />
                 Auditoria 48h
               </Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link href="/contactos">Pedir proposta</Link>
             </Button>
           </div>
 
@@ -222,17 +219,19 @@ export function Header() {
                   ))}
 
                   <div className="pt-4 space-y-3">
-                    <Button asChild variant="outline" className="w-full bg-transparent">
+                    <Button asChild className="w-full">
                       <Link href="/auditoria-48h" onClick={() => setIsOpen(false)}>
                         <Clock className="mr-2 h-4 w-4" />
-                        Auditoria Gratuita 48h
+                        Auditoria 48h
                       </Link>
                     </Button>
-                    <Button asChild className="w-full">
-                      <Link href="/contactos" onClick={() => setIsOpen(false)}>
-                        Pedir proposta
-                      </Link>
-                    </Button>
+                    <Link 
+                      href="/auditoria-48h#contacto" 
+                      onClick={() => setIsOpen(false)}
+                      className="block text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+                    >
+                      Contacto rápido
+                    </Link>
                   </div>
                 </div>
               </div>

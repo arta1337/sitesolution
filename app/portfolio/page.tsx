@@ -200,7 +200,7 @@ export default function PortfolioPage() {
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Iniciar projeto</Link>
+                <Link href="/auditoria-48h#contacto">Iniciar projeto</Link>
               </Button>
             </div>
           </div>

@@ -25,8 +25,8 @@ export default function NotFound() {
                 Página inicial
               </Link>
             </Button>
-            <Button asChild variant="outline">
-              <Link href="/contactos">
+            <Button asChild variant="outline" className="bg-transparent">
+              <Link href="/auditoria-48h#contacto">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Contactar suporte
               </Link>

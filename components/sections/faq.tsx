@@ -7,25 +7,46 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MessageCircle } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 
 export function FAQ() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return (
-    <section id="faq" className="py-16 lg:py-24 bg-secondary/30">
+    <section id="faq" className="bg-secondary/30 py-16 lg:py-24">
+      {/* FAQPage JSON-LD */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          {/* Section header */}
           <div className="text-center">
+            <div className="mb-4 flex items-center justify-center gap-2">
+              <HelpCircle className="h-6 w-6 text-muted-foreground" />
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               Perguntas Frequentes
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Respostas às dúvidas mais comuns sobre os nossos serviços.
+              Respostas rápidas às dúvidas mais comuns antes de avançar.
             </p>
           </div>
 
-          {/* FAQ Accordion */}
-          <Accordion type="single" collapsible className="mt-12">
+          <Accordion type="single" collapsible className="mt-10">
             {faq.map((item, index) => (
               <AccordionItem
                 key={index}
@@ -35,26 +56,32 @@ export function FAQ() {
                 <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground leading-relaxed">
+                <AccordionContent className="leading-relaxed text-muted-foreground">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
 
-          {/* Additional help */}
-          <div className="mt-12 rounded-2xl border border-border bg-card p-6 text-center">
-            <MessageCircle className="mx-auto h-8 w-8 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-semibold text-foreground">
-              Ainda tem dúvidas?
+          <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-center">
+            <h3 className="text-lg font-semibold text-foreground">
+              Quer uma resposta aplicada ao seu site?
             </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              A nossa equipa está disponível para esclarecer todas as suas
-              questões.
+              Peça uma auditoria gratuita em 48h e receba um relatório com quick
+              wins priorizados.
             </p>
-            <Button asChild className="mt-4">
-              <Link href="/contactos">Falar connosco</Link>
-            </Button>
+            <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild>
+                <Link href="/auditoria-48h">Auditoria 48h</Link>
+              </Button>
+              <Link
+                href="/planos"
+                className="text-sm text-muted-foreground hover:text-foreground underline"
+              >
+                Ver planos
+              </Link>
+            </div>
           </div>
         </div>
       </div>

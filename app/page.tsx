@@ -32,8 +32,8 @@ export default function HomePage() {
           variant="subtle"
           title="Precisa de um site novo ou de uma reformulação?"
           subtitle="Criamos websites modernos, rápidos e otimizados para conversão."
-          primaryCTA={{ text: "Quero um site novo", href: "/contactos?tipo=site-novo" }}
-          secondaryCTA={{ text: "Receber auditoria em 48h", href: "/auditoria-48h" }}
+          primaryCTA={{ text: "Auditoria 48h", href: "/auditoria-48h" }}
+          secondaryCTA={{ text: "Ver portfólio", href: "/portfolio" }}
         />
         <Pricing />
         <TrustGuarantees />
@@ -42,9 +42,9 @@ export default function HomePage() {
         <Testimonials />
         <CTABanner
           title="Pronto para ter um site sem preocupações?"
-          subtitle="Peça uma proposta gratuita e descubra como podemos ajudar o seu negócio a crescer online."
-          primaryCTA={{ text: "Pedir proposta", href: "/contactos" }}
-          secondaryCTA={{ text: "Receber auditoria em 48h", href: "/auditoria-48h" }}
+          subtitle="Peça uma auditoria gratuita e descubra como podemos ajudar o seu negócio a crescer online."
+          primaryCTA={{ text: "Auditoria 48h", href: "/auditoria-48h" }}
+          secondaryCTA={{ text: "Contacto rápido", href: "/auditoria-48h#contacto" }}
         />
         <FAQ />
         <Contact />

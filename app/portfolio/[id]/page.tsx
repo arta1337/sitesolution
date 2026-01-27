@@ -417,15 +417,21 @@ export default async function CaseStudyPage({ params }: Props) {
             <p className="mt-4 text-background/70">
               Fale connosco sobre os seus objetivos.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Button
                 asChild
                 size="lg"
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Pedir proposta</Link>
+                <Link href="/auditoria-48h">Auditoria 48h</Link>
               </Button>
+              <Link 
+                href="/auditoria-48h#contacto"
+                className="text-sm text-background/70 hover:text-background transition-colors flex items-center"
+              >
+                Contacto rápido
+              </Link>
             </div>
           </div>
         </section>

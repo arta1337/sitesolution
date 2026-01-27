@@ -48,7 +48,7 @@ export function Services() {
                     <div className="mb-5 overflow-hidden rounded-xl border bg-muted">
                       <div className="relative h-[180px] w-full">
                         <Image
-                          src={service.image}
+                          src={service.image || "/placeholder.svg"}
                           alt={service.title}
                           fill
                           className="object-cover"
@@ -100,8 +100,8 @@ export function Services() {
         {/* CTA */}
         <div className="mt-12 text-center">
           <Button asChild size="lg">
-            <Link href="/contactos">
-              Pedir proposta
+            <Link href="/auditoria-48h">
+              Auditoria 48h
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

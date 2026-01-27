@@ -49,7 +49,7 @@ export function Process() {
         {/* CTA */}
         <div className="mt-12 text-center">
           <Button asChild variant="outline" size="lg" className="bg-transparent">
-            <Link href="/contactos">
+            <Link href="/auditoria-48h">
               Iniciar o meu projeto
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>

@@ -109,7 +109,7 @@ export function Pricing() {
                   className="w-full"
                   variant={plan.popular ? "default" : "outline"}
                 >
-                  <Link href={`/contactos?plano=${plan.id}`}>
+                  <Link href={`/auditoria-48h?plano=${plan.id}`}>
                     Escolher {plan.name}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -123,10 +123,10 @@ export function Pricing() {
         <p className="mt-12 text-center text-sm text-muted-foreground">
           Os valores finais dependem do projeto.{" "}
           <Link
-            href="/contactos"
+            href="/auditoria-48h"
             className="font-medium text-foreground underline underline-offset-4 hover:text-foreground/80"
           >
-            Peça uma proposta personalizada
+            Peça uma auditoria gratuita
           </Link>
           .
         </p>

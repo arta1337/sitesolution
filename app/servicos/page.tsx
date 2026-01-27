@@ -32,6 +32,16 @@ const iconMap: Record<string, React.ElementType> = {
   server: Server,
 };
 
+// Service pages mapping for "Saber mais" links
+const servicePageLinks: Record<string, string> = {
+  "criacao": "/servicos/landing-pages-cro",
+  "manutencao": "/servicos/manutencao-sites",
+  "performance": "/servicos/performance-core-web-vitals",
+  "seo": "/servicos/seo-tecnico",
+  "seguranca": "/servicos/seguranca-backups",
+  "hosting": "/servicos/manutencao-sites", // Hosting included in maintenance
+};
+
 const extendedServices = [
   {
     ...services[0],
@@ -44,6 +54,7 @@ const extendedServices = [
       "Estrutura SEO otimizada",
     ],
     cta: "Ideal para empresas que querem uma presença online profissional.",
+    pageLink: "/servicos/landing-pages-cro",
   },
   {
     ...services[1],
@@ -56,6 +67,7 @@ const extendedServices = [
       "Relatórios mensais de performance",
     ],
     cta: "Mantenha o seu site sempre atualizado sem preocupações.",
+    pageLink: "/servicos/manutencao-sites",
   },
   {
     ...services[2],
@@ -68,6 +80,7 @@ const extendedServices = [
       "Lazy loading de recursos",
     ],
     cta: "Sites rápidos convertem mais e posicionam melhor no Google.",
+    pageLink: "/servicos/performance-core-web-vitals",
   },
   {
     ...services[3],
@@ -80,6 +93,7 @@ const extendedServices = [
       "Auditoria técnica SEO",
     ],
     cta: "Garanta que o Google encontra e indexa o seu site corretamente.",
+    pageLink: "/servicos/seo-tecnico",
   },
   {
     ...services[4],
@@ -92,6 +106,7 @@ const extendedServices = [
       "Atualizações de segurança prioritárias",
     ],
     cta: "Proteja o seu site e os dados dos seus clientes.",
+    pageLink: "/servicos/seguranca-backups",
   },
   {
     ...services[5],
@@ -104,6 +119,7 @@ const extendedServices = [
       "Escalabilidade conforme necessidade",
     ],
     cta: "Alojamento profissional sem as dores de cabeça técnicas.",
+    pageLink: "/servicos/manutencao-sites",
   },
 ];
 
@@ -125,7 +141,7 @@ export default function ServicosPage() {
               </p>
               <div className="mt-8">
                 <Button asChild size="lg">
-                  <Link href="/contactos">Pedir proposta</Link>
+                  <Link href="/auditoria-48h">Auditoria 48h</Link>
                 </Button>
               </div>
             </div>
@@ -174,13 +190,19 @@ export default function ServicosPage() {
                           {service.cta}
                         </p>
 
-                        <div className="mt-6">
-                          <Button asChild variant="outline">
-                            <Link href="/contactos">
+                        <div className="mt-6 flex flex-wrap items-center gap-4">
+                          <Button asChild variant="outline" className="bg-transparent">
+                            <Link href={service.pageLink}>
                               Saber mais
                               <ArrowRight className="ml-2 h-4 w-4" />
                             </Link>
                           </Button>
+                          <Link 
+                            href="/auditoria-48h" 
+                            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            Pedir auditoria
+                          </Link>
                         </div>
                       </div>
 
@@ -193,7 +215,7 @@ export default function ServicosPage() {
                         {service.image ? (
                           <div className="relative h-[360px] w-full lg:h-[420px]">
                             <Image
-                              src={service.image}
+                              src={service.image || "/placeholder.svg"}
                               alt={service.title}
                               fill
                               className="object-cover"
@@ -222,17 +244,23 @@ export default function ServicosPage() {
               Pronto para começar?
             </h2>
             <p className="mt-4 text-lg text-background/70">
-              Conte-nos sobre o seu projeto e receba uma proposta personalizada.
+              Peça uma auditoria gratuita e descubra como podemos ajudar.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button
                 asChild
                 size="lg"
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/contactos">Pedir proposta gratuita</Link>
+                <Link href="/auditoria-48h">Auditoria 48h</Link>
               </Button>
+              <Link 
+                href="/auditoria-48h#contacto" 
+                className="text-sm text-background/70 hover:text-background transition-colors"
+              >
+                Contacto rápido
+              </Link>
             </div>
           </div>
         </section>

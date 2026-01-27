@@ -4,19 +4,13 @@ import { Button } from "@/components/ui/button";
 import { hero } from "@/lib/content";
 import {
   CheckCircle,
-  Headphones,
   Shield,
   Zap,
   Wrench,
   ArrowRight,
+  Clock,
+  TrendingUp,
 } from "lucide-react";
-
-const badgeIconMap: Record<string, React.ElementType> = {
-  headphones: Headphones,
-  zap: Zap,
-  shield: Shield,
-  wrench: Wrench,
-};
 
 export function Hero() {
   return (
@@ -46,11 +40,11 @@ export function Hero() {
               {hero.subtitle}
             </p>
 
-            {/* CTAs */}
+            {/* CTAs - Primary and Secondary */}
             <div className="mt-8 flex flex-wrap gap-4">
               <Button asChild size="lg" className="text-base">
                 <Link href="/contactos">
-                  {hero.cta.primary}
+                  Pedir proposta
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -60,26 +54,57 @@ export function Hero() {
                 size="lg"
                 className="text-base bg-transparent"
               >
-                <Link href="/contactos?tipo=especialista">
-                  {hero.cta.secondary}
+                <Link href="/auditoria-48h">
+                  <Clock className="mr-2 h-4 w-4" />
+                  Receber auditoria em 48h
                 </Link>
               </Button>
             </div>
 
-            {/* Trust badges */}
-            <div className="mt-10 flex flex-wrap gap-3">
-              {hero.badges.map((badge) => {
-                const Icon = badgeIconMap[badge.icon] || CheckCircle;
-                return (
-                  <div
-                    key={badge.label}
-                    className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground"
-                  >
-                    <Icon className="h-4 w-4 text-muted-foreground" />
-                    {badge.label}
-                  </div>
-                );
-              })}
+            {/* Trust row with 3 key benefits */}
+            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <Wrench className="h-4 w-4 text-foreground" />
+                <span>Manutenção e segurança incluídas</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Zap className="h-4 w-4 text-foreground" />
+                <span>Performance e SEO técnico</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Shield className="h-4 w-4 text-foreground" />
+                <span>SLA e suporte contínuo</span>
+              </div>
+            </div>
+
+            {/* Real Results Strip - "Prova" block */}
+            <div className="mt-10 rounded-xl border border-border bg-card p-4">
+              <div className="flex items-center gap-2 mb-3">
+                <TrendingUp className="h-4 w-4 text-green-600" />
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                  Resultados reais (Exemplos)
+                </span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <Link href="/portfolio/clinica-exemplo" className="group">
+                  <div className="text-lg font-bold text-foreground group-hover:text-foreground/80 transition-colors">+45%</div>
+                  <div className="text-xs text-muted-foreground">marcações</div>
+                </Link>
+                <Link href="/portfolio/imobiliaria-exemplo" className="group">
+                  <div className="text-lg font-bold text-foreground group-hover:text-foreground/80 transition-colors">+60%</div>
+                  <div className="text-xs text-muted-foreground">tráfego orgânico</div>
+                </Link>
+                <Link href="/portfolio/ecommerce-exemplo" className="group">
+                  <div className="text-lg font-bold text-foreground group-hover:text-foreground/80 transition-colors">-45%</div>
+                  <div className="text-xs text-muted-foreground">tempo carregamento</div>
+                </Link>
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                Resultados variam por projeto.{" "}
+                <Link href="/portfolio" className="underline hover:text-foreground">
+                  Ver exemplos no portfólio
+                </Link>
+              </p>
             </div>
           </div>
 

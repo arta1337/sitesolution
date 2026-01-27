@@ -13,6 +13,9 @@ export function Testimonials() {
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
             A satisfação dos nossos clientes é a nossa maior recompensa.
           </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Testemunhos verificados por email (a pedido).
+          </p>
         </div>
 
         {/* Testimonials grid */}

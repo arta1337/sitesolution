@@ -32,19 +32,50 @@ export const navigation = {
     { name: "Planos", href: "/planos" },
     { name: "Portfólio", href: "/portfolio" },
     { name: "Sobre", href: "/sobre" },
-    { name: "FAQ", href: "/#faq" },
     { name: "Contactos", href: "/contactos" },
+  ],
+  // Mega menu structure for services dropdown
+  servicesMenu: [
+    {
+      category: "Serviços",
+      items: [
+        { name: "Manutenção de Sites", href: "/servicos/manutencao-sites", description: "Manutenção contínua e suporte" },
+        { name: "SEO Técnico", href: "/servicos/seo-tecnico", description: "Otimização para motores de busca" },
+        { name: "Performance & Core Web Vitals", href: "/servicos/performance-core-web-vitals", description: "Velocidade e performance" },
+        { name: "Segurança & Backups", href: "/servicos/seguranca-backups", description: "Proteção e recuperação" },
+        { name: "Landing Pages & CRO", href: "/servicos/landing-pages-cro", description: "Páginas otimizadas para conversão" },
+        { name: "SEO para IA (GEO)", href: "/servicos/seo-para-ia-geo", description: "Visibilidade em AI assistants" },
+      ],
+    },
+    {
+      category: "Setores",
+      items: [
+        { name: "Sites para Clínicas", href: "/setores/sites-para-clinicas", description: "Saúde e bem-estar" },
+        { name: "Sites para Imobiliárias", href: "/setores/sites-para-imobiliarias", description: "Setor imobiliário" },
+        { name: "Sites para Restaurantes", href: "/setores/sites-para-restaurantes", description: "Restauração e hotelaria" },
+        { name: "Sites para E-commerce", href: "/setores/sites-para-ecommerce", description: "Lojas online" },
+      ],
+    },
   ],
   footer: {
     services: [
-      { name: "Criação de Websites", href: "/servicos#criacao" },
-      { name: "Manutenção Mensal", href: "/servicos#manutencao" },
-      { name: "Performance & SEO", href: "/servicos#performance" },
-      { name: "Segurança & Backups", href: "/servicos#seguranca" },
+      { name: "Manutenção de Sites", href: "/servicos/manutencao-sites" },
+      { name: "SEO Técnico", href: "/servicos/seo-tecnico" },
+      { name: "Performance & Core Web Vitals", href: "/servicos/performance-core-web-vitals" },
+      { name: "Segurança & Backups", href: "/servicos/seguranca-backups" },
+      { name: "Landing Pages & CRO", href: "/servicos/landing-pages-cro" },
+      { name: "SEO para IA (GEO)", href: "/servicos/seo-para-ia-geo" },
+    ],
+    sectors: [
+      { name: "Sites para Clínicas", href: "/setores/sites-para-clinicas" },
+      { name: "Sites para Imobiliárias", href: "/setores/sites-para-imobiliarias" },
+      { name: "Sites para Restaurantes", href: "/setores/sites-para-restaurantes" },
+      { name: "Sites para E-commerce", href: "/setores/sites-para-ecommerce" },
     ],
     company: [
       { name: "Sobre Nós", href: "/sobre" },
       { name: "Portfólio", href: "/portfolio" },
+      { name: "Auditoria Gratuita", href: "/auditoria-48h" },
       { name: "Contactos", href: "/contactos" },
     ],
     legal: [

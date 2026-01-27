@@ -5,6 +5,8 @@ import { ClientLogos } from "@/components/sections/client-logos";
 import { Stats } from "@/components/sections/stats";
 import { WhySiteSolutions } from "@/components/sections/why-sitesolutions";
 import { Services } from "@/components/sections/services";
+import { ResultsMeasurement } from "@/components/sections/results-measurement";
+import { MonthlyReportPreview } from "@/components/sections/monthly-report-preview";
 import { Pricing } from "@/components/sections/pricing";
 import { TrustGuarantees } from "@/components/sections/trust-guarantees";
 import { Process } from "@/components/sections/process";
@@ -24,12 +26,14 @@ export default function HomePage() {
         <Stats />
         <WhySiteSolutions />
         <Services />
+        <ResultsMeasurement />
+        <MonthlyReportPreview />
         <CTABanner
           variant="subtle"
           title="Precisa de um site novo ou de uma reformulação?"
           subtitle="Criamos websites modernos, rápidos e otimizados para conversão."
           primaryCTA={{ text: "Quero um site novo", href: "/contactos?tipo=site-novo" }}
-          secondaryCTA={{ text: "Ver portfólio", href: "/portfolio" }}
+          secondaryCTA={{ text: "Receber auditoria em 48h", href: "/auditoria-48h" }}
         />
         <Pricing />
         <TrustGuarantees />
@@ -40,7 +44,7 @@ export default function HomePage() {
           title="Pronto para ter um site sem preocupações?"
           subtitle="Peça uma proposta gratuita e descubra como podemos ajudar o seu negócio a crescer online."
           primaryCTA={{ text: "Pedir proposta", href: "/contactos" }}
-          secondaryCTA={{ text: "Falar com um especialista", href: "/contactos?tipo=especialista" }}
+          secondaryCTA={{ text: "Receber auditoria em 48h", href: "/auditoria-48h" }}
         />
         <FAQ />
         <Contact />

@@ -2,10 +2,57 @@ import Link from "next/link";
 import { siteConfig, navigation } from "@/lib/content";
 
 export function Footer() {
+  // JSON-LD Structured Data for LocalBusiness
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": siteConfig.name,
+    "description": siteConfig.description,
+    "url": siteConfig.url,
+    "telephone": siteConfig.contact.phone,
+    "email": siteConfig.contact.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. da Liberdade, 110",
+      "addressLocality": "Lisboa",
+      "postalCode": "1250-146",
+      "addressCountry": "PT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "38.7223",
+      "longitude": "-9.1393"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "priceRange": "€€",
+    "image": `${siteConfig.url}/og-image.jpg`,
+    "sameAs": [
+      siteConfig.social.linkedin,
+      siteConfig.social.instagram,
+      siteConfig.social.facebook
+    ],
+    "areaServed": {
+      "@type": "Country",
+      "name": "Portugal"
+    },
+    "serviceType": [
+      "Web Development",
+      "Website Maintenance",
+      "SEO Services",
+      "Web Performance Optimization"
+    ]
+  };
+
   return (
     <footer className="border-t border-border bg-secondary/30">
+      {/* JSON-LD Script */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link
@@ -33,6 +80,25 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-3">
               {navigation.footer.services.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Sectors Links */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
+              Setores
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {navigation.footer.sectors.map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}

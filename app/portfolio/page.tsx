@@ -1,21 +1,42 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { caseStudies, seoMeta } from "@/lib/content";
-import { TrendingUp, ArrowRight } from "lucide-react";
+import { caseStudies } from "@/lib/content";
+import { TrendingUp, ArrowRight, Clock, Filter } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  title: seoMeta.portfolio.title,
-  description: seoMeta.portfolio.description,
-  keywords: seoMeta.portfolio.keywords,
-};
+// Define filter options
+const sectorFilters = [
+  { value: "all", label: "Todos os Setores" },
+  { value: "Saúde", label: "Clínicas" },
+  { value: "Imobiliário", label: "Imobiliário" },
+  { value: "E-commerce", label: "E-commerce" },
+  { value: "Serviços Financeiros", label: "Serviços" },
+];
 
-// Get unique sectors for filtering
-const sectors = [...new Set(caseStudies.map((study) => study.sector))];
+const typeFilters = [
+  { value: "all", label: "Todos os Tipos" },
+  { value: "institucional", label: "Site Institucional" },
+  { value: "landing", label: "Landing Page" },
+  { value: "loja", label: "Loja Online" },
+];
 
 export default function PortfolioPage() {
+  const [sectorFilter, setSectorFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
+
+  // Filter case studies
+  const filteredStudies = caseStudies.filter((study) => {
+    const matchesSector =
+      sectorFilter === "all" || study.sector === sectorFilter;
+    // For type filter, we'd need type data - for now just sector
+    return matchesSector;
+  });
+
   return (
     <>
       <Header />
@@ -33,16 +54,30 @@ export default function PortfolioPage() {
               </p>
             </div>
 
-            {/* Sector tags */}
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {sectors.map((sector) => (
-                <span
-                  key={sector}
-                  className="rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground"
-                >
-                  {sector}
-                </span>
-              ))}
+            {/* Filters */}
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="flex items-center gap-2">
+                <Filter className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm text-muted-foreground">Filtrar:</span>
+              </div>
+
+              {/* Sector filter */}
+              <div className="flex flex-wrap justify-center gap-2">
+                {sectorFilters.map((filter) => (
+                  <button
+                    key={filter.value}
+                    onClick={() => setSectorFilter(filter.value)}
+                    className={cn(
+                      "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
+                      sectorFilter === filter.value
+                        ? "bg-foreground text-background"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    )}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -50,8 +85,34 @@ export default function PortfolioPage() {
         {/* Portfolio grid */}
         <section className="py-16 lg:py-24 bg-secondary/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Audit CTA Card */}
+            <div className="mb-12 rounded-2xl border border-border bg-card p-6 lg:p-8">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-foreground">
+                    <Clock className="h-6 w-6 text-background" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      Quer saber como está o seu site?
+                    </h3>
+                    <p className="mt-1 text-muted-foreground">
+                      Receba uma auditoria gratuita com análise de performance,
+                      SEO e segurança em 48h.
+                    </p>
+                  </div>
+                </div>
+                <Button asChild>
+                  <Link href="/auditoria-48h">
+                    Receber auditoria em 48h
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
             <div className="grid gap-8 md:grid-cols-2">
-              {caseStudies.map((study) => (
+              {filteredStudies.map((study) => (
                 <Link
                   key={study.id}
                   href={`/portfolio/${study.id}`}
@@ -105,6 +166,21 @@ export default function PortfolioPage() {
                 </Link>
               ))}
             </div>
+
+            {filteredStudies.length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">
+                  Não há projetos para este filtro.
+                </p>
+                <Button
+                  variant="outline"
+                  className="mt-4 bg-transparent"
+                  onClick={() => setSectorFilter("all")}
+                >
+                  Ver todos os projetos
+                </Button>
+              </div>
+            )}
           </div>
         </section>
 

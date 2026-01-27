@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/templates/service-page";
 import { TrendingUp } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Landing Pages & CRO | SiteSolutions",
@@ -108,8 +111,31 @@ const relatedServices = [
 ];
 
 export default function LandingPagesCroPage() {
+  const canonicalUrl = `${SITE_URL}/servicos/landing-pages-cro`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Landing Pages & CRO",
+    description: "Landing pages orientadas a conversão. Copy, UX e testes para aumentar leads e vendas.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <ServicePageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServicePageTemplate
       title="Landing Pages & CRO"
       subtitle="Criamos páginas focadas em converter visitantes em clientes. Design, copy e otimização para maximizar os seus resultados."
       icon={TrendingUp}
@@ -119,6 +145,7 @@ export default function LandingPagesCroPage() {
       timelines={timelines}
       faq={faq}
       relatedServices={relatedServices}
-    />
+      />
+    </>
   );
 }

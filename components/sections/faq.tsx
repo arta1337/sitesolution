@@ -72,7 +72,7 @@ export function FAQ() {
               wins priorizados.
             </p>
             <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild>
+              <Button asChild variant="brand">
                 <Link href="/auditoria-48h">Auditoria 48h</Link>
               </Button>
               <Link

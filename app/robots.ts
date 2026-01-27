@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://sitesolutions.pt";
-
   return {
     rules: [
       {
@@ -11,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/_next/"],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

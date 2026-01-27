@@ -110,34 +110,75 @@ export default function Auditoria48hPage() {
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  async function submitLead(payload: any) {
+  const res = await fetch("/api/leads", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data?.error || "Falha ao enviar. Tente novamente.");
+  }
+
+  return res.json().catch(() => ({}));
+}
+
+const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedType, setSubmittedType] = useState<LeadType>("auditoria");
 
   const handleAuditoriaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission with lead_type = "auditoria"
-    console.log("[v0] Auditoria form submitted:", { ...auditoriaForm, lead_type: "auditoria" });
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setSubmittedType("auditoria");
+
+    try {
+      await submitLead({
+        lead_type: "auditoria",
+        name: auditoriaForm.name,
+        email: auditoriaForm.email,
+        website: auditoriaForm.website,
+        phone: auditoriaForm.phone,
+        // honeypot (kept empty by humans)
+        company: "",
+      });
+
+      setIsSubmitted(true);
+      setSubmittedType("auditoria");
+    } catch (err: any) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      alert(err?.message || "Falha ao enviar. Tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleContactoSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission with lead_type = "contacto"
-    console.log("[v0] Contacto form submitted:", { ...contactoForm, lead_type: "contacto" });
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setSubmittedType("contacto");
+
+    try {
+      await submitLead({
+        lead_type: "contacto",
+        name: contactoForm.name,
+        email: contactoForm.email,
+        phone: contactoForm.phone,
+        message: contactoForm.message,
+        // honeypot
+        company: "",
+      });
+
+      setIsSubmitted(true);
+      setSubmittedType("contacto");
+    } catch (err: any) {
+      // eslint-disable-next-line no-console
+      console.error(err);
+      alert(err?.message || "Falha ao enviar. Tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -249,6 +290,10 @@ export default function Auditoria48hPage() {
 
                           <form onSubmit={handleAuditoriaSubmit} className="space-y-4">
                             <input type="hidden" name="lead_type" value="auditoria" />
+                            <div className="hidden">
+                              <Label htmlFor="audit-company">Empresa</Label>
+                              <Input id="audit-company" type="text" tabIndex={-1} autoComplete="off" />
+                            </div>
                             
                             <div className="space-y-2">
                               <Label htmlFor="audit-name">Nome *</Label>
@@ -300,6 +345,7 @@ export default function Auditoria48hPage() {
                             <Button 
                               type="submit" 
                               size="lg" 
+                              variant="brand"
                               className="w-full mt-6"
                               disabled={isSubmitting}
                             >
@@ -336,6 +382,10 @@ export default function Auditoria48hPage() {
 
                           <form onSubmit={handleContactoSubmit} className="space-y-4">
                             <input type="hidden" name="lead_type" value="contacto" />
+                            <div className="hidden">
+                              <Label htmlFor="contact-company">Empresa</Label>
+                              <Input id="contact-company" type="text" tabIndex={-1} autoComplete="off" />
+                            </div>
                             
                             <div className="space-y-2">
                               <Label htmlFor="contact-name">Nome *</Label>
@@ -387,6 +437,7 @@ export default function Auditoria48hPage() {
                             <Button 
                               type="submit" 
                               size="lg" 
+                              variant="brand"
                               className="w-full mt-6"
                               disabled={isSubmitting}
                             >
@@ -479,7 +530,7 @@ export default function Auditoria48hPage() {
                 </ul>
 
                 <div className="mt-8">
-                  <Button asChild size="lg">
+                  <Button asChild size="lg" variant="brand">
                     <a href="#form">
                       Pedir Auditoria Gratuita
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -544,52 +595,39 @@ export default function Auditoria48hPage() {
 
         {/* FAQ Section */}
         <section className="py-16 lg:py-24 bg-secondary/30">
+          {/* FAQPage JSON-LD */}
+          <script
+            type="application/ld+json"
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: auditFaq.map((item) => ({
+                  "@type": "Question",
+                  name: item.question,
+                  acceptedAnswer: { "@type": "Answer", text: item.answer },
+                })),
+              }),
+            }}
+          />
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold tracking-tight text-foreground text-center mb-12">
               Perguntas Frequentes
             </h2>
 
-            <div className="space-y-6">
-              <div className="bg-card rounded-lg p-6 border">
-                <h3 className="font-semibold text-foreground mb-2">
-                  A auditoria é mesmo gratuita?
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  Sim, 100% gratuita e sem compromisso. Oferecemos esta auditoria como forma de 
-                  demonstrar o nosso conhecimento e identificar oportunidades de melhoria no seu site.
-                </p>
-              </div>
-
-              <div className="bg-card rounded-lg p-6 border">
-                <h3 className="font-semibold text-foreground mb-2">
-                  Em quanto tempo recebo o relatório?
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  Dentro de 48 horas úteis após a submissão do pedido. 
-                  Receberá o relatório PDF diretamente no email indicado.
-                </p>
-              </div>
-
-              <div className="bg-card rounded-lg p-6 border">
-                <h3 className="font-semibold text-foreground mb-2">
-                  Sou obrigado a contratar algo depois?
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  Não, de todo. A auditoria é gratuita e sem qualquer obrigação. 
-                  Pode implementar as recomendações internamente ou com outro parceiro.
-                </p>
-              </div>
-
-              <div className="bg-card rounded-lg p-6 border">
-                <h3 className="font-semibold text-foreground mb-2">
-                  Que tipo de sites analisam?
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  Analisamos qualquer tipo de website: institucional, e-commerce, blogs, 
-                  landing pages, etc. A única condição é que o site esteja online e acessível.
-                </p>
-              </div>
-            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {auditFaq.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="border-border">
+                  <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="leading-relaxed text-muted-foreground">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
@@ -603,7 +641,7 @@ export default function Auditoria48hPage() {
               Peça já a sua auditoria gratuita e receba um diagnóstico completo em 48 horas.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="brand">
                 <a href="#form">
                   Pedir Auditoria Gratuita
                   <ArrowRight className="ml-2 h-4 w-4" />

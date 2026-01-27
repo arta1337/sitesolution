@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/templates/service-page";
 import { Gauge } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Performance & Core Web Vitals | SiteSolutions",
@@ -109,8 +112,31 @@ const relatedServices = [
 ];
 
 export default function PerformancePage() {
+  const canonicalUrl = `${SITE_URL}/servicos/performance-core-web-vitals`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Performance & Core Web Vitals",
+    description: "Otimização de performance e Core Web Vitals (LCP/CLS/INP). Melhoramos velocidade, UX e métricas essenciais.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <ServicePageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServicePageTemplate
       title="Performance & Core Web Vitals"
       subtitle="Sites rápidos vendem mais. Otimizamos a velocidade e as métricas Core Web Vitals do seu site para melhor experiência e conversão."
       icon={Gauge}
@@ -120,6 +146,7 @@ export default function PerformancePage() {
       timelines={timelines}
       faq={faq}
       relatedServices={relatedServices}
-    />
+      />
+    </>
   );
 }

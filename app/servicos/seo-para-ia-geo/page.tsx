@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import {
+import { siteConfig } from "@/lib/content";
   CheckCircle,
   ArrowRight,
   ChevronRight,
@@ -20,6 +21,8 @@ import {
   Quote,
   Target,
 } from "lucide-react";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "SEO para IA (GEO) | SiteSolutions",
@@ -95,6 +98,26 @@ const faq = [
 ];
 
 export default function SeoParaIaGeoPage() {
+  const canonicalUrl = `${SITE_URL}/servicos/seo-para-ia-geo`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "SEO para IA (GEO)",
+    description: "Otimização para motores de resposta e IA: estrutura, entidades, schema e conteúdo para visibilidade em assistentes.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <>
       <Header />

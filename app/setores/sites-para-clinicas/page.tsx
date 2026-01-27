@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { SectorPageTemplate } from "@/components/templates/sector-page";
 import { Stethoscope } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Sites para Clínicas | SiteSolutions",
@@ -103,8 +106,31 @@ const faq = [
 ];
 
 export default function SitesParaClinicasPage() {
+  const canonicalUrl = `${SITE_URL}/setores/sites-para-clinicas`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Sites para Clínicas",
+    description: "Criação de websites para clínicas médicas e dentárias com foco em marcações, confiança e SEO local.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <SectorPageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <SectorPageTemplate
       title="Sites para Clínicas"
       subtitle="Websites profissionais para clínicas médicas e dentárias. Design que inspira confiança, marcações online e otimização para pacientes locais."
       icon={Stethoscope}
@@ -117,6 +143,7 @@ export default function SitesParaClinicasPage() {
         href: "/portfolio/clinica-exemplo",
       }}
       faq={faq}
-    />
+      />
+    </>
   );
 }

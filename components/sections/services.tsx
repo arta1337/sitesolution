@@ -99,7 +99,7 @@ export function Services() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <Button asChild size="lg">
+          <Button asChild size="lg" variant="brand">
             <Link href="/auditoria-48h">
               Auditoria 48h
               <ArrowRight className="ml-2 h-4 w-4" />

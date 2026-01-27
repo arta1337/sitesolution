@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { SectorPageTemplate } from "@/components/templates/sector-page";
 import { UtensilsCrossed } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Sites para Restaurantes | SiteSolutions",
@@ -103,8 +106,31 @@ const faq = [
 ];
 
 export default function SitesParaRestaurantesPage() {
+  const canonicalUrl = `${SITE_URL}/setores/sites-para-restaurantes`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Sites para Restaurantes",
+    description: "Websites para restaurantes com menus, reservas e SEO local para aumentar ocupação e pedidos.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <SectorPageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <SectorPageTemplate
       title="Sites para Restaurantes"
       subtitle="Websites que abrem o apetite. Menu digital, reservas online e SEO local para atrair mais clientes ao seu restaurante."
       icon={UtensilsCrossed}
@@ -112,6 +138,7 @@ export default function SitesParaRestaurantesPage() {
       solutions={solutions}
       features={features}
       faq={faq}
-    />
+      />
+    </>
   );
 }

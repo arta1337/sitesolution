@@ -42,7 +42,7 @@ export function Hero() {
 
             {/* CTA - Single primary action */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Button asChild size="lg" className="text-base">
+              <Button asChild size="lg" variant="brand" className="text-base">
                 <Link href="/auditoria-48h">
                   <Clock className="mr-2 h-4 w-4" />
                   Auditoria 48h

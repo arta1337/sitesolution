@@ -1,38 +1,11 @@
-"use client";
-
-import React from "react"
-
-import { useState } from "react";
+import Link from "next/link";
 import { siteConfig, contactForm } from "@/lib/content";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-import {
-  Mail,
-  Phone,
-  Clock,
-  Shield,
-  CheckCircle,
-  ArrowRight,
-} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, Clock, Shield, CheckCircle, ArrowRight } from "lucide-react";
 
+// Contact section (info-only) — all lead capture routes to /auditoria-48h
 export function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-  };
-
   return (
     <section id="contacto" className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -115,121 +88,44 @@ export function Contact() {
                     Resposta em 24h úteis
                   </div>
                   <div className="text-xs text-green-600 dark:text-green-400">
-                    Enviamos uma proposta personalizada para o seu projeto
+                    Se precisar de falar connosco, use o contacto rápido na auditoria.
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right column - Form */}
-          <div className="rounded-2xl border border-border bg-card p-6 lg:p-8">
-            {isSubmitted ? (
-              <div className="flex h-full flex-col items-center justify-center text-center py-12">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-                  <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
-                </div>
-                <h3 className="mt-4 text-xl font-semibold text-foreground">
-                  Mensagem enviada!
-                </h3>
-                <p className="mt-2 text-muted-foreground">
-                  Entraremos em contacto consigo em breve.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">{contactForm.fields.name}</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      required
-                      placeholder="O seu nome"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">{contactForm.fields.company}</Label>
-                    <Input
-                      id="company"
-                      name="company"
-                      required
-                      placeholder="Nome da empresa"
-                    />
-                  </div>
-                </div>
+          {/* Right column - Single funnel CTA */}
+          <Card className="border-2 h-fit lg:sticky lg:top-24">
+            <CardContent className="p-6 lg:p-8">
+              <h3 className="text-xl font-semibold text-foreground">
+                Fale connosco através da Auditoria 48h
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Mantemos um único formulário para reduzir fricção e garantir resposta rápida. 
+                Use “Contacto rápido” se não quiser pedir auditoria.
+              </p>
 
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">{contactForm.fields.email}</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="email@empresa.pt"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">{contactForm.fields.phone}</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+351 900 000 000"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="website">{contactForm.fields.website}</Label>
-                  <Input
-                    id="website"
-                    name="website"
-                    type="url"
-                    placeholder="https://..."
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">{contactForm.fields.message}</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    placeholder="Descreva o seu projeto ou necessidade..."
-                  />
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <Checkbox id="maintenance" name="maintenance" />
-                  <Label
-                    htmlFor="maintenance"
-                    className="text-sm font-normal text-muted-foreground cursor-pointer"
-                  >
-                    {contactForm.fields.maintenance}
-                  </Label>
-                </div>
-
-                <Button
-                  type="submit"
-                  className="w-full"
-                  size="lg"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    "A enviar..."
-                  ) : (
-                    <>
-                      {contactForm.submit}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </>
-                  )}
+              <div className="mt-6 flex flex-col gap-3">
+                <Button asChild size="lg" variant="brand">
+                  <Link href="/auditoria-48h">
+                    Auditoria 48h
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
-              </form>
-            )}
-          </div>
+                <Link
+                  href="/auditoria-48h#contacto"
+                  className="text-center text-sm text-muted-foreground hover:text-foreground underline"
+                >
+                  Contacto rápido
+                </Link>
+              </div>
+
+              <p className="mt-6 text-xs text-muted-foreground">
+                Sem spam. Usamos os seus dados apenas para responder ao pedido.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>

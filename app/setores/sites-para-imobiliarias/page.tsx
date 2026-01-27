@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { SectorPageTemplate } from "@/components/templates/sector-page";
 import { Home } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Sites para Imobiliárias | SiteSolutions",
@@ -103,8 +106,31 @@ const faq = [
 ];
 
 export default function SitesParaImobiliariasPage() {
+  const canonicalUrl = `${SITE_URL}/setores/sites-para-imobiliarias`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Sites para Imobiliárias",
+    description: "Websites para imobiliárias com performance, captação de leads e páginas otimizadas por empreendimento/serviço.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <SectorPageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <SectorPageTemplate
       title="Sites para Imobiliárias"
       subtitle="Websites profissionais para imobiliárias e agentes. Pesquisa avançada de imóveis, integração com CRM e SEO otimizado para captar mais leads."
       icon={Home}
@@ -117,6 +143,7 @@ export default function SitesParaImobiliariasPage() {
         href: "/portfolio/imobiliaria-exemplo",
       }}
       faq={faq}
-    />
+      />
+    </>
   );
 }

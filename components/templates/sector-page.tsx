@@ -65,7 +65,7 @@ export function SectorPageTemplate({
                 {subtitle}
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg">
+                <Button asChild size="lg" variant="brand">
                   <Link href="/auditoria-48h">
                     Auditoria 48h
                     <ArrowRight className="ml-2 h-4 w-4" />

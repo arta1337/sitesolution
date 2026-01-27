@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/templates/service-page";
 import { Search } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "SEO Técnico | SiteSolutions",
@@ -109,8 +112,31 @@ const relatedServices = [
 ];
 
 export default function SeoTecnicoPage() {
+  const canonicalUrl = `${SITE_URL}/servicos/seo-tecnico`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "SEO Técnico",
+    description: "Serviço de SEO técnico para websites. Otimização de estrutura, indexação, schema markup e velocidade para melhor posicionamento no Google.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <ServicePageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServicePageTemplate
       title="SEO Técnico"
       subtitle="Otimizamos a estrutura técnica do seu site para que o Google e outros motores de busca o encontrem, compreendam e posicionem melhor."
       icon={Search}
@@ -120,6 +146,7 @@ export default function SeoTecnicoPage() {
       timelines={timelines}
       faq={faq}
       relatedServices={relatedServices}
-    />
+      />
+    </>
   );
 }

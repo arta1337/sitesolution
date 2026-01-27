@@ -2,9 +2,12 @@ import React from "react"
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { siteConfig } from "@/lib/content";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: {
@@ -24,12 +27,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "SiteSolutions" }],
   creator: "SiteSolutions",
-  metadataBase: new URL("https://sitesolutions.pt"),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "pt_PT",
-    url: "https://sitesolutions.pt",
-    siteName: "SiteSolutions",
+    url: SITE_URL,
+siteName: "SiteSolutions",
     title: "SiteSolutions | Websites que Geram Resultados",
     description:
       "Criamos websites rápidos, seguros e otimizados para conversão. Manutenção mensal com SLA de 24h e suporte dedicado.",

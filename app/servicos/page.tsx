@@ -140,7 +140,7 @@ export default function ServicosPage() {
                 digital. Desde o design inicial até à manutenção contínua.
               </p>
               <div className="mt-8">
-                <Button asChild size="lg">
+                <Button asChild size="lg" variant="brand">
                   <Link href="/auditoria-48h">Auditoria 48h</Link>
                 </Button>
               </div>

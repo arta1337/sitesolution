@@ -35,7 +35,7 @@ export function CTABanner({
               {subtitle}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <Button asChild size="lg">
+              <Button asChild size="lg" variant="brand">
                 <Link href={primaryCTA.href}>
                   {primaryCTA.text}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -66,8 +66,7 @@ export function CTABanner({
           <Button
             asChild
             size="lg"
-            variant="secondary"
-            className="bg-background text-foreground hover:bg-background/90"
+            variant="brand"
           >
             <Link href={primaryCTA.href}>
               {primaryCTA.text}

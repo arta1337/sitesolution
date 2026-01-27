@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { SectorPageTemplate } from "@/components/templates/sector-page";
 import { ShoppingCart } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Sites para E-commerce | SiteSolutions",
@@ -103,8 +106,31 @@ const faq = [
 ];
 
 export default function SitesParaEcommercePage() {
+  const canonicalUrl = `${SITE_URL}/setores/sites-para-ecommerce`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Sites para E-commerce",
+    description: "Sites e-commerce rápidos e otimizados para conversão, com foco em performance, checkout e SEO técnico.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <SectorPageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <SectorPageTemplate
       title="Sites para E-commerce"
       subtitle="Lojas online que vendem. Performance, checkout otimizado e SEO para produtos. WooCommerce, Shopify ou soluções à medida."
       icon={ShoppingCart}
@@ -117,6 +143,7 @@ export default function SitesParaEcommercePage() {
         href: "/portfolio/ecommerce-exemplo",
       }}
       faq={faq}
-    />
+      />
+    </>
   );
 }

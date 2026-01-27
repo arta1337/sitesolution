@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/templates/service-page";
 import { Wrench } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Manutenção de Sites | SiteSolutions",
@@ -108,8 +111,31 @@ const relatedServices = [
 ];
 
 export default function ManutencaoSitesPage() {
+  const canonicalUrl = `${SITE_URL}/servicos/manutencao-sites`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Manutenção de Sites",
+    description: "Manutenção mensal: atualizações, segurança, backups e pequenas alterações para manter o seu site rápido e estável.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <ServicePageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServicePageTemplate
       title="Manutenção de Sites"
       subtitle="Mantemos o seu site sempre atualizado, seguro e a funcionar sem interrupções. Foque-se no seu negócio enquanto tratamos da parte técnica."
       icon={Wrench}
@@ -119,6 +145,7 @@ export default function ManutencaoSitesPage() {
       timelines={timelines}
       faq={faq}
       relatedServices={relatedServices}
-    />
+      />
+    </>
   );
 }

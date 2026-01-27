@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/templates/service-page";
 import { Shield } from "lucide-react";
+import { siteConfig } from "@/lib/content";
+
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   title: "Segurança & Backups | SiteSolutions",
@@ -109,8 +112,31 @@ const relatedServices = [
 ];
 
 export default function SegurancaBackupsPage() {
+  const canonicalUrl = `${SITE_URL}/servicos/seguranca-backups`;
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Segurança & Backups",
+    description: "Protegemos o seu site com hardening, monitorização e backups automáticos. Reduza riscos e garanta continuidade.",
+    url: canonicalUrl,
+    provider: { "@type": "Organization", name: siteConfig.name, url: SITE_URL },
+    areaServed: { "@type": "Country", name: "Portugal" },
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
-    <ServicePageTemplate
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServicePageTemplate
       title="Segurança & Backups"
       subtitle="Protegemos o seu site contra ameaças e garantimos que os seus dados estão sempre seguros com backups automáticos e recuperação rápida."
       icon={Shield}
@@ -120,6 +146,7 @@ export default function SegurancaBackupsPage() {
       timelines={timelines}
       faq={faq}
       relatedServices={relatedServices}
-    />
+      />
+    </>
   );
 }

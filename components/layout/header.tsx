@@ -139,7 +139,7 @@ export function Header() {
 
           {/* Desktop CTA - Single primary CTA */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Button asChild size="sm">
+            <Button asChild size="sm" variant="brand">
               <Link href="/auditoria-48h">
                 <Clock className="mr-2 h-4 w-4" />
                 Auditoria 48h
@@ -219,7 +219,7 @@ export function Header() {
                   ))}
 
                   <div className="pt-4 space-y-3">
-                    <Button asChild className="w-full">
+                    <Button asChild className="w-full" variant="brand">
                       <Link href="/auditoria-48h" onClick={() => setIsOpen(false)}>
                         <Clock className="mr-2 h-4 w-4" />
                         Auditoria 48h

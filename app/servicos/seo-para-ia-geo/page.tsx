@@ -9,8 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
 import { siteConfig } from "@/lib/content";
+import {
   CheckCircle,
   ArrowRight,
   ChevronRight,

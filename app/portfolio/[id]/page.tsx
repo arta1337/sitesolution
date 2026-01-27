@@ -239,16 +239,84 @@ export default async function CaseStudyPage({ params }: Props) {
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-start">
               {/* Content */}
               <div>
-                <Badge variant="brand"
-              >
-                <Link href="/auditoria-48h">Auditoria 48h</Link>
-              </Button>
-              <Link 
-                href="/auditoria-48h#contacto"
-                className="text-sm text-background/70 hover:text-background transition-colors flex items-center"
-              >
-                Contacto rápido
-              </Link>
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  <Badge variant="brand">{study.sector}</Badge>
+                  <Badge variant="secondary">{study.objective}</Badge>
+                </div>
+
+                <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
+                  {study.client}
+                </h1>
+
+                <p className="mt-4 text-base sm:text-lg text-muted-foreground">
+                  {study.description}
+                </p>
+
+                <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
+                  <Button asChild variant="brand" size="lg">
+                    <Link href="/auditoria-48h">Auditoria 48h</Link>
+                  </Button>
+
+                  <Link
+                    href="/auditoria-48h#contacto"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+                  >
+                    Contacto rápido
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  <div className="rounded-2xl border border-border bg-card p-4">
+                    <div className="text-xs text-muted-foreground">Resultado</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">
+                      {study.result}
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-border bg-card p-4">
+                    <div className="text-xs text-muted-foreground">Setor</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">
+                      {study.sector}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary */}
+              <div className="rounded-3xl border border-border bg-card p-6">
+                <h2 className="text-sm font-semibold text-foreground mb-4">
+                  Resumo do projeto
+                </h2>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <Target className="h-5 w-5 text-muted-foreground mt-0.5" />
+                    <div>
+                      <div className="text-sm font-medium text-foreground">Objetivo</div>
+                      <div className="text-sm text-muted-foreground">{study.objective}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
+                    <div>
+                      <div className="text-sm font-medium text-foreground">Impacto</div>
+                      <div className="text-sm text-muted-foreground">{study.result}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Quote className="h-5 w-5 text-muted-foreground mt-0.5" />
+                    <div>
+                      <div className="text-sm font-medium text-foreground">Testemunho</div>
+                      <div className="text-sm text-muted-foreground">“{study.testimonial}”</div>
+                      <div className="mt-2 text-xs text-muted-foreground">
+                        {study.testimonialAuthor} • {study.testimonialRole}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

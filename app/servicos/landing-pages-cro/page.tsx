@@ -29,7 +29,7 @@ const includes = [
   "Relatórios de performance",
 ];
 
-const process = [
+const processSteps = [
   {
     step: 1,
     title: "Briefing",
@@ -140,7 +140,7 @@ export default function LandingPagesCroPage() {
       subtitle="Criamos páginas focadas em converter visitantes em clientes. Design, copy e otimização para maximizar os seus resultados."
       icon={TrendingUp}
       includes={includes}
-      process={process}
+      process={processSteps}
       deliverables={deliverables}
       timelines={timelines}
       faq={faq}

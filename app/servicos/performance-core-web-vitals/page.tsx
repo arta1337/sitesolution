@@ -29,7 +29,7 @@ const includes = [
   "Relatório antes/depois com métricas",
 ];
 
-const process = [
+const processSteps = [
   {
     step: 1,
     title: "Medição",
@@ -141,7 +141,7 @@ export default function PerformancePage() {
       subtitle="Sites rápidos vendem mais. Otimizamos a velocidade e as métricas Core Web Vitals do seu site para melhor experiência e conversão."
       icon={Gauge}
       includes={includes}
-      process={process}
+      process={processSteps}
       deliverables={deliverables}
       timelines={timelines}
       faq={faq}

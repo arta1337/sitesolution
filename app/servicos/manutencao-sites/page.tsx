@@ -29,7 +29,7 @@ const includes = [
   "Otimização básica de performance",
 ];
 
-const process = [
+const processSteps = [
   {
     step: 1,
     title: "Onboarding",
@@ -140,7 +140,7 @@ export default function ManutencaoSitesPage() {
       subtitle="Mantemos o seu site sempre atualizado, seguro e a funcionar sem interrupções. Foque-se no seu negócio enquanto tratamos da parte técnica."
       icon={Wrench}
       includes={includes}
-      process={process}
+      process={processSteps}
       deliverables={deliverables}
       timelines={timelines}
       faq={faq}

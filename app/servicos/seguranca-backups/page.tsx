@@ -29,7 +29,7 @@ const includes = [
   "Plano de recuperação de desastres",
 ];
 
-const process = [
+const processSteps = [
   {
     step: 1,
     title: "Auditoria",
@@ -141,7 +141,7 @@ export default function SegurancaBackupsPage() {
       subtitle="Protegemos o seu site contra ameaças e garantimos que os seus dados estão sempre seguros com backups automáticos e recuperação rápida."
       icon={Shield}
       includes={includes}
-      process={process}
+      process={processSteps}
       deliverables={deliverables}
       timelines={timelines}
       faq={faq}

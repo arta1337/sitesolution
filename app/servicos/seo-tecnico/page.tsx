@@ -29,7 +29,7 @@ const includes = [
   "Análise e correção de links internos",
 ];
 
-const process = [
+const processSteps = [
   {
     step: 1,
     title: "Auditoria",
@@ -141,7 +141,7 @@ export default function SeoTecnicoPage() {
       subtitle="Otimizamos a estrutura técnica do seu site para que o Google e outros motores de busca o encontrem, compreendam e posicionem melhor."
       icon={Search}
       includes={includes}
-      process={process}
+      process={processSteps}
       deliverables={deliverables}
       timelines={timelines}
       faq={faq}

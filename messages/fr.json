@@ -1,0 +1,67 @@
+{
+    "Navigation": {
+        "items": {
+            "services": "Services",
+            "plans": "Plans",
+            "portfolio": "Portfolio",
+            "about": "À propos",
+            "blog": "Blog"
+        },
+        "audit": "Audit 48h",
+        "quickContact": "Contact rapide",
+        "megaMenu": {
+            "services": "Services",
+            "sectors": "Secteurs",
+            "cta": "Recevoir audit gratuit en 48h"
+        }
+    },
+    "Hero": {
+        "badge": "Disponibles pour nouveaux projets",
+        "title": "Sites web professionnels avec maintenance incluse.",
+        "subtitle": "Nous créons et maintenons des sites rapides, sécurisés et axés sur la génération de leads, pour que votre entreprise n'ait aucun souci technique.",
+        "cta": {
+            "primary": "Audit 48h",
+            "secondary": "Contact rapide"
+        },
+        "trust": {
+            "maintenance": "Maintenance et sécurité incluses",
+            "performance": "Performance et SEO technique",
+            "support": "SLA et support continu"
+        },
+        "results": {
+            "title": "Résultats réels (Exemples)",
+            "clinics": "réservations",
+            "realEstate": "trafic organique",
+            "ecommerce": "temps de chargement",
+            "disclaimer": "Les résultats varient selon le projet.",
+            "link": "Voir exemples"
+        },
+        "method": {
+            "title": "Résultats et méthode",
+            "performance": {
+                "title": "Performance (Core Web Vitals)",
+                "desc": "Les sites rapides convertissent plus"
+            },
+            "seo": {
+                "title": "SEO technique",
+                "desc": "Visibilité sur les moteurs de recherche"
+            },
+            "security": {
+                "title": "Sécurité & Sauvegardes",
+                "desc": "Protection continue de votre site"
+            },
+            "ctaPrimary": "Audit 48h",
+            "ctaSecondary": "Voir portfolio"
+        }
+    },
+    "Blog": {
+        "title": "Insights et Articles",
+        "subtitle": "Actualités sur le web design, le SEO et la performance pour aider votre entreprise à croître.",
+        "readMore": "Lire l'article",
+        "cta": {
+            "title": "Voulez-vous appliquer ces stratégies ?",
+            "subtitle": "Planifiez une consultation gratuite et nous analyserons votre projet.",
+            "button": "Parler à un expert"
+        }
+    }
+}

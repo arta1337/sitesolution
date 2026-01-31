@@ -32,6 +32,7 @@ export const navigation = {
     { name: "Planos", href: "/planos" },
     { name: "Portfólio", href: "/portfolio" },
     { name: "Sobre", href: "/sobre" },
+    { name: "Blog", href: "/blog" },
   ],
   // Mega menu structure for services dropdown
   servicesMenu: [

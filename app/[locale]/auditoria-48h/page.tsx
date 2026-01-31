@@ -80,10 +80,10 @@ type LeadType = "auditoria" | "contacto";
 
 export default function Auditoria48hPage() {
   const searchParams = useSearchParams();
-  
+
   // Determine initial tab based on URL hash
   const [activeTab, setActiveTab] = useState<LeadType>("auditoria");
-  
+
   useEffect(() => {
     // Check for hash in URL
     const hash = window.location.hash;
@@ -100,6 +100,7 @@ export default function Auditoria48hPage() {
     email: "",
     website: "",
     phone: "",
+    company: "", // honeypot
   });
 
   // Contacto form state
@@ -108,24 +109,25 @@ export default function Auditoria48hPage() {
     email: "",
     phone: "",
     message: "",
+    company: "", // honeypot
   });
 
   async function submitLead(payload: any) {
-  const res = await fetch("/api/leads", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+    const res = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-  if (!res.ok) {
-    const data = await res.json().catch(() => ({}));
-    throw new Error(data?.error || "Falha ao enviar. Tente novamente.");
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data?.error || "Falha ao enviar. Tente novamente.");
+    }
+
+    return res.json().catch(() => ({}));
   }
 
-  return res.json().catch(() => ({}));
-}
-
-const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedType, setSubmittedType] = useState<LeadType>("auditoria");
 
@@ -140,8 +142,7 @@ const [isSubmitting, setIsSubmitting] = useState(false);
         email: auditoriaForm.email,
         website: auditoriaForm.website,
         phone: auditoriaForm.phone,
-        // honeypot (kept empty by humans)
-        company: "",
+        company: auditoriaForm.company,
       });
 
       setIsSubmitted(true);
@@ -166,8 +167,7 @@ const [isSubmitting, setIsSubmitting] = useState(false);
         email: contactoForm.email,
         phone: contactoForm.phone,
         message: contactoForm.message,
-        // honeypot
-        company: "",
+        company: contactoForm.company,
       });
 
       setIsSubmitted(true);
@@ -183,8 +183,8 @@ const [isSubmitting, setIsSubmitting] = useState(false);
 
   const resetForm = () => {
     setIsSubmitted(false);
-    setAuditoriaForm({ name: "", email: "", website: "", phone: "" });
-    setContactoForm({ name: "", email: "", phone: "", message: "" });
+    setAuditoriaForm({ name: "", email: "", website: "", phone: "", company: "" });
+    setContactoForm({ name: "", email: "", phone: "", message: "", company: "" });
   };
 
   return (
@@ -209,9 +209,9 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
                   Auditoria Gratuita do Seu Website
                 </h1>
-                
+
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground lg:text-xl text-pretty">
-                  Descubra o que está a impedir o seu site de converter mais visitantes em clientes. 
+                  Descubra o que está a impedir o seu site de converter mais visitantes em clientes.
                   Receba um relatório detalhado com recomendações práticas em 48 horas.
                 </p>
 
@@ -255,7 +255,7 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                           {submittedType === "auditoria" ? "Pedido Recebido!" : "Mensagem Recebida!"}
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          {submittedType === "auditoria" 
+                          {submittedType === "auditoria"
                             ? `Vamos analisar o seu website e enviar o relatório para ${auditoriaForm.email} dentro de 48 horas úteis.`
                             : `Respondemos em até 24 horas úteis para ${contactoForm.email}.`
                           }
@@ -292,9 +292,16 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                             <input type="hidden" name="lead_type" value="auditoria" />
                             <div className="hidden">
                               <Label htmlFor="audit-company">Empresa</Label>
-                              <Input id="audit-company" type="text" tabIndex={-1} autoComplete="off" />
+                              <Input
+                                id="audit-company"
+                                type="text"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                value={auditoriaForm.company}
+                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, company: e.target.value })}
+                              />
                             </div>
-                            
+
                             <div className="space-y-2">
                               <Label htmlFor="audit-name">Nome *</Label>
                               <Input
@@ -342,9 +349,9 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                               />
                             </div>
 
-                            <Button 
-                              type="submit" 
-                              size="lg" 
+                            <Button
+                              type="submit"
+                              size="lg"
                               variant="brand"
                               className="w-full mt-6"
                               disabled={isSubmitting}
@@ -384,9 +391,16 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                             <input type="hidden" name="lead_type" value="contacto" />
                             <div className="hidden">
                               <Label htmlFor="contact-company">Empresa</Label>
-                              <Input id="contact-company" type="text" tabIndex={-1} autoComplete="off" />
+                              <Input
+                                id="contact-company"
+                                type="text"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                value={contactoForm.company}
+                                onChange={(e) => setContactoForm({ ...contactoForm, company: e.target.value })}
+                              />
                             </div>
-                            
+
                             <div className="space-y-2">
                               <Label htmlFor="contact-name">Nome *</Label>
                               <Input
@@ -434,9 +448,9 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                               />
                             </div>
 
-                            <Button 
-                              type="submit" 
-                              size="lg" 
+                            <Button
+                              type="submit"
+                              size="lg"
                               variant="brand"
                               className="w-full mt-6"
                               disabled={isSubmitting}
@@ -506,10 +520,10 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                   Exemplo de Relatório
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Cada auditoria inclui um relatório PDF profissional com análise detalhada, 
+                  Cada auditoria inclui um relatório PDF profissional com análise detalhada,
                   capturas de ecrã, métricas e recomendações priorizadas.
                 </p>
-                
+
                 <ul className="mt-6 space-y-3">
                   <li className="flex items-start gap-3 text-muted-foreground">
                     <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -551,7 +565,7 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                       <div className="text-xs text-muted-foreground">SiteSolutions.pt</div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900">
                       <span className="text-sm font-medium text-red-800 dark:text-red-200">Performance</span>
@@ -647,8 +661,8 @@ const [isSubmitting, setIsSubmitting] = useState(false);
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-              <Link 
-                href="#form" 
+              <Link
+                href="#form"
                 onClick={() => setActiveTab("contacto")}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >

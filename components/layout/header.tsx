@@ -4,15 +4,29 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LanguageToggle } from "@/components/ui/language-toggle";
 import { siteConfig, navigation } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
+import { useTranslations } from 'next-intl';
+
 export function Header() {
+  const t = useTranslations('Navigation');
+  const tItems = useTranslations('Navigation.items');
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const navLinks = [
+    { key: 'services', href: '/servicos' },
+    { key: 'plans', href: '/planos' },
+    { key: 'portfolio', href: '/portfolio' },
+    { key: 'about', href: '/sobre' },
+    // { key: 'blog', href: '/blog' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,7 +85,7 @@ export function Header() {
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
               >
-                Serviços
+                {tItems('services')}
                 <ChevronDown className={cn("h-4 w-4 transition-transform", servicesOpen && "rotate-180")} />
               </button>
 
@@ -86,7 +100,7 @@ export function Header() {
                       {navigation.servicesMenu.map((section) => (
                         <div key={section.category}>
                           <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                            {section.category}
+                            {section.category === 'Serviços' ? t('megaMenu.services') : t('megaMenu.sectors')}
                           </h3>
                           <ul className="space-y-1">
                             {section.items.map((item) => (
@@ -113,11 +127,11 @@ export function Header() {
                     <div className="mt-6 pt-4 border-t border-border">
                       <Link
                         href="/auditoria-48h"
-                        className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/80"
+                        className="flex items-center justify-center gap-2 rounded-md p-2 text-sm font-medium text-white transition-all hover:scale-105 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] animate-shimmer border border-slate-800"
                         onClick={() => setServicesOpen(false)}
                       >
                         <Clock className="h-4 w-4" />
-                        Receber auditoria gratuita em 48h
+                        {t('megaMenu.cta')}
                       </Link>
                     </div>
                   </div>
@@ -126,23 +140,40 @@ export function Header() {
             </div>
 
             {/* Other nav items */}
-            {navigation.main.filter(item => item.name !== "Serviços").map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {item.name}
-              </Link>
-            ))}
+            <Link
+              href="/planos"
+              className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {tItems('plans')}
+            </Link>
+            <Link
+              href="/portfolio"
+              className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {tItems('portfolio')}
+            </Link>
+            <Link
+              href="/blog"
+              className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {tItems('blog')}
+            </Link>
+            <Link
+              href="/sobre"
+              className="px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {tItems('about')}
+            </Link>
           </div>
 
           {/* Desktop CTA - Single primary CTA */}
           <div className="hidden lg:flex lg:items-center lg:gap-3">
-            <Button asChild size="sm" variant="brand">
+            <LanguageToggle />
+            <ThemeToggle />
+            <Button asChild size="sm" className="relative overflow-hidden shadow-sm transition-all hover:scale-105 bg-[linear-gradient(110deg,#e2e8f0,45%,#cbd5e1,55%,#e2e8f0)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] animate-shimmer border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white">
               <Link href="/auditoria-48h">
                 <Clock className="mr-2 h-4 w-4" />
-                Auditoria 48h
+                {t('audit')}
               </Link>
             </Button>
           </div>
@@ -179,7 +210,7 @@ export function Header() {
                       Serviços
                       <ChevronDown className={cn("h-5 w-5 transition-transform", mobileServicesOpen && "rotate-180")} />
                     </button>
-                    
+
                     {mobileServicesOpen && (
                       <div className="ml-4 mt-2 space-y-4 border-l border-border pl-4">
                         {navigation.servicesMenu.map((section) => (
@@ -219,14 +250,18 @@ export function Header() {
                   ))}
 
                   <div className="pt-4 space-y-3">
-                    <Button asChild className="w-full" variant="brand">
+                    <div className="flex justify-center pb-2 gap-4">
+                      <ThemeToggle />
+                      <LanguageToggle />
+                    </div>
+                    <Button asChild className="w-full" variant="default">
                       <Link href="/auditoria-48h" onClick={() => setIsOpen(false)}>
                         <Clock className="mr-2 h-4 w-4" />
                         Auditoria 48h
                       </Link>
                     </Button>
-                    <Link 
-                      href="/auditoria-48h#contacto" 
+                    <Link
+                      href="/auditoria-48h#contacto"
                       onClick={() => setIsOpen(false)}
                       className="block text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
                     >
@@ -239,6 +274,6 @@ export function Header() {
           </div>
         )}
       </nav>
-    </header>
+    </header >
   );
 }

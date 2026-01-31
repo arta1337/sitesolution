@@ -1,0 +1,620 @@
+{
+    "Navigation": {
+        "items": {
+            "services": "Services",
+            "plans": "Plans",
+            "portfolio": "Portfolio",
+            "about": "About",
+            "blog": "Blog"
+        },
+        "audit": "48h Audit",
+        "quickContact": "Quick Contact",
+        "megaMenu": {
+            "services": "Services",
+            "sectors": "Sectors",
+            "cta": "Get free audit in 48h"
+        }
+    },
+    "Hero": {
+        "badge": "Available for new projects",
+        "title": "Professional websites with maintenance included.",
+        "subtitle": "We build and maintain fast, secure websites focused on generating leads, so your business has no technical worries.",
+        "cta": {
+            "primary": "48h Audit",
+            "secondary": "Quick contact"
+        },
+        "trust": {
+            "maintenance": "Maintenance & security included",
+            "performance": "Performance & Technical SEO",
+            "support": "SLA & continuous support"
+        },
+        "results": {
+            "title": "Real Results (Examples)",
+            "clinics": "bookings",
+            "realEstate": "organic traffic",
+            "ecommerce": "load time",
+            "disclaimer": "Results vary by project.",
+            "link": "See portfolio examples"
+        },
+        "method": {
+            "title": "Results & Method",
+            "performance": {
+                "title": "Performance (Core Web Vitals)",
+                "desc": "Fast sites convert more"
+            },
+            "seo": {
+                "title": "Technical SEO",
+                "desc": "Search engine visibility"
+            },
+            "security": {
+                "title": "Security & Backups",
+                "desc": "Continuous site protection"
+            },
+            "ctaPrimary": "48h Audit",
+            "ctaSecondary": "See portfolio"
+        }
+    },
+    "Blog": {
+        "title": "Insights & Articles",
+        "subtitle": "News on web design, SEO, and performance to help your business grow.",
+        "readMore": "Read article",
+        "cta": {
+            "title": "Want to apply these strategies?",
+            "subtitle": "Schedule a free consultation and let's analyze your project.",
+            "button": "Talk to an expert"
+        },
+        "posts": {
+            "1": {
+                "title": "Why Your Website Needs a 2025 Refresh: Top Trends",
+                "excerpt": "Discover the key web design trends dominating 2025, from Bento grids to immersive scroll animations.",
+                "category": "Design Trends",
+                "date": "Jan 15, 2025",
+                "content": [
+                    "Web design is constantly evolving. In 2025, we see a return to the essential, but with more personality.",
+                    "## 1. Functional Minimalism",
+                    "Sites cluttered with information are 'out'. The focus now is on guiding the user with clarity and generous white space. Less noise, more signal.",
+                    "## 2. Giant Typography",
+                    "Huge titles that take up the entire screen. Typography stops being just text and becomes the main graphic element.",
+                    "## 3. Micro-interactions",
+                    "Small animations when hovering or clicking that bring the site to life without slowing it down. It's the difference between a static site and one that 'responds'."
+                ]
+            },
+            "2": {
+                "title": "SEO Best Practices for Next.js Applications",
+                "excerpt": "A comprehensive guide to optimizing your Next.js application for search engines to drive organic traffic.",
+                "category": "Technical SEO",
+                "date": "Jan 10, 2025",
+                "content": [
+                    "Next.js is the framework of choice for modern sites, and Google loves it. But only if configured correctly.",
+                    "## Server-Side Rendering (SSR)",
+                    "The big advantage of Next.js. By rendering HTML on the server, we deliver a page ready to read to Google, instead of an empty 'skeleton' that depends on JavaScript.",
+                    "## Metadata API",
+                    "Next.js 14+ made managing meta tags incredibly simple. We can generate titles, descriptions, and OG images dynamically for each page.",
+                    "## Performance is Ranking",
+                    "Google confirmed that Core Web Vitals are a ranking factor. With the <Image> component and smart font loading, Next.js gives us an immediate competitive edge."
+                ]
+            },
+            "3": {
+                "title": "How Site Speed Impacts Your Conversion Rate",
+                "excerpt": "Learn why every millisecond counts and how optimizing performance can directly boost your bottom line.",
+                "category": "Performance",
+                "date": "Jan 05, 2025",
+                "content": [
+                    "Nobody likes to wait. On the web, waiting 3 seconds is an eternity.",
+                    "## The Cost of Slowness",
+                    "Studies by Amazon and Google show brutal data: 100ms delay can cost 1% in sales. If your site bills €10,000/month, a slightly slow site could be costing you €1,200/year.",
+                    "## Core Web Vitals",
+                    "Google measures user experience through metrics like LCP (speed), INP (interactivity), and CLS (visual stability). If you fail these metrics, your site will be penalized in search results.",
+                    "## How to Optimize",
+                    "Start with the basics: optimize images (WebP format), use aggressive caching, and eliminate unnecessary JavaScript. If you use WordPress, beware of plugin overload.",
+                    "At SiteSolutions, we guarantee scores above 90/100 on all projects."
+                ]
+            },
+            "4": {
+                "title": "The Importance of Accessibility in Modern Web Design",
+                "excerpt": "Why building accessible websites is not just an ethical choice but a smart business decision.",
+                "category": "Accessibility",
+                "date": "Dec 28, 2024",
+                "content": [
+                    "Web accessibility means ensuring that people with disabilities can use your site. But the benefits go far beyond that.",
+                    "## SEO and Accessibility",
+                    "Many accessibility practices (like using alt text on images and correct heading structure) are exactly what Google wants to understand your content.",
+                    "## Wider Market",
+                    "About 15% of the world's population has some form of disability. Ignoring accessibility is ignoring a huge slice of the market.",
+                    "## Legal Risks",
+                    "Soon, European legislation will make accessibility mandatory for many sectors. Preparing your site now prevents headaches (and fines) in the future."
+                ]
+            }
+        }
+    },
+    "Services": {
+        "performance": {
+            "title": "Performance & Core Web Vitals",
+            "subtitle": "Fast sites sell more and rank better on Google. We optimize loading speed (LCP), interactivity (INP), and visual stability (CLS) to ensure the best possible experience for your users.",
+            "hero": {
+                "title": "Performance & Core Web Vitals",
+                "subtitle": "Fast sites sell more. We optimize speed and Core Web Vitals metrics for better experience and conversion."
+            },
+            "includes": {
+                "0": "Deep technical audit (Lighthouse, WebPageTest, CrUX)",
+                "1": "LCP (Largest Contentful Paint) optimization for instant loading",
+                "2": "INP (Interaction to Next Paint) improvement for fast response",
+                "3": "CLS (Cumulative Layout Shift) correction for visual stability",
+                "4": "Advanced image compression (WebP/AVIF) and smart Lazy Loading",
+                "5": "Minification and deferral of non-critical JavaScript and CSS",
+                "6": "Advanced Caching and Global CDN implementation",
+                "7": "Font optimization and third-party script reduction"
+            },
+            "process": {
+                "0": {
+                    "title": "Measurement & Analysis",
+                    "description": "We start by measuring the current state with Real User Monitoring (RUM) and lab tools. We identify exactly what is slowing down the site: images, server, or code."
+                },
+                "1": {
+                    "title": "Diagnosis & Strategy",
+                    "description": "We create a detailed action plan. We don't just apply 'cache plugins'; we analyze the root causes to ensure fixes are structural and lasting."
+                },
+                "2": {
+                    "title": "Technical Optimization",
+                    "description": "Hands-on work. We optimize assets, rewrite inefficient code, configure the server, and ensure the browser receives only what's necessary to render the page quickly."
+                },
+                "3": {
+                    "title": "Continuous Monitoring",
+                    "description": "Performance isn't a one-time event. We set up alerts to ensure the site stays fast over time, even as you add new content or features."
+                }
+            },
+            "deliverables": {
+                "0": "Detailed technical report 'Before vs. After'",
+                "1": "Core Web Vitals scores in 'Green' (Google Search Console)",
+                "2": "Site visibly faster on mobile and desktop",
+                "3": "Improved Google Crawl Budget",
+                "4": "CDN Configuration (Cloudflare or similar)",
+                "5": "Best practices guide for the editorial team"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Initial Audit",
+                    "duration": "2-3 days"
+                },
+                "1": {
+                    "type": "Implementation",
+                    "duration": "1-2 weeks"
+                },
+                "2": {
+                    "type": "Monitoring",
+                    "duration": "Continuous"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "What are Core Web Vitals and why do they matter?",
+                    "answer": "They are Google's metrics for measuring user experience quality. Since 2021, they are an official ranking factor. If your site fails Core Web Vitals, you are likely losing organic traffic and paying more for ads (CPC)."
+                },
+                "1": {
+                    "question": "How long until I see results?",
+                    "answer": "Technical improvements are immediate. Once optimizations are deployed, the site gets faster. However, Google can take up to 28 days to update field data (CrUX) and reflect these improvements in SEO rankings."
+                },
+                "2": {
+                    "question": "Will this 'break' my site?",
+                    "answer": "No. We always work in a staging environment before applying any changes to the live site. We ensure all functionalities, forms, and design remain intact, just faster."
+                },
+                "3": {
+                    "question": "Do you speed up WordPress or Shopify sites?",
+                    "answer": "Yes, we are experts in optimizing WordPress (removing plugin bloat, optimizing themes) and Shopify (improving Liquid and third-party scripts). We also work with Next.js, React, and custom sites."
+                },
+                "4": {
+                    "question": "What if my site is slow because of the server?",
+                    "answer": "If hosting is the bottleneck, we'll tell you. Often, migrating to a modern server or properly configuring a CDN solves bottlenecks that no code optimization could fix."
+                }
+            }
+        },
+        "maintenance": {
+            "title": "Website Maintenance",
+            "subtitle": "We keep your site always updated, secure, and running without interruptions. Focus on your business while we handle the technical side.",
+            "hero": {
+                "title": "Website Maintenance",
+                "subtitle": "Outdated sites lose customers and are vulnerable. We ensure your site is always flawless, secure, and fast."
+            },
+            "includes": {
+                "0": "Weekly plugin, theme, and core updates",
+                "1": "Daily updates to cloud (guaranteed recovery)",
+                "2": "24/7 Uptime monitoring (immediate alerts)",
+                "3": "SSL Certificate and domain renewal",
+                "4": "Continuous database optimization",
+                "5": "Detailed monthly performance reports",
+                "6": "Priority support via email and phone",
+                "7": "Dedicated hours for small content changes"
+            },
+            "process": {
+                "0": {
+                    "title": "Onboarding",
+                    "description": "We perform an initial audit, install our monitoring tools, and fix immediate critical issues."
+                },
+                "1": {
+                    "title": "Weekly Routine",
+                    "description": "Every week, a technician checks the site, applies updates in a staging environment, and only then in production."
+                },
+                "2": {
+                    "title": "24/7 Monitoring",
+                    "description": "If the site goes down at 3 AM, we know and act. Often we resolve the issue before you wake up."
+                },
+                "3": {
+                    "title": "Monthly Report",
+                    "description": "At the end of the month, you receive a simple report: what we updated, how the speed and traffic of the site are."
+                }
+            },
+            "deliverables": {
+                "0": "Site always online (99.9% Uptime)",
+                "1": "Protection against virus and attacks",
+                "2": "Functional and tested backups",
+                "3": "Total peace of mind",
+                "4": "PDF monthly report",
+                "5": "Continuous technical consultancy"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Initial Setup",
+                    "duration": "24-48 hours"
+                },
+                "1": {
+                    "type": "Updates",
+                    "duration": "Weekly"
+                },
+                "2": {
+                    "type": "Support",
+                    "duration": "Response in < 4h"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "What happens if the site goes down?",
+                    "answer": "Our team is notified immediately. If the issue is on the server, we contact the host. If on the site, we fix it. Everything is included."
+                },
+                "1": {
+                    "question": "Do support hours accumulate?",
+                    "answer": "No. Monthly hours are to ensure small changes aren't forgotten, but we encourage regular use to keep the site alive."
+                },
+                "2": {
+                    "question": "What platforms do you work with?",
+                    "answer": "Experts in WordPress, WooCommerce, and Shopify. We also maintain React/Next.js and Laravel sites."
+                },
+                "3": {
+                    "question": "Is there a loyalty period?",
+                    "answer": "No. You can cancel at any time with 30 days notice. We trust the quality of our service to keep you with us."
+                },
+                "4": {
+                    "question": "I already have hosting, can I join?",
+                    "answer": "Yes. We work with any hosting, although we may suggest migration if your current one is hurting performance."
+                }
+            }
+        },
+        "seoTecnico": {
+            "title": "Technical SEO",
+            "subtitle": "We optimize your site's technical structure so Google and other search engines find, understand, and rank it better.",
+            "hero": {
+                "title": "Technical SEO",
+                "subtitle": "The best content in the world is useless if Google can't read your site. We fix the foundation to climb the rankings."
+            },
+            "includes": {
+                "0": "Indexing and Crawl Budget Audit",
+                "1": "Information Architecture and URL Structure",
+                "2": "Schema Markup Implementation (JSON-LD)",
+                "3": "Robots.txt and Sitemap.xml Optimization",
+                "4": "404 Error Fixes and 301 Redirects",
+                "5": "Canonicalization to avoid duplicate content",
+                "6": "Mobile-First Indexing Optimization",
+                "7": "Advanced Google Search Console Configuration"
+            },
+            "process": {
+                "0": {
+                    "title": "Full Crawl",
+                    "description": "We simulate Google's bot visiting your site. We identify blocked pages, broken links, and redirect loops."
+                },
+                "1": {
+                    "title": "Log Analysis",
+                    "description": "We see exactly how Googlebot interacts with your server. We discover if you are wasting crawl budget on useless pages."
+                },
+                "2": {
+                    "title": "Structural Correction",
+                    "description": "We clean up the code. We add structured data (Schema) to gain 'rich snippets' (stars, prices) in search results."
+                },
+                "3": {
+                    "title": "Validation",
+                    "description": "We submit fixes in Search Console and monitor traffic and ranking recovery."
+                }
+            },
+            "deliverables": {
+                "0": "Technical Audit Report",
+                "1": "Redirect mapping file",
+                "2": "Schema.org Implementation",
+                "3": "Site health dashboard",
+                "4": "Technical requirements guide for developers",
+                "5": "Organic traffic increase"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Audit",
+                    "duration": "1 week"
+                },
+                "1": {
+                    "type": "Critical Fixes",
+                    "duration": "1-2 weeks"
+                },
+                "2": {
+                    "type": "Monitoring",
+                    "duration": "Monthly"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "What is the difference between Technical SEO and Content SEO?",
+                    "answer": "Content SEO is about keywords and text. Technical SEO is about ensuring the site is readable, fast, and structured for search engine robots."
+                },
+                "1": {
+                    "question": "Does this guarantee the first page?",
+                    "answer": "No one can guarantee the 1st page. But Technical SEO removes barriers preventing your site from getting there. It is the necessary foundation."
+                },
+                "2": {
+                    "question": "Do I need this if I use WordPress?",
+                    "answer": "Yes. WordPress is good, but comes with a lot of unnecessary 'bloat' and default settings that aren't ideal. SEO plugins help, but don't solve structural issues."
+                },
+                "3": {
+                    "question": "How long to see results?",
+                    "answer": "Technical fixes are detected quickly by Google (days/weeks). Impact on rankings tends to grow over 1-3 months."
+                },
+                "4": {
+                    "question": "Do you do link building?",
+                    "answer": "No. We focus 100% on site quality (On-page and Technical). We recommend partners for Off-page if necessary."
+                }
+            }
+        },
+        "security": {
+            "title": "Security & Backups",
+            "subtitle": "We protect your site against threats and ensure your data is always safe with automatic backups and fast recovery.",
+            "hero": {
+                "title": "Ironclad Security",
+                "subtitle": "Sleep soundly. We protect your investment against hackers, malware, and data loss."
+            },
+            "includes": {
+                "0": "Complet Security Audit (Vulnerability Scan)",
+                "1": "SSL/HTTPS Configuration and Security Headers",
+                "2": "Web Application Firewall (WAF)",
+                "3": "Daily automatic backups to external cloud",
+                "4": "24/7 Uptime and security monitoring",
+                "5": "Protection against Brute Force and DDoS attacks",
+                "6": "Malware Cleanup (if necessary)",
+                "7": "Disaster Recovery Plan"
+            },
+            "process": {
+                "0": {
+                    "title": "Risk Audit",
+                    "description": "We identify open ports, vulnerable plugins, and insecure configurations on your server and site."
+                },
+                "1": {
+                    "title": "Hardening",
+                    "description": "We close the doors. We implement firewall rules, bot blocking, and two-factor authentication."
+                },
+                "2": {
+                    "title": "Backup Strategy",
+                    "description": "We configure automatic backups and test restoration to ensure they work when needed."
+                },
+                "3": {
+                    "title": "Active Surveillance",
+                    "description": "Our system monitors your site every minute. If something happens, we act immediately."
+                }
+            },
+            "deliverables": {
+                "0": "Initial security report",
+                "1": "Valid SSL Certificate",
+                "2": "`Secure Site` Seal",
+                "3": "Access to backup history",
+                "4": "Real-time alerts",
+                "5": "Hack cleanup guarantee"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Audit and Hardening",
+                    "duration": "2-3 business days"
+                },
+                "1": {
+                    "type": "Backup Setup",
+                    "duration": "Immediate"
+                },
+                "2": {
+                    "type": "Emergency Restoration",
+                    "duration": "< 2 hours"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "How often are backups taken?",
+                    "answer": "By default, daily. For critical sites (e-commerce, news), we can configure real-time or hourly backups."
+                },
+                "1": {
+                    "question": "Where are backups stored?",
+                    "answer": "Never on the same server as the site. We use encrypted cloud storage (AWS S3 or similar) in Europe to ensure redundancy and GDPR compliance."
+                },
+                "2": {
+                    "question": "What happens if my site is hacked?",
+                    "answer": "If under our protection, we clean the site for free and restore the latest safe version. Priority is restoring service."
+                },
+                "3": {
+                    "question": "Is SSL (green padlock) included?",
+                    "answer": "Yes. We configure and manage automatic SSL certificate renewal (Let's Encrypt). We can also install paid EV/OV certificates."
+                },
+                "4": {
+                    "question": "Does this affect site speed?",
+                    "answer": "On the contrary. A good firewall can block malicious bot traffic that consumes resources, freeing up the server for real customers."
+                },
+                "5": {
+                    "question": "Do I have access to backups?",
+                    "answer": "Yes, we provide direct access or send files if requested. The data is yours."
+                }
+            }
+        },
+        "landingPages": {
+            "title": "Landing Pages & CRO",
+            "subtitle": "Landing pages focused on conversion. Copy, UX and testing to increase leads and sales.",
+            "hero": {
+                "title": "Maximum Conversion",
+                "subtitle": "Traffic without conversion is wasted money. We create pages scientifically designed to turn visitors into customers."
+            },
+            "includes": {
+                "0": "High-conversion Design (UX/UI)",
+                "1": "Persuasive and benefit-focused Copywriting",
+                "2": "Smart multi-step forms",
+                "3": "A/B Testing and heatmaps",
+                "4": "Extreme loading speed",
+                "5": "Automatic integration with CRM/Email",
+                "6": "Mobile-first optimization",
+                "7": "Advanced conversion analytics"
+            },
+            "process": {
+                "0": {
+                    "title": "Offer Architecture",
+                    "description": "We define the audience, the pain point, and the irresistible solution. We structure the sales narrative."
+                },
+                "1": {
+                    "title": "Wireframe & Copy",
+                    "description": "We create the page skeleton and texts. No 'lorem ipsum'. Content guides the design."
+                },
+                "2": {
+                    "title": "Design & Development",
+                    "description": "We apply premium visual design and program the page with clean, fast code (Next.js/React)."
+                },
+                "3": {
+                    "title": "Test & Optimize",
+                    "description": "We launch the page, analyze heatmaps, and make adjustments to boost conversion rate."
+                }
+            },
+            "deliverables": {
+                "0": "Published and tested Landing page",
+                "1": "Complete Copywriting",
+                "2": "Campaign Design System",
+                "3": "Integrations (Zapier, Mailchimp, etc)",
+                "4": "Tracking Setup (GTM/GA4/Pixel)",
+                "5": "A/B test report"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Design & Copy",
+                    "duration": "1 week"
+                },
+                "1": {
+                    "type": "Development",
+                    "duration": "3-5 days"
+                },
+                "2": {
+                    "type": "Tracking Setup",
+                    "duration": "1-2 days"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "What is a landing page?",
+                    "answer": "It is a page focused on a single conversion goal: capture a lead or sell something. No menus or distractions. It's the digital closer."
+                },
+                "1": {
+                    "question": "What is CRO?",
+                    "answer": "CRO (Conversion Rate Optimization) is the art of improving the percentage of visitors who buy. Small tweaks to buttons or headlines can double sales."
+                },
+                "2": {
+                    "question": "Do you write the texts (Copy)?",
+                    "answer": "Yes, we include basic conversion-focused copywriting. For complex campaigns, we collaborate with specialized partner copywriters."
+                },
+                "3": {
+                    "question": "Can I use it on WordPress?",
+                    "answer": "Yes, we can create landing pages in WordPress (Elementor/Bricks) or, preferably, as ultra-fast static pages in Next.js."
+                },
+                "4": {
+                    "question": "How do I know it's working?",
+                    "answer": "We install advanced tracking. You will know exactly how many clicked, how many filled out forms, and the cost per lead (CPL)."
+                },
+                "5": {
+                    "question": "Do you do A/B testing?",
+                    "answer": "Yes. We create page variants (e.g., different headlines) to see which converts more, using split testing tools."
+                }
+            }
+        },
+        "aiSeoGeo": {
+            "title": "AI SEO (GEO)",
+            "subtitle": "Generative Engine Optimization (GEO). Prepare your site to be referenced by ChatGPT, Gemini, and other AI assistants.",
+            "hero": {
+                "title": "AI SEO (GEO)",
+                "subtitle": "The future of search is conversational. We optimize your content to be the trusted source for ChatGPT, Gemini, and Perplexity."
+            },
+            "includes": {
+                "0": "Generative engine presence audit",
+                "1": "Schema Markup (JSON-LD) optimization for Context",
+                "2": "Entity-based content structuring",
+                "3": "Creation of AI-optimized FAQ pages (NLP)",
+                "4": "Comparison tables and structured lists",
+                "5": "E-E-A-T signals reinforcement (Experience, Expertise, Authority)",
+                "6": "Knowledge Graph Optimization",
+                "7": "Digital citation and source management"
+            },
+            "process": {
+                "0": {
+                    "title": "Entity Analysis",
+                    "description": "We map how your brand and products are understood by AI. We build a 'Knowledge Graph' connecting your site to the right concepts."
+                },
+                "1": {
+                    "title": "Advanced Schema Markup",
+                    "description": "We implement invisible code (JSON-LD) that explicitly explains to AI: 'This is a price', 'This is a service', 'We are experts in this'."
+                },
+                "2": {
+                    "title": "Content for LLMs",
+                    "description": "We rewrite key sections to be 'AI-friendly': direct answers, logical structure, data tables, and factual language."
+                },
+                "3": {
+                    "title": "Authority & Citations",
+                    "description": "We work to get your site mentioned in sources that AIs already trust (Wikipedia, news, industry directories)."
+                }
+            },
+            "deliverables": {
+                "0": "AI Visibility Report",
+                "1": "Complete Schema.org Implementation",
+                "2": "GEO-optimized content pages",
+                "3": "E-E-A-T Guide for the team",
+                "4": "Business Profile Optimization",
+                "5": "Monitoring of generated responses"
+            },
+            "timelines": {
+                "0": {
+                    "type": "GEO Audit",
+                    "duration": "1 week"
+                },
+                "1": {
+                    "type": "Implementation",
+                    "duration": "2-3 weeks"
+                },
+                "2": {
+                    "type": "Monitoring",
+                    "duration": "Monthly"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "What is GEO (Generative Engine Optimization)?",
+                    "answer": "It is the practice of optimizing content to be cited by AIs like ChatGPT and Gemini. Unlike SEO (blue links), GEO focuses on being the 'single answer' or cited source."
+                },
+                "1": {
+                    "question": "Does this replace traditional SEO?",
+                    "answer": "No, it complements it. SEO brings search traffic; GEO builds authority and captures traffic from virtual assistants. Good practices for one help the other."
+                },
+                "2": {
+                    "question": "Can you guarantee ChatGPT recommends my business?",
+                    "answer": "No one can guarantee. Models are 'black boxes'. We optimize probabilities by providing structured data and authority that AIs favor."
+                },
+                "3": {
+                    "question": "Is it worth investing now?",
+                    "answer": "Yes. Google's 'Search Generative Experience' (SGE) is already arriving. Being prepared now gives you the 'first mover' advantage in the new search era."
+                },
+                "4": {
+                    "question": "How do you measure results?",
+                    "answer": "We monitor mentions in AI responses and referral traffic from these platforms, as well as improvements in Google 'Rich Snippets' visibility."
+                }
+            }
+        }
+    }
+}

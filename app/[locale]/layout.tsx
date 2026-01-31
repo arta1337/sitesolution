@@ -3,7 +3,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/lib/content";
-import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import "../globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_PT",
     url: SITE_URL,
-siteName: "SiteSolutions",
+    siteName: "SiteSolutions",
     title: "SiteSolutions | Websites que Geram Resultados",
     description:
       "Criamos websites rápidos, seguros e otimizados para conversão. Manutenção mensal com SLA de 24h e suporte dedicado.",
@@ -47,7 +48,7 @@ siteName: "SiteSolutions",
     index: true,
     follow: true,
   },
-    generator: 'v0.app'
+  generator: 'v0.app'
 };
 
 export const viewport: Viewport = {
@@ -59,16 +60,38 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+
+export default async function RootLayout({
   children,
+  params
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  // Validate that the incoming `locale` parameter is valid
+  // const isValidLocale = ['pt', 'en', 'es', 'fr'].includes(locale);
+  // if (!isValidLocale) notFound();
+
+  const messages = await getMessages();
+
   return (
-    <html lang="pt-PT">
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${inter.className} font-sans antialiased`}>
-        {children}
-        <Analytics />
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Analytics />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

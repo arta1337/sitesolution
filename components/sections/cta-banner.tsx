@@ -54,12 +54,12 @@ export function CTABanner({
   }
 
   return (
-    <section className="py-16 lg:py-20 bg-foreground text-background">
+    <section className="py-16 lg:py-20 bg-foreground text-background dark:bg-secondary dark:text-secondary-foreground transition-colors">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl text-balance">
           {title}
         </h2>
-        <p className="mt-4 text-background/80 text-lg text-pretty">
+        <p className="mt-4 text-background/80 dark:text-secondary-foreground/80 text-lg text-pretty">
           {subtitle}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -78,7 +78,7 @@ export function CTABanner({
               asChild
               variant="outline"
               size="lg"
-              className="border-background/30 bg-transparent text-background hover:bg-background/10"
+              className="border-background/30 bg-transparent text-background hover:bg-background/10 dark:border-secondary-foreground/30 dark:text-secondary-foreground dark:hover:bg-secondary-foreground/10"
             >
               <Link href={secondaryCTA.href}>{secondaryCTA.text}</Link>
             </Button>

@@ -23,9 +23,14 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return caseStudies.map((study) => ({
-    id: study.id,
-  }));
+  const locales = ['pt', 'en', 'es', 'fr'];
+
+  return locales.flatMap((locale) =>
+    caseStudies.map((study) => ({
+      locale,
+      id: study.id,
+    }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
-// Redirect /contactos to /auditoria-48h#contacto
+// Redirect /contactos to /auditoria-48h
 // This ensures all lead capture goes through the unified funnel
 export default function ContactosPage() {
-  redirect("/auditoria-48h#contacto");
+  redirect("/auditoria-48h");
 }

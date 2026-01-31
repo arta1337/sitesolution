@@ -7,12 +7,473 @@
             "about": "Sobre",
             "blog": "Blog"
         },
-        "audit": "Auditoria 48h",
-        "quickContact": "Contacto rápido",
         "megaMenu": {
             "services": "Serviços",
             "sectors": "Setores",
-            "cta": "Receber auditoria gratuita em 48h"
+            "cta": "Receber auditoria 48h",
+            "items": {
+                "manutencao-sites": {
+                    "name": "Manutenção de Sites",
+                    "description": "Manutenção contínua e suporte"
+                },
+                "seo-tecnico": {
+                    "name": "SEO Técnico",
+                    "description": "Otimização para motores de busca"
+                },
+                "performance-core-web-vitals": {
+                    "name": "Performance & Core Web Vitals",
+                    "description": "Velocidade e performance"
+                },
+                "seguranca-backups": {
+                    "name": "Segurança & Backups",
+                    "description": "Proteção e recuperação"
+                },
+                "landing-pages-cro": {
+                    "name": "Landing Pages & CRO",
+                    "description": "Páginas otimizadas para conversão"
+                },
+                "seo-para-ia-geo": {
+                    "name": "SEO para IA (GEO)",
+                    "description": "Visibilidade em AI assistants"
+                },
+                "sites-para-clinicas": {
+                    "name": "Sites para Clínicas",
+                    "description": "Saúde e bem-estar"
+                },
+                "sites-para-imobiliarias": {
+                    "name": "Sites para Imobiliárias",
+                    "description": "Setor imobiliário"
+                },
+                "sites-para-restaurantes": {
+                    "name": "Sites para Restaurantes",
+                    "description": "Restauração e hotelaria"
+                },
+                "sites-para-ecommerce": {
+                    "name": "Sites para E-commerce",
+                    "description": "Lojas online"
+                }
+            }
+        },
+        "audit": "Auditoria 48h"
+    },
+    "SpecialUI": {
+        "back": "Voltar",
+        "tag": "Next-Gen Interfaces",
+        "heroTitle": "Imersão Digital",
+        "heroSubtitle": "Não é apenas um site. É um portal para a sua marca. Experimente a profundidade do design moderno.",
+        "startJourney": "Iniciar Viagem",
+        "viewExamples": "Ver Exemplos",
+        "footerTitle": "Pronto para o futuro?",
+        "footerSubtitle": "Transforme a presença digital da sua marca com interfaces que marcam a diferença.",
+        "startProject": "Começar Projeto",
+        "showcase": {
+            "title": "UI do Futuro",
+            "subtitle": "Não criamos apenas sites. Criamos experiências digitais imersivas com interações fluidas e design de vanguarda.",
+            "neuralEngine": {
+                "title": "Neural Engine",
+                "description": "Processamento de IA em tempo real.",
+                "status": "Ativo",
+                "processing": "Processando",
+                "learningRate": "Taxa de Aprendizagem"
+            },
+            "biometric": {
+                "title": "Segurança Biométrica",
+                "description": "Interfaces de autenticação frictionless que inspiram confiança instantânea."
+            },
+            "microInteractions": {
+                "title": "Micro-interações",
+                "glowEffect": "Efeito Glow",
+                "cyberpunkBorder": "Borda Cyberpunk",
+                "gradientShadow": "Sombra Gradiente"
+            }
+        },
+        "parallax": {
+            "title": "Interações de",
+            "titleHighlight": "Outra Dimensão",
+            "subtitle": "Fugimos do padrão. Criamos experiências verticais e horizontais que desafiam a gravidade.",
+            "cards": {
+                "instantLoad": "Carregamento Instantâneo",
+                "instantLoadDesc": "Transições com latência zero",
+                "commandK": "Command K",
+                "commandKDesc": "Navegação keyboard-first",
+                "smartStacking": "Smart Stacking",
+                "smartStackingDesc": "Sistema de layout adaptativo",
+                "edgeCompute": "Edge Compute",
+                "edgeComputeDesc": "Distribuição global",
+                "realTimeSync": "Sincronização Real-time",
+                "realTimeSyncDesc": "Colaboração multi-utilizador",
+                "localFirst": "Local First",
+                "localFirstDesc": "Capacidades offline"
+            }
+        }
+    },
+    "About": {
+        "title": "Sobre a SiteSolutions",
+        "subtitle": "Ajudamos empresas portuguesas a ter uma presença digital profissional e eficaz.",
+        "story": {
+            "title": "A Nossa História",
+            "paragraphs": [
+                "A SiteSolutions nasceu da convicção de que todas as empresas merecem um website profissional e bem mantido. Fundada em Lisboa, a nossa equipa combina experiência técnica com uma abordagem focada em resultados.",
+                "Acreditamos que um website não é apenas um cartão de visita digital — é uma ferramenta de negócio que deve trabalhar 24 horas por dia para atrair e converter clientes.",
+                "Por isso, não nos limitamos a criar sites bonitos. Criamos sites que vendem, e mantemos esses sites rápidos, seguros e sempre atualizados."
+            ]
+        },
+        "values": {
+            "title": "Os Nossos Valores",
+            "subtitle": "Princípios que guiam o nosso trabalho todos os dias.",
+            "items": [
+                {
+                    "title": "Qualidade",
+                    "description": "Cada projeto recebe a nossa atenção total. Não fazemos trabalho apressado."
+                },
+                {
+                    "title": "Transparência",
+                    "description": "Comunicação clara, preços honestos, sem surpresas."
+                },
+                {
+                    "title": "Resultados",
+                    "description": "Medimos o sucesso pelos resultados dos nossos clientes."
+                },
+                {
+                    "title": "Suporte",
+                    "description": "Estamos sempre disponíveis quando precisa de nós."
+                }
+            ]
+        },
+        "team": {
+            "title": "A Nossa Equipa",
+            "subtitle": "Profissionais dedicados a entregar o melhor resultado.",
+            "members": [
+                {
+                    "name": "João Martins",
+                    "role": "Fundador & Developer"
+                },
+                {
+                    "name": "Ana Costa",
+                    "role": "Designer & UX"
+                },
+                {
+                    "name": "Pedro Santos",
+                    "role": "Developer"
+                }
+            ]
+        },
+        "stats": [
+            {
+                "label": "Suporte em 24h úteis",
+                "value": "SLA"
+            },
+            {
+                "label": "Monitorização contínua",
+                "value": "24/7"
+            },
+            {
+                "label": "Backups automáticos",
+                "value": "Diários"
+            },
+            {
+                "label": "Entrega com checklist",
+                "value": "QA"
+            }
+        ],
+        "cta": {
+            "title": "Vamos trabalhar juntos?",
+            "subtitle": "Entre em contacto e descubra como podemos ajudar o seu negócio.",
+            "button": "Falar connosco"
+        }
+    },
+    "Portfolio": {
+        "title": "Portfólio",
+        "subtitle": "Conheça alguns dos projetos que desenvolvemos. Resultados reais para clientes de diversos setores.",
+        "labels": {
+            "result": "Resultado",
+            "service": "Serviço",
+            "backToPortfolio": "Voltar ao portfólio",
+            "techStack": "Stack Tecnológico",
+            "maintenance": "Manutenção e Evolução",
+            "challengeContext": "O Desafio & Contexto",
+            "objectives": "Objetivos Principais",
+            "solution": "Solução Entregue",
+            "impactMetrics": "Métricas de Impacto"
+        },
+        "caseStudies": {
+            "ui-design-futuro": {
+                "client": "Next-Gen Interfaces",
+                "sector": "Tecnologia",
+                "serviceCategory": "UI/UX Avançado",
+                "result": "UI/UX do Futuro",
+                "description": "Interfaces com Glassmorphism, efeitos Néon e interações magnéticas. Uma demonstração das nossas capacidades de design avançado.",
+                "context": "Demonstração das capacidades avançadas de UI/UX além do web design padrão.",
+                "objectives": [
+                    "Mostrar competências de frontend de topo",
+                    "Demonstrar animações de alta performance",
+                    "Criar experiências de utilizador imersivas"
+                ],
+                "deliverables": [
+                    "Dashboard Glassmorphism",
+                    "Simulações de Scroll 3D",
+                    "Interações de Botões Magnéticos",
+                    "Efeitos de Brilho Néon"
+                ],
+                "maintenance90Days": [
+                    "Atualização contínua de tendências visuais",
+                    "Profiling de performance de animações"
+                ],
+                "metrics": [
+                    {
+                        "label": "Impacto Visual",
+                        "value": "100%",
+                        "timeframe": "Instantâneo"
+                    },
+                    {
+                        "label": "Performance",
+                        "value": "60fps",
+                        "timeframe": "Constante"
+                    }
+                ]
+            },
+            "clinica-exemplo": {
+                "client": "Clínica Médica Premium",
+                "sector": "Saúde",
+                "serviceCategory": "Desenvolvimento Web",
+                "result": "+45% marcações",
+                "description": "Redesign completo do website com foco em conversão e integração com sistema de agendamento.",
+                "context": "A Clínica Médica Premium, uma referência em cuidados de saúde privados em Lisboa, enfrentava um desafio crítico: embora tivesse uma equipa médica de excelência, a sua presença digital estava obsoleta. O site antigo demorava mais de 4 segundos a carregar, não era compatível com telemóveis e tornava a marcação de consultas online num processo frustrante, resultando numa elevada taxa de abandono e sobrecarga das linhas telefónicas.",
+                "objectives": [
+                    "Digitalizar completamente o processo de marcação de consultas",
+                    "Reduzir em 40% as chamadas administrativas para a receção",
+                    "Transmitir confiança e autoridade médica através de um design moderno"
+                ],
+                "deliverables": [
+                    "Portal de Paciente Integrado com sistema de gestão clínica",
+                    "Design de Interface (UI) focado na acessibilidade e clareza",
+                    "Otimização de SEO local para captar pacientes na zona de Lisboa",
+                    "Sistema de notificações automáticas por SMS e Email",
+                    "Migração segura de dados históricos"
+                ],
+                "maintenance90Days": [
+                    "Semana 1-2: Monitorização de erros em tempo real e calibração de servidores",
+                    "Mês 1: Análise de comportamento do utilizador (Hotjar) para ajustes de UX",
+                    "Mês 2: Implementação de blog de saúde para marketing de conteúdo",
+                    "Mês 3: Auditoria de segurança trimestral e updates de dependências"
+                ],
+                "metrics": [
+                    {
+                        "label": "Marcações online",
+                        "value": "+45%",
+                        "timeframe": "primeiro trimestre"
+                    },
+                    {
+                        "label": "Tempo de espera telef.",
+                        "value": "-30%",
+                        "timeframe": "média diária"
+                    },
+                    {
+                        "label": "Novos pacientes",
+                        "value": "+18%",
+                        "timeframe": "via Google Search"
+                    }
+                ]
+            },
+            "consultoria-exemplo": {
+                "client": "Consultoria Financeira ABC",
+                "sector": "Serviços Financeiros",
+                "serviceCategory": "Desenvolvimento Web",
+                "result": "+32% pedidos de proposta",
+                "description": "Website institucional premium com landing pages otimizadas para captação de leads.",
+                "context": "A Consultoria Financeira ABC, especializada em gestão de património, lutava para se diferenciar num mercado saturado. O seu website funcionava apenas como um 'cartão de visita digital' estático, falhando em captar a sofisticação dos seus serviços. O objetivo era transformar a plataforma num motor de geração de leads qualificados, oferecendo ferramentas interativas e conteúdo de alto valor para investidores.",
+                "objectives": [
+                    "Posicionar a marca como líder de pensamento ('Thought Leader') no setor",
+                    "Automatizar a qualificação inicial de leads através de funis interativos",
+                    "Aumentar a taxa de conversão de visitantes para reuniões agendadas"
+                ],
+                "deliverables": [
+                    "Calculadoras Financeiras Interativas (Reforma, Investimento, Fiscalidade)",
+                    "Area de Membros com conteúdos exclusivos e relatórios de mercado",
+                    "Integração bidirecional com HubSpot CRM",
+                    "Pipeline de Nutrição de Leads automatizado via Email Marketing",
+                    "Layout Institucional Premium com animações subtis"
+                ],
+                "maintenance90Days": [
+                    "Semana 1: Verificação de integridade dos dados no CRM",
+                    "Mês 1: Testes A/B nas Landing Pages de captura de leads",
+                    "Mês 2: Lançamento da secção de Webinars gravados",
+                    "Mês 3: Otimização de performance Core Web Vitals"
+                ],
+                "metrics": [
+                    {
+                        "label": "Leads Qualificados",
+                        "value": "+85%",
+                        "timeframe": "6 meses"
+                    },
+                    {
+                        "label": "Taxa de Conversão",
+                        "value": "2.8%",
+                        "timeframe": "média do setor: 1.2%"
+                    },
+                    {
+                        "label": "Custo por Lead",
+                        "value": "-25%",
+                        "timeframe": "vs. campanhas anteriores"
+                    }
+                ]
+            },
+            "ecommerce-exemplo": {
+                "client": "Loja Gourmet Online",
+                "sector": "E-commerce",
+                "serviceCategory": "Desenvolvimento E-commerce",
+                "result": "-45% tempo de carregamento",
+                "description": "Otimização de performance e checkout para aumentar taxa de conversão.",
+                "context": "A Loja Gourmet Online, vendendo produtos alimentares de luxo, sofria com uma performance desastrosa em dias de pico (Black Friday, Natal). O site baseado num tema WordPress pesado crashava com tráfego elevado e o checkout era lento e complexo, levando a que 70% dos carrinhos fossem abandonados. Era imperativo reconstruir a plataforma para velocidade, estabilidade e conversão.",
+                "objectives": [
+                    "Garantir 99.99% de uptime mesmo com picos de 10.000 visitas/hora",
+                    "Reduzir o tempo de checkout de 2 minutos para menos de 30 segundos",
+                    "Criar uma experiência de descoberta de produto imersiva e rápida"
+                ],
+                "deliverables": [
+                    "E-commerce Headless (Shopify Backend + Next.js Frontend)",
+                    "Implementação de Edge Caching para carregamento instantâneo global",
+                    "Pesquisa inteligente com autocompletar e filtros instantâneos",
+                    "Checkout de uma página (One-Page Checkout) otimizado",
+                    "Compressão de imagens AVIF/WebP automática"
+                ],
+                "maintenance90Days": [
+                    "Semana 1-2: Stress testing e monitorização de logs de erro",
+                    "Mês 1: Personalização de recomendações de produtos com IA",
+                    "Mês 2: Preparação de infraestrutura para campanha de Natal",
+                    "Mês 3: Análise de retenção de clientes (Cohort Analysis)"
+                ],
+                "metrics": [
+                    {
+                        "label": "Velocidade (LCP)",
+                        "value": "0.8s",
+                        "timeframe": "antes: 4.2s"
+                    },
+                    {
+                        "label": "Receita",
+                        "value": "+35%",
+                        "timeframe": "pós-migração"
+                    },
+                    {
+                        "label": "Recuperação Carrinho",
+                        "value": "12%",
+                        "timeframe": "via automação"
+                    }
+                ]
+            },
+            "imobiliaria-exemplo": {
+                "client": "Imobiliária Central",
+                "sector": "Imobiliário",
+                "serviceCategory": "Desenvolvimento Web",
+                "result": "+60% tráfego orgânico",
+                "description": "Novo website com pesquisa avançada de imóveis e SEO técnico otimizado.",
+                "context": "A Imobiliária Central queria quebrar o paradigma das agências tradicionais. Com um inventário de imóveis de luxo, o seu site parecia genérico e não permitia aos utilizadores filtrar eficazmente. O SEO era inexistente, dependendo 100% de portais externos (Idealista/Imovirtual) para leads. O desafio foi criar uma plataforma própria robusta que captasse tráfego orgânico e oferecesse uma experiência de visita virtual superior.",
+                "objectives": [
+                    "Reduzir a dependência de portais imobiliários externos em 50%",
+                    "Oferecer visitas virtuais 3D integradas diretamente na listagem",
+                    "Automatizar o agendamento de visitas físicas para os consultores"
+                ],
+                "deliverables": [
+                    "Plataforma de prospeção imobiliária com Mapa Interativo",
+                    "Integração nativa com Matterport para visitas 3D",
+                    "Páginas de imóvel com carregamento instantâneo e SEO estruturado",
+                    "Dashboard para consultores gerirem leads e visitas",
+                    "Geração automática de brochuras PDF"
+                ],
+                "maintenance90Days": [
+                    "Semana 1: Validação de indexação Google Search Console",
+                    "Mês 1: Otimização de tempos de carregamento do mapa",
+                    "Mês 2: Feature de 'alertas de novos imóveis' por email",
+                    "Mês 3: Relatório de atribuição de leads"
+                ],
+                "metrics": [
+                    {
+                        "label": "Tráfego Orgânico",
+                        "value": "+120%",
+                        "timeframe": "12 meses"
+                    },
+                    {
+                        "label": "Leads Próprias",
+                        "value": "60%",
+                        "timeframe": "vs. 15% de portais"
+                    },
+                    {
+                        "label": "Tempo na Página",
+                        "value": "3m 10s",
+                        "timeframe": "média por imóvel"
+                    }
+                ]
+            }
+        },
+        "filters": {
+            "label": "Filtrar:",
+            "all": "Todos os Setores",
+            "health": "Clínicas",
+            "realestate": "Imobiliário",
+            "ecommerce": "E-commerce",
+            "financial": "Serviços",
+            "tech": "Tecnologia"
+        },
+        "items": {
+            "ui-design-futuro": {
+                "sector": "Tecnologia",
+                "objective": "Inovação Visual",
+                "result": "UI/UX do Futuro",
+                "description": "Interfaces com Glassmorphism, efeitos Néon e interações magnéticas. Uma demonstração das nossas capacidades de design avançado.",
+                "testimonial": "Isto não é um site, é uma experiência.",
+                "testimonialAuthor": "Futuro Cliente",
+                "testimonialRole": "Visionário"
+            },
+            "clinica-exemplo": {
+                "sector": "Saúde",
+                "objective": "Aumentar marcações online",
+                "result": "+45% marcações",
+                "description": "Redesign completo do website com foco em conversão e integração com sistema de agendamento.",
+                "testimonial": "O novo site triplicou as nossas marcações online no primeiro trimestre.",
+                "testimonialAuthor": "Dr. João Silva",
+                "testimonialRole": "Diretor Clínico"
+            },
+            "consultoria-exemplo": {
+                "sector": "Serviços Financeiros",
+                "objective": "Gerar leads qualificados",
+                "result": "+32% pedidos de proposta",
+                "description": "Website institucional premium com landing pages otimizadas para captação de leads.",
+                "testimonial": "A qualidade dos leads melhorou significativamente desde o lançamento.",
+                "testimonialAuthor": "Maria Santos",
+                "testimonialRole": "CEO"
+            },
+            "ecommerce-exemplo": {
+                "sector": "E-commerce",
+                "objective": "Melhorar velocidade e conversão",
+                "result": "-45% tempo de carregamento",
+                "description": "Otimização de performance e checkout para aumentar taxa de conversão.",
+                "testimonial": "As vendas aumentaram 28% após a otimização de performance.",
+                "testimonialAuthor": "Pedro Costa",
+                "testimonialRole": "Fundador"
+            },
+            "imobiliaria-exemplo": {
+                "sector": "Imobiliário",
+                "objective": "Modernizar presença digital",
+                "result": "+60% tráfego orgânico",
+                "description": "Novo website com pesquisa avançada de imóveis e SEO técnico otimizado.",
+                "testimonial": "O site tornou-se a nossa principal fonte de contactos.",
+                "testimonialAuthor": "Ana Ferreira",
+                "testimonialRole": "Diretora Comercial"
+            }
+        },
+        "auditCard": {
+            "title": "Quer saber como está o seu site?",
+            "subtitle": "Receba uma auditoria gratuita com análise de performance, SEO e segurança em 48h.",
+            "cta": "Receber auditoria em 48h"
+        },
+        "viewStudy": "Ver estudo de caso",
+        "result": "Resultado",
+        "noProjects": "Não há projetos para este filtro.",
+        "viewAll": "Ver todos os projetos",
+        "cta": {
+            "title": "Quer resultados como estes?",
+            "subtitle": "Conte-nos sobre o seu projeto e criamos uma solução à  medida.",
+            "button": "Iniciar projeto"
         }
     },
     "Hero": {
@@ -127,6 +588,62 @@
             }
         }
     },
+    "ServicesSection": {
+        "title": "Serviços",
+        "subtitle": "Tudo o que precisa para ter uma presença digital profissional e eficaz.",
+        "cta": "Auditoria 48h",
+        "learnMore": "Saber mais",
+        "items": {
+            "criacao": {
+                "title": "Criação de Websites",
+                "description": "Websites institucionais, landing pages e lojas online que convertem visitantes em clientes.",
+                "features": {
+                    "0": "Design personalizado e responsivo",
+                    "1": "Otimizado para conversão"
+                }
+            },
+            "manutencao": {
+                "title": "Manutenção Mensal",
+                "description": "Mantemos o seu site sempre atualizado, seguro e a funcionar sem interrupções.",
+                "features": {
+                    "0": "Atualizações de segurança",
+                    "1": "Correções e pequenas alterações"
+                }
+            },
+            "performance": {
+                "title": "Performance",
+                "description": "Sites rápidos vendem mais. Otimizamos Core Web Vitals e velocidade de carregamento.",
+                "features": {
+                    "0": "Otimização de imagens e código",
+                    "1": "CDN e cache avançado"
+                }
+            },
+            "seo": {
+                "title": "SEO Técnico",
+                "description": "Estrutura técnica otimizada para os motores de busca encontrarem o seu site.",
+                "features": {
+                    "0": "Estrutura e indexação corretas",
+                    "1": "Schema markup e metadados"
+                }
+            },
+            "seguranca": {
+                "title": "Segurança & Backups",
+                "description": "Proteção contínua contra ameaças e backups automáticos para recuperação rápida.",
+                "features": {
+                    "0": "Monitorização 24/7",
+                    "1": "Restauração em minutos"
+                }
+            },
+            "hosting": {
+                "title": "Hosting Gerido",
+                "description": "Alojamento profissional com suporte dedicado e performance garantida.",
+                "features": {
+                    "0": "Servidores otimizados",
+                    "1": "SSL incluído"
+                }
+            }
+        }
+    },
     "Services": {
         "performance": {
             "title": "Performance & Core Web Vitals",
@@ -236,7 +753,7 @@
                 },
                 "2": {
                     "title": "Monitorização 24/7",
-                    "description": "Se o site for abaixo às 3 da manhã, nós sabemos e agimos. Muitas vezes resolvemos o problema antes de você acordar."
+                    "description": "Se o site for abaixo à s 3 da manhã, nós sabemos e agimos. Muitas vezes resolvemos o problema antes de você acordar."
                 },
                 "3": {
                     "title": "Relatório Mensal",
@@ -348,11 +865,11 @@
             "faq": {
                 "0": {
                     "question": "Qual a diferença entre SEO Técnico e SEO de Conteúdo?",
-                    "answer": "SEO de Conteúdo é sobre palavras-chave e textos. SEO Técnico é sobre garantir que o site é legível, rápido e estruturado para os robôs dos motores de busca."
+                    "answer": "SEO de Conteúdo é sobre palavras-chave e textos. SEO Técnico é sobre garantir que o site é legível, rápido e estruturado para os robí´s dos motores de busca."
                 },
                 "1": {
                     "question": "Isto garante a primeira página?",
-                    "answer": "Ninguém pode garantir a 1ª página. Mas o SEO Técnico remove as barreiras que impedem o seu site de lá chegar. É a fundação necessária."
+                    "answer": "Ninguém pode garantir a 1Âª página. Mas o SEO Técnico remove as barreiras que impedem o seu site de lá chegar. É a fundação necessária."
                 },
                 "2": {
                     "question": "Preciso disto se usar WordPress?",
@@ -417,204 +934,474 @@
                     "duration": "2-3 dias úteis"
                 },
                 "1": {
-                    "type": "Setup de Backups",
-                    "duration": "Imediato"
+                    "2": {
+                        "type": "Restauração de Emergência",
+                        "duration": "< 2 horas"
+                    }
                 },
-                "2": {
-                    "type": "Restauração de Emergência",
-                    "duration": "< 2 horas"
+                "faq": {
+                    "0": {
+                        "question": "O que é GEO (Generative Engine Optimization)?",
+                        "answer": "É a prática de otimizar conteúdo para ser citado por IAs como ChatGPT e Gemini. Ao contrário do SEO (links azuis), o GEO foca-se em ser a 'resposta única' ou fonte citada."
+                    },
+                    "1": {
+                        "question": "Isto substitui o SEO tradicional?",
+                        "answer": "Não, complementa. O SEO traz tráfego de pesquisa; o GEO constrói autoridade e captura tráfego de assistentes virtuais. As boas práticas de um ajudam o outro."
+                    },
+                    "2": {
+                        "question": "Podem garantir que o ChatGPT recomenda a minha empresa?",
+                        "answer": "Ninguém pode garantir. Os modelos são 'caixas negras'. Otimizamos as probabilidades fornecendo dados estruturados e autoridade que as IAs privilegiam."
+                    },
+                    "3": {
+                        "question": "Vale a pena investir agora?",
+                        "answer": "Sim. A 'Search Generative Experience' (SGE) do Google já está a chegar. Quem estiver preparado agora terá a vantagem de 'primeiro a chegar' na nova era da pesquisa."
+                    },
+                    "4": {
+                        "question": "Como medem os resultados?",
+                        "answer": "Monitorizamos menções em respostas de IA e o tráfego de referência proveniente dessas plataformas, bem como melhorias na visibilidade de 'Rich Snippets' no Google."
+                    }
+                }
+            }
+        }
+    },
+    "Plans": {
+        "hero": {
+            "title": "Planos de Manutenção",
+            "subtitle": "Escolha o plano ideal para manter o seu site sempre atualizado, seguro e a funcionar sem interrupções."
+        },
+        "list": {
+            "essencial": {
+                "name": "Essencial",
+                "description": "Para sites institucionais simples",
+                "badge": "Mais Popular",
+                "cta": "Escolher Essencial",
+                "features": {
+                    "0": "Atualizações técnicas mensais",
+                    "1": "Monitorização básica",
+                    "2": "Backups regulares",
+                    "3": "Correções críticas",
+                    "4": "Suporte por email",
+                    "5": "Tempo de resposta: até 72h úteis",
+                    "6": "Pequenas alterações incluídas",
+                    "7": "Relatório mensal"
                 }
             },
-            "faq": {
-                "0": {
-                    "question": "Com que frequência são feitos os backups?",
-                    "answer": "Por defeito, diariamente. Para sites críticos (e-commerce, notícias), podemos configurar backups em tempo real ou horários."
-                },
-                "1": {
-                    "question": "Onde ficam guardados os backups?",
-                    "answer": "Nunca no mesmo servidor do site. Usamos armazenamento cloud encriptado (AWS S3 ou similar) na Europa para garantir redundância e conformidade RGPD."
-                },
-                "2": {
-                    "question": "O que acontece se o meu site for hackeado?",
-                    "answer": "Se estiver sob a nossa proteção, nós limpamos o site gratuitamente e restauramos a versão segura mais recente. A prioridade é repor o serviço."
-                },
-                "3": {
-                    "question": "O SSL (cadeado verde) está incluído?",
-                    "answer": "Sim. Configuramos e gerimos a renovação automática de certificados SSL (Let's Encrypt). Também podemos instalar certificados EV/OV pagos."
-                },
-                "4": {
-                    "question": "Isto afeta a velocidade do site?",
-                    "answer": "Pelo contrário. Uma boa firewall pode bloquear tráfego de bots maliciosos que consomem recursos, libertando o servidor para os clientes reais."
-                },
-                "5": {
-                    "question": "Tenho acesso aos backups?",
-                    "answer": "Sim, fornecemos acesso direto ou enviamos os ficheiros se solicitado. Os dados são seus."
+            "profissional": {
+                "name": "Profissional",
+                "description": "Mais escolhido por PMEs",
+                "badge": "Mais Popular",
+                "cta": "Escolher Profissional",
+                "features": {
+                    "0": "Tudo do Essencial",
+                    "1": "Backups diários",
+                    "2": "Monitorização avançada",
+                    "3": "Até 3h/mês de pequenas alterações",
+                    "4": "Otimização de performance",
+                    "5": "Relatório mensal",
+                    "6": "Tempo de resposta: até 24h úteis",
+                    "7": "Suporte prioritário"
+                }
+            },
+            "premium": {
+                "name": "Premium",
+                "description": "Acompanhamento completo",
+                "badge": "Mais Popular",
+                "cta": "Escolher Premium",
+                "features": {
+                    "0": "Tudo do Profissional",
+                    "1": "Até 6h/mês de alterações",
+                    "2": "SEO técnico contínuo",
+                    "3": "Monitorização de segurança",
+                    "4": "Consultoria mensal",
+                    "5": "Tempo de resposta: até 12h úteis",
+                    "6": "Suporte prioritário + WhatsApp"
                 }
             }
         },
-        "landingPages": {
-            "title": "Landing Pages & CRO",
-            "subtitle": "Landing pages orientadas a conversão. Copy, UX e testes para aumentar leads e vendas.",
-            "hero": {
-                "title": "Conversão Máxima",
-                "subtitle": "Tráfego sem conversão é dinheiro deitado ao lixo. Criamos páginas desenhadas cientificamente para transformar visitantes em clientes."
+        "comparison": {
+            "title": "Comparação de Planos",
+            "subtitle": "Veja em detalhe o que cada plano inclui, focado em resultados.",
+            "cols": {
+                "feature": "O que recebe",
+                "essencial": "Essencial",
+                "profissional": "Profissional",
+                "premium": "Premium"
             },
-            "includes": {
-                "0": "Design de alta-conversão (UX/UI)",
-                "1": "Copywriting persuasivo e focado em benefícios",
-                "2": "Formulários inteligentes multi-step",
-                "3": "A/B Testing e mapas de calor",
-                "4": "Velocidade extrema de carregamento",
-                "5": "Integração automática com CRM/Email",
-                "6": "Otimização mobile-first",
-                "7": "Analytics de conversão avançado"
+            "features": {
+                "sla": "SLA (tempo de resposta)",
+                "hours": "Horas de alterações incluídas",
+                "backups": "Backups",
+                "uptime": "Monitorização de uptime",
+                "performance": "Otimização de performance",
+                "seo": "SEO técnico",
+                "evolutions": "Pequenas evoluções",
+                "report": "Relatório mensal",
+                "supportEmail": "Suporte por email",
+                "supportPriority": "Suporte prioritário",
+                "supportPhone": "Suporte WhatsApp/Telefone"
             },
-            "process": {
-                "0": {
-                    "title": "Arquitetura da Oferta",
-                    "description": "Definimos quem é o público, qual a dor e qual a solução irresistível. Estruturamos a narrativa de vendas."
+            "values": {
+                "sla": {
+                    "essencial": "48h úteis",
+                    "profissional": "24h úteis",
+                    "premium": "4h úteis"
                 },
-                "1": {
-                    "title": "Wireframe & Copy",
-                    "description": "Criamos o esqueleto da página e os textos. Nada de 'lorem ipsum'. O conteúdo guia o design."
+                "hours": {
+                    "essencial": "1h/mês",
+                    "profissional": "3h/mês",
+                    "premium": "6h/mês"
                 },
-                "2": {
-                    "title": "Design & Desenvolvimento",
-                    "description": "Aplicamos o design visual premium e programamos a página com código limpo e rápido (Next.js/React)."
+                "backups": {
+                    "essencial": "Semanais",
+                    "profissional": "Diários",
+                    "premium": "Diários + 90 dias retenção"
                 },
-                "3": {
-                    "title": "Testar & Otimizar",
-                    "description": "Lançamos a página, analisamos os mapas de calor e fazemos ajustes para subir a taxa de conversão."
-                }
-            },
-            "deliverables": {
-                "0": "Landing page publicada e testada",
-                "1": "Copywriting completo",
-                "2": "Design system da campanha",
-                "3": "Integrações (Zapier, Mailchimp, etc)",
-                "4": "Setup de Tracking (GTM/GA4/Pixel)",
-                "5": "Relatório de testes A/B"
-            },
-            "timelines": {
-                "0": {
-                    "type": "Design & Copy",
-                    "duration": "1 semana"
+                "uptime": {
+                    "essencial": "true",
+                    "profissional": "24/7",
+                    "premium": "24/7 + alertas"
                 },
-                "1": {
-                    "type": "Desenvolvimento",
-                    "duration": "3-5 dias"
+                "performance": {
+                    "essencial": "false",
+                    "profissional": "Básica",
+                    "premium": "Avançada (Core Web Vitals)"
                 },
-                "2": {
-                    "type": "Setup de Tracking",
-                    "duration": "1-2 dias"
-                }
-            },
-            "faq": {
-                "0": {
-                    "question": "O que é uma landing page?",
-                    "answer": "É uma página focada num único objetivo: captar uma lead ou vender algo. Não tem menus nem distrações. É o 'closer' digital."
+                "seo": {
+                    "essencial": "false",
+                    "profissional": "Verificação mensal",
+                    "premium": "Auditoria trimestral"
                 },
-                "1": {
-                    "question": "O que é CRO?",
-                    "answer": "CRO (Conversion Rate Optimization) é a arte de melhorar a percentagem de visitantes que compram. Pequenos ajustes em botões ou títulos podem duplicar as vendas."
+                "evolutions": {
+                    "essencial": "Sob orçamento",
+                    "profissional": "Até 3h incluídas",
+                    "premium": "Até 6h incluídas"
                 },
-                "2": {
-                    "question": "Escrevem os textos (Copy)?",
-                    "answer": "Sim, incluímos copywriting básico focado em conversão. Para campanhas complexas, colaboramos com copywriters especializados parceiros."
+                "report": {
+                    "essencial": "false",
+                    "profissional": "true",
+                    "premium": "Detalhado + consultoria"
                 },
-                "3": {
-                    "question": "Posso usar no WordPress?",
-                    "answer": "Sim, podemos criar landing pages em WordPress (Elementor/Bricks) ou, preferencialmente, como páginas estáticas ultra-rápidas em Next.js."
+                "supportEmail": {
+                    "essencial": "true",
+                    "profissional": "true",
+                    "premium": "true"
                 },
-                "4": {
-                    "question": "Como sei se está a funcionar?",
-                    "answer": "Instalamos tracking avançado. Saberá exatamente quantos clicaram, quantos preencheram e qual o custo por lead (CPL)."
+                "supportPriority": {
+                    "essencial": "false",
+                    "profissional": "true",
+                    "premium": "true"
                 },
-                "5": {
-                    "question": "Fazem testes A/B?",
-                    "answer": "Sim. Criamos variantes da página (ex: headlines diferentes) para ver qual converte mais, usando ferramentas de split testing."
+                "supportPhone": {
+                    "essencial": "false",
+                    "profissional": "false",
+                    "premium": "WhatsApp + Telefone"
                 }
             }
         },
-        "aiSeoGeo": {
-            "title": "SEO para IA (GEO)",
-            "subtitle": "Otimização para motores generativos (GEO). Prepare o seu site para ser referenciado por ChatGPT, Gemini e outros assistentes de IA.",
-            "hero": {
-                "title": "SEO para IA (GEO)",
-                "subtitle": "O futuro da pesquisa é conversacional. Otimizamos o seu conteúdo para ser a fonte de confiança do ChatGPT, Gemini e Perplexity."
-            },
-            "includes": {
-                "0": "Auditoria de presença em motores generativos",
-                "1": "Otimização de Schema Markup (JSON-LD) para Contexto",
-                "2": "Estruturação de conteúdo baseada em Entidades",
-                "3": "Criação de Páginas de FAQ Otimizadas para IA (NLP)",
-                "4": "Tabelas comparativas e listas estruturadas",
-                "5": "Reforço de sinais E-E-A-T (Experiência, Expertise, Autoridade)",
-                "6": "Otimização de Knowledge Graph",
-                "7": "Gestão de citações e fontes digitais"
-            },
-            "process": {
+        "faq": {
+            "title": "Dúvidas Frequentes sobre Contratação",
+            "subtitle": "Respostas à s perguntas mais comuns antes de contratar.",
+            "items": {
                 "0": {
-                    "title": "Análise de Entidades",
-                    "description": "Mapeamos como a sua marca e produtos são entendidos pela IA. Construímos um 'Knowledge Graph' que liga o seu site aos conceitos certos."
+                    "question": "Fico preso a contrato?",
+                    "answer": "Não. Os planos são mensais e pode cancelar com 30 dias de aviso prévio. Sem fidelização obrigatória."
                 },
                 "1": {
-                    "title": "Schema Markup Avançado",
-                    "description": "Implementamos código invisível (JSON-LD) que explica explicitamente à IA: 'Isto é um preço', 'Isto é um serviço', 'Somos especialistas nisto'."
+                    "question": "O que conta como 'pequena alteração'?",
+                    "answer": "Pequenas alterações incluem: atualização de textos, troca de imagens, ajustes de layout, correções pontuais e melhorias pequenas em formulários. Não inclui novas funcionalidades complexas ou redesign completo."
                 },
                 "2": {
-                    "title": "Conteúdo para LLMs",
-                    "description": "Reescrevemos secções chave para serem 'AI-friendly': respostas diretas, estrutura lógica, dados em tabelas e linguagem factual."
+                    "question": "Qual o prazo médio de entrega para alterações?",
+                    "answer": "Depende do plano e da prioridade definida. Tipicamente, as alterações simples são tratadas dentro do SLA do seu plano."
                 },
                 "3": {
-                    "title": "Autoridade & Citações",
-                    "description": "Trabalhamos para que o seu site seja mencionado em fontes que as IAs já confiam (Wikipédia, notícias, diretórios de indústria)."
-                }
-            },
-            "deliverables": {
-                "0": "Relatório de Visibilidade em IA",
-                "1": "Implementação completa de Schema.org",
-                "2": "Páginas de conteúdo otimizadas para GEO",
-                "3": "Guia de E-E-A-T para a equipa",
-                "4": "Otimização do Perfil de Negócio (ex-GMB)",
-                "5": "Monitorização de respostas geradas"
-            },
-            "timelines": {
-                "0": {
-                    "type": "Auditoria GEO",
-                    "duration": "1 semana"
-                },
-                "1": {
-                    "type": "Implementação",
-                    "duration": "2-3 semanas"
-                },
-                "2": {
-                    "type": "Monitorização",
-                    "duration": "Mensal"
-                }
-            },
-            "faq": {
-                "0": {
-                    "question": "O que é GEO (Generative Engine Optimization)?",
-                    "answer": "É a prática de otimizar conteúdo para ser citado por IAs como ChatGPT e Gemini. Ao contrário do SEO (links azuis), o GEO foca-se em ser a 'resposta única' ou fonte citada."
-                },
-                "1": {
-                    "question": "Isto substitui o SEO tradicional?",
-                    "answer": "Não, complementa. O SEO traz tráfego de pesquisa; o GEO constrói autoridade e captura tráfego de assistentes virtuais. As boas práticas de um ajudam o outro."
-                },
-                "2": {
-                    "question": "Podem garantir que o ChatGPT recomenda a minha empresa?",
-                    "answer": "Ninguém pode garantir. Os modelos são 'caixas negras'. Otimizamos as probabilidades fornecendo dados estruturados e autoridade que as IAs privilegiam."
-                },
-                "3": {
-                    "question": "Vale a pena investir agora?",
-                    "answer": "Sim. A 'Search Generative Experience' (SGE) do Google já está a chegar. Quem estiver preparado agora terá a vantagem de 'primeiro a chegar' na nova era da pesquisa."
+                    "question": "O que acontece se precisar de mais horas?",
+                    "answer": "Avisamos sempre antes de ultrapassar o limite mensal. Pode optar por faturação de horas extra, ou replanear para o mês seguinte."
                 },
                 "4": {
-                    "question": "Como medem os resultados?",
-                    "answer": "Monitorizamos menções em respostas de IA e o tráfego de referência proveniente dessas plataformas, bem como melhorias na visibilidade de 'Rich Snippets' no Google."
+                    "question": "Vocês tratam do domínio e hosting?",
+                    "answer": "Sim, podemos gerir por si. Se preferir manter o controlo, trabalhamos com o seu fornecedor atual sem problema."
+                },
+                "5": {
+                    "question": "Como funciona a migração?",
+                    "answer": "Planeamos a migração, testamos num ambiente seguro e fazemos o switch com o mínimo de impacto. Validamos tudo antes de publicar."
+                },
+                "6": {
+                    "question": "Posso mudar de plano depois?",
+                    "answer": "Sim, pode fazer upgrade/downgrade a qualquer momento. A alteração aplica-se no ciclo seguinte."
                 }
+            },
+            "cta": "Ver todas as perguntas frequentes"
+        },
+        "cta_bottom": {
+            "title": "Não sabe qual escolher?",
+            "subtitle": "Fale connosco e recomendamos o plano ideal para o seu caso.",
+            "primary": "Falar com especialista",
+            "secondary": "Receber auditoria grátis"
+        },
+        "prices": {
+            "essencial": "a partir de 149€/mês",
+            "profissional": "a partir de 299€/mês",
+            "premium": "a partir de 499€/mês"
+        }
+    },
+    "Auditoria": {
+        "badge": "Entrega em 48 horas úteis",
+        "title": "Auditoria Gratuita do Seu Website",
+        "subtitle": "Descubra o que está a impedir o seu site de converter mais visitantes em clientes. Receba um relatório detalhado com recomendações práticas em 48 horas.",
+        "benefits": [
+            "Relatório PDF profissional",
+            "Análise por especialista (não automática)",
+            "Recomendações priorizadas por impacto",
+            "Estimativa de tempo/custo por correção",
+            "Sem compromisso de contratação"
+        ],
+        "trust": {
+            "free": "100% gratuito",
+            "noCommitment": "Sem compromisso",
+            "fullReport": "Relatório PDF completo"
+        },
+        "form": {
+            "title": "Pedir Auditoria Gratuita",
+            "subtitle": "Preencha o formulário e receba o relatório em 48h.",
+            "name": "Nome *",
+            "namePlaceholder": "O seu nome",
+            "email": "Email *",
+            "emailPlaceholder": "email@exemplo.pt",
+            "website": "Website a auditar *",
+            "websitePlaceholder": "https://www.exemplo.pt",
+            "phone": "Telefone (opcional)",
+            "phonePlaceholder": "+351 912 345 678",
+            "submit": "Receber Auditoria Gratuita",
+            "submitting": "A enviar...",
+            "privacy": "Ao submeter, concorda com a nossa",
+            "privacyLink": "política de privacidade",
+            "noSpam": ". Não enviamos spam.",
+            "company": "Empresa"
+        },
+        "success": {
+            "title": "Pedido Recebido!",
+            "message": "Vamos analisar o seu website e enviar o relatório para {email} dentro de 48 horas úteis.",
+            "newRequest": "Enviar novo pedido"
+        },
+        "included": {
+            "title": "O Que Está Incluído na Auditoria",
+            "subtitle": "Análise profissional e detalhada do seu website em 6 áreas críticas.",
+            "items": [
+                {
+                    "title": "Performance & Core Web Vitals",
+                    "description": "Análise completa de velocidade, LCP, FID, CLS e recomendações de otimização."
+                },
+                {
+                    "title": "SEO Técnico",
+                    "description": "Verificação de meta tags, estrutura de URLs, sitemap, robots.txt e indexação."
+                },
+                {
+                    "title": "Segurança",
+                    "description": "Verificação de SSL, headers de segurança, vulnerabilidades comuns."
+                },
+                {
+                    "title": "Responsividade",
+                    "description": "Teste em múltiplos dispositivos e identificação de problemas mobile."
+                },
+                {
+                    "title": "Erros Críticos",
+                    "description": "Identificação de links quebrados, erros 404, problemas de carregamento."
+                },
+                {
+                    "title": "Oportunidades de Melhoria",
+                    "description": "Lista priorizada de ações para melhorar conversões e visibilidade."
+                }
+            ]
+        },
+        "report": {
+            "title": "Exemplo de Relatório",
+            "subtitle": "Cada auditoria inclui um relatório PDF profissional com análise detalhada, capturas de ecrã, métricas e recomendações priorizadas.",
+            "features": [
+                "Sumário executivo com problemas críticos destacados",
+                "Análise técnica com capturas de ecrã e evidências",
+                "Lista de ações priorizadas por impacto vs. esforço",
+                "Estimativa de tempo e custo para cada correção"
+            ],
+            "cta": "Pedir Auditoria Gratuita",
+            "mockup": {
+                "title": "Relatório de Auditoria",
+                "brand": "SiteSolutions.pt",
+                "performance": "Performance",
+                "seo": "SEO",
+                "security": "Segurança",
+                "criticalIssues": "Problemas Críticos Encontrados",
+                "issue1": "LCP muito alto (4.2s)",
+                "issue2": "Imagens não otimizadas",
+                "issue3": "Meta descriptions em falta"
             }
+        },
+        "faq": {
+            "title": "Perguntas Frequentes"
+        },
+        "finalCta": {
+            "title": "Descubra o Potencial do Seu Website",
+            "subtitle": "Peça já a sua auditoria gratuita e receba um diagnóstico completo em 48 horas.",
+            "button": "Pedir Auditoria Gratuita"
+        }
+    },
+    "Footer": {
+        "tagline": "Websites que geram resultados. Manutenção sem dores de cabeça.",
+        "sections": {
+            "services": "Serviços",
+            "sectors": "Setores",
+            "company": "Empresa",
+            "contact": "Contactos"
+        },
+        "links": {
+            "services": {
+                "landingPages": "Landing Pages & CRO",
+                "maintenance": "Manutenção de Sites",
+                "performance": "Otimização de Performance",
+                "seo": "SEO Técnico",
+                "security": "Segurança & Backups",
+                "hosting": "Alojamento Gerido"
+            },
+            "sectors": {
+                "clinics": "Sites para Clínicas",
+                "realEstate": "Sites para Imobiliárias",
+                "restaurants": "Sites para Restaurantes",
+                "ecommerce": "Sites para E-commerce"
+            },
+            "company": {
+                "about": "Sobre Nós",
+                "portfolio": "Portfólio",
+                "audit": "Auditoria Gratuita 48h",
+                "contact": "Contacto"
+            },
+            "legal": {
+                "privacy": "Política de Privacidade",
+                "terms": "Termos e Condições"
+            }
+        },
+        "copyright": "Todos os direitos reservados."
+    },
+    "Legal": {
+        "lastUpdated": "Última atualização",
+        "privacy": {
+            "title": "Política de Privacidade",
+            "date": "Janeiro 2024",
+            "sections": [
+                {
+                    "title": "1. Responsável pelo Tratamento",
+                    "content": "A SiteSolutions, com sede em Lisboa, Portugal, é a responsável pelo tratamento dos seus dados pessoais."
+                },
+                {
+                    "title": "2. Dados que Recolhemos",
+                    "content": "Recolhemos os seguintes dados pessoais:",
+                    "items": [
+                        "Nome e apelido",
+                        "Email",
+                        "Telefone",
+                        "Empresa",
+                        "Informações sobre o seu projeto"
+                    ]
+                },
+                {
+                    "title": "3. Finalidade do Tratamento",
+                    "content": "Os seus dados são utilizados para:",
+                    "items": [
+                        "Responder aos seus pedidos de contacto",
+                        "Enviar propostas comerciais solicitadas",
+                        "Prestar os serviços contratados",
+                        "Enviar comunicações relacionadas com os nossos serviços (com o seu consentimento)"
+                    ]
+                },
+                {
+                    "title": "4. Base Legal",
+                    "content": "O tratamento dos seus dados baseia-se no seu consentimento e na execução de contrato ou diligências pré-contratuais."
+                },
+                {
+                    "title": "5. Conservação dos Dados",
+                    "content": "Os seus dados são conservados durante o período necessário para as finalidades que motivaram a sua recolha, respeitando os prazos legais aplicáveis."
+                },
+                {
+                    "title": "6. Direitos do Titular",
+                    "content": "Tem direito a aceder, retificar, apagar, limitar o tratamento, portabilidade e oposição ao tratamento dos seus dados. Para exercer estes direitos, contacte-nos através de geral@sitesolutions.pt."
+                },
+                {
+                    "title": "7. Segurança",
+                    "content": "Implementamos medidas técnicas e organizativas adequadas para proteger os seus dados pessoais."
+                },
+                {
+                    "title": "8. Cookies",
+                    "content": "Utilizamos cookies para melhorar a sua experiência no nosso site. Pode consultar a nossa política de cookies para mais informações."
+                },
+                {
+                    "title": "9. Alterações",
+                    "content": "Esta política pode ser atualizada periodicamente. A data da última atualização está indicada no topo deste documento."
+                },
+                {
+                    "title": "10. Contacto",
+                    "content": "Para questões sobre privacidade: geral@sitesolutions.pt"
+                }
+            ]
+        },
+        "terms": {
+            "title": "Termos e Condições",
+            "date": "Janeiro 2024",
+            "sections": [
+                {
+                    "title": "1. Identificação",
+                    "content": "Estes termos regulam a utilização do website e serviços da SiteSolutions, com sede em Lisboa, Portugal."
+                },
+                {
+                    "title": "2. Serviços",
+                    "content": "A SiteSolutions presta serviços de:",
+                    "items": [
+                        "Criação e desenvolvimento de websites",
+                        "Manutenção e gestão de websites",
+                        "Otimização de performance e SEO",
+                        "Alojamento web gerido"
+                    ]
+                },
+                {
+                    "title": "3. Propostas e Orçamentos",
+                    "content": "As propostas enviadas têm validade de 30 dias. Os preços indicados não incluem IVA, salvo indicação em contrário."
+                },
+                {
+                    "title": "4. Pagamentos",
+                    "content": "Os pagamentos são efetuados conforme acordado em cada proposta. Geralmente: 50% no início do projeto, 50% na entrega/publicação. Para planos de manutenção, o pagamento é mensal e antecipado."
+                },
+                {
+                    "title": "5. Prazos",
+                    "content": "Os prazos indicados nas propostas são estimativas. Atrasos causados pelo cliente (falta de conteúdos, feedback tardio) podem alterar o prazo final."
+                },
+                {
+                    "title": "6. Propriedade Intelectual",
+                    "content": "Após pagamento integral, o cliente detém os direitos sobre o website desenvolvido. A SiteSolutions reserva-se o direito de utilizar o projeto em portfólio."
+                },
+                {
+                    "title": "7. Cancelamento",
+                    "content": "O cliente pode cancelar o projeto a qualquer momento. Os valores já pagos não são reembolsáveis, correspondendo ao trabalho já realizado. Planos de manutenção podem ser cancelados com 30 dias de aviso prévio."
+                },
+                {
+                    "title": "8. Responsabilidade",
+                    "content": "A SiteSolutions não se responsabiliza por:",
+                    "items": [
+                        "Conteúdos fornecidos pelo cliente",
+                        "Perdas indiretas ou consequenciais",
+                        "Problemas causados por terceiros"
+                    ]
+                },
+                {
+                    "title": "9. Confidencialidade",
+                    "content": "Ambas as partes comprometem-se a manter confidenciais todas as informações partilhadas durante a prestação de serviços."
+                },
+                {
+                    "title": "10. Lei Aplicável",
+                    "content": "Estes termos são regidos pela lei portuguesa. Qualquer litígio será submetido aos tribunais de Lisboa."
+                },
+                {
+                    "title": "11. Contacto",
+                    "content": "Para questões sobre estes termos: geral@sitesolutions.pt"
+                }
+            ]
         }
     }
 }

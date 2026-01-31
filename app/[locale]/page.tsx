@@ -15,6 +15,7 @@ import { Testimonials } from "@/components/sections/testimonials";
 import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { CTABanner } from "@/components/sections/cta-banner";
+import { ScrollDemo } from "@/components/sections/scroll-demo";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
         <Hero />
         <ClientLogos />
         <Stats />
+        <ScrollDemo />
         <WhySiteSolutions />
         <Services />
         <ResultsMeasurement />
@@ -44,7 +46,6 @@ export default function HomePage() {
           title="Pronto para ter um site sem preocupações?"
           subtitle="Peça uma auditoria gratuita e descubra como podemos ajudar o seu negócio a crescer online."
           primaryCTA={{ text: "Auditoria 48h", href: "/auditoria-48h" }}
-          secondaryCTA={{ text: "Contacto rápido", href: "/auditoria-48h#contacto" }}
         />
         <FAQ />
         <Contact />

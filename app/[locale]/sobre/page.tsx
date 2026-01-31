@@ -1,20 +1,23 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { about, stats, seoMeta } from "@/lib/content";
 import { Target, Users, Award, HeartHandshake } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: seoMeta.about.title,
-  description: seoMeta.about.description,
-  keywords: seoMeta.about.keywords,
-};
+import { useTranslations } from "next-intl";
 
 const valueIcons = [Target, Users, Award, HeartHandshake];
 
 export default function SobrePage() {
+  const t = useTranslations("About");
+
+  // Get arrays from translations
+  const storyParagraphs = t.raw("story.paragraphs") as string[];
+  const values = t.raw("values.items") as Array<{ title: string; description: string }>;
+  const team = t.raw("team.members") as Array<{ name: string; role: string }>;
+  const stats = t.raw("stats") as Array<{ label: string; value: string }>;
+
   return (
     <>
       <Header />
@@ -24,10 +27,10 @@ export default function SobrePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                {about.title}
+                {t("title")}
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                {about.subtitle}
+                {t("subtitle")}
               </p>
             </div>
           </div>
@@ -50,10 +53,10 @@ export default function SobrePage() {
               {/* Story content */}
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  A Nossa História
+                  {t("story.title")}
                 </h2>
                 <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
-                  {about.story.split("\n\n").map((paragraph, index) => (
+                  {storyParagraphs.map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
                 </div>
@@ -85,15 +88,15 @@ export default function SobrePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Os Nossos Valores
+                {t("values.title")}
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Princípios que guiam o nosso trabalho todos os dias.
+                {t("values.subtitle")}
               </p>
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {about.values.map((value, index) => {
+              {values.map((value, index) => {
                 const Icon = valueIcons[index] || Target;
                 return (
                   <div
@@ -121,15 +124,15 @@ export default function SobrePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                A Nossa Equipa
+                {t("team.title")}
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Profissionais dedicados a entregar o melhor resultado.
+                {t("team.subtitle")}
               </p>
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
-              {about.team.map((member) => (
+              {team.map((member) => (
                 <div
                   key={member.name}
                   className="rounded-2xl border border-border bg-card p-6 text-center"
@@ -155,23 +158,25 @@ export default function SobrePage() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-16 lg:py-24 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-background sm:text-4xl">
-              Vamos trabalhar juntos?
+        {/* CTA - Matching Portfolio page style */}
+        <section className="py-16 lg:py-24 bg-zinc-950 text-white relative overflow-hidden border-t border-white/10">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-zinc-950/80"></div>
+
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {t("cta.title")}
             </h2>
-            <p className="mt-4 text-lg text-background/70">
-              Entre em contacto e descubra como podemos ajudar o seu negócio.
+            <p className="mt-4 text-lg text-zinc-400">
+              {t("cta.subtitle")}
             </p>
             <div className="mt-8">
               <Button
                 asChild
                 size="lg"
-                variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90"
+                className="bg-white text-zinc-950 hover:bg-zinc-200 font-semibold"
               >
-                <Link href="/auditoria-48h#contacto">Falar connosco</Link>
+                <Link href="/auditoria-48h">{t("cta.button")}</Link>
               </Button>
             </div>
           </div>

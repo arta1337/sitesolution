@@ -1,9 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { siteConfig, navigation } from "@/lib/content";
+import { useTranslations } from "next-intl";
+import { siteConfig } from "@/lib/content";
 
 export function Footer() {
+  const t = useTranslations("Footer");
+
   // JSON-LD Structured Data for LocalBusiness
   const jsonLd = {
     "@context": "https://schema.org",
@@ -45,6 +48,34 @@ export function Footer() {
     ]
   };
 
+  // Service links with translated names
+  const serviceLinks = [
+    { href: "/servicos/landing-pages-cro", key: "landingPages" },
+    { href: "/servicos/manutencao-sites", key: "maintenance" },
+    { href: "/servicos/performance-core-web-vitals", key: "performance" },
+    { href: "/servicos/seo-tecnico", key: "seo" },
+    { href: "/servicos/seguranca-backups", key: "security" },
+  ];
+
+  const sectorLinks = [
+    { href: "/setores/sites-para-clinicas", key: "clinics" },
+    { href: "/setores/sites-para-imobiliarias", key: "realEstate" },
+    { href: "/setores/sites-para-restaurantes", key: "restaurants" },
+    { href: "/setores/sites-para-ecommerce", key: "ecommerce" },
+  ];
+
+  const companyLinks = [
+    { href: "/sobre", key: "about" },
+    { href: "/portfolio", key: "portfolio" },
+    { href: "/auditoria-48h", key: "audit" },
+    { href: "/auditoria-48h", key: "contact" },
+  ];
+
+  const legalLinks = [
+    { href: "/privacidade", key: "privacy" },
+    { href: "/termos", key: "terms" },
+  ];
+
   return (
     <footer className="border-t border-border bg-secondary/30">
       {/* JSON-LD Script */}
@@ -52,7 +83,7 @@ export function Footer() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
@@ -67,7 +98,7 @@ export function Footer() {
               {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Websites que geram resultados. Manutenção sem dores de cabeça.
+              {t("tagline")}
             </p>
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
               <p>{siteConfig.contact.address}</p>
@@ -78,16 +109,16 @@ export function Footer() {
           {/* Services Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Serviços
+              {t("sections.services")}
             </h3>
             <ul className="mt-4 space-y-3">
-              {navigation.footer.services.map((item) => (
-                <li key={item.name}>
+              {serviceLinks.map((item) => (
+                <li key={item.key}>
                   <Link
                     href={item.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {item.name}
+                    {t(`links.services.${item.key}`)}
                   </Link>
                 </li>
               ))}
@@ -97,16 +128,16 @@ export function Footer() {
           {/* Sectors Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Setores
+              {t("sections.sectors")}
             </h3>
             <ul className="mt-4 space-y-3">
-              {navigation.footer.sectors.map((item) => (
-                <li key={item.name}>
+              {sectorLinks.map((item) => (
+                <li key={item.key}>
                   <Link
                     href={item.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {item.name}
+                    {t(`links.sectors.${item.key}`)}
                   </Link>
                 </li>
               ))}
@@ -116,16 +147,16 @@ export function Footer() {
           {/* Company Links */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Empresa
+              {t("sections.company")}
             </h3>
             <ul className="mt-4 space-y-3">
-              {navigation.footer.company.map((item) => (
-                <li key={item.name}>
+              {companyLinks.map((item) => (
+                <li key={item.key}>
                   <Link
                     href={item.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {item.name}
+                    {t(`links.company.${item.key}`)}
                   </Link>
                 </li>
               ))}
@@ -135,7 +166,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-              Contactos
+              {t("sections.contact")}
             </h3>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li>
@@ -208,16 +239,16 @@ export function Footer() {
         <div className="mt-12 border-t border-border pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
+              &copy; {new Date().getFullYear()} {siteConfig.name}. {t("copyright")}
             </p>
             <div className="flex gap-6">
-              {navigation.footer.legal.map((item) => (
+              {legalLinks.map((item) => (
                 <Link
-                  key={item.name}
+                  key={item.key}
                   href={item.href}
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                  {item.name}
+                  {t(`links.legal.${item.key}`)}
                 </Link>
               ))}
             </div>

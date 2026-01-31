@@ -17,11 +17,20 @@ export function LanguageToggle() {
     const pathname = usePathname()
 
     const switchLanguage = (newLocale: string) => {
-        const pathSegments = pathname.split('/')
-        // pathSegments[1] is the locale because path starts with /
-        pathSegments[1] = newLocale.toLowerCase()
-        const newPath = pathSegments.join('/')
-        router.push(newPath)
+        const locales = ['pt', 'en'];
+        const pathSegments = pathname.split('/').filter(Boolean);
+        const firstSegment = pathSegments[0];
+
+        // If the first segment is a locale, remove it to get the base path
+        if (locales.includes(firstSegment)) {
+            pathSegments.shift();
+        }
+
+        // Reconstruct path with new locale
+        // Note: next-intl middleware handles redirecting /pt/page to /page if it's default
+        // so we can safely always prepend the locale
+        const newPath = `/${newLocale.toLowerCase()}/${pathSegments.join('/')}`;
+        router.push(newPath);
     }
 
     return (
@@ -39,12 +48,7 @@ export function LanguageToggle() {
                 <DropdownMenuItem onClick={() => switchLanguage("EN")}>
                     English (EN)
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => switchLanguage("ES")}>
-                    Español (ES)
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => switchLanguage("FR")}>
-                    Français (FR)
-                </DropdownMenuItem>
+
             </DropdownMenuContent>
         </DropdownMenu>
     )

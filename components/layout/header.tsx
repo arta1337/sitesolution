@@ -97,24 +97,45 @@ export function Header() {
                 >
                   <div className="rounded-xl border border-border bg-background shadow-xl p-6">
                     <div className="grid grid-cols-2 gap-8">
-                      {navigation.servicesMenu.map((section) => (
+                      {[
+                        {
+                          category: t('megaMenu.services'),
+                          items: [
+                            { id: "manutencao-sites", href: "/servicos/manutencao-sites" },
+                            { id: "seo-tecnico", href: "/servicos/seo-tecnico" },
+                            { id: "performance-core-web-vitals", href: "/servicos/performance-core-web-vitals" },
+                            { id: "seguranca-backups", href: "/servicos/seguranca-backups" },
+                            { id: "landing-pages-cro", href: "/servicos/landing-pages-cro" },
+                            { id: "seo-para-ia-geo", href: "/servicos/seo-para-ia-geo" },
+                          ]
+                        },
+                        {
+                          category: t('megaMenu.sectors'),
+                          items: [
+                            { id: "sites-para-clinicas", href: "/setores/sites-para-clinicas" },
+                            { id: "sites-para-imobiliarias", href: "/setores/sites-para-imobiliarias" },
+                            { id: "sites-para-restaurantes", href: "/setores/sites-para-restaurantes" },
+                            { id: "sites-para-ecommerce", href: "/setores/sites-para-ecommerce" },
+                          ]
+                        }
+                      ].map((section) => (
                         <div key={section.category}>
                           <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-                            {section.category === 'Serviços' ? t('megaMenu.services') : t('megaMenu.sectors')}
+                            {section.category}
                           </h3>
                           <ul className="space-y-1">
                             {section.items.map((item) => (
-                              <li key={item.name}>
+                              <li key={item.id}>
                                 <Link
                                   href={item.href}
                                   className="group block rounded-lg p-2 -mx-2 hover:bg-secondary transition-colors"
                                   onClick={() => setServicesOpen(false)}
                                 >
                                   <span className="block text-sm font-medium text-foreground group-hover:text-foreground">
-                                    {item.name}
+                                    {t(`megaMenu.items.${item.id}.name`)}
                                   </span>
                                   <span className="block text-xs text-muted-foreground mt-0.5">
-                                    {item.description}
+                                    {t(`megaMenu.items.${item.id}.description`)}
                                   </span>
                                 </Link>
                               </li>
@@ -213,20 +234,41 @@ export function Header() {
 
                     {mobileServicesOpen && (
                       <div className="ml-4 mt-2 space-y-4 border-l border-border pl-4">
-                        {navigation.servicesMenu.map((section) => (
+                        {[
+                          {
+                            category: t('megaMenu.services'),
+                            items: [
+                              { id: "manutencao-sites", href: "/servicos/manutencao-sites" },
+                              { id: "seo-tecnico", href: "/servicos/seo-tecnico" },
+                              { id: "performance-core-web-vitals", href: "/servicos/performance-core-web-vitals" },
+                              { id: "seguranca-backups", href: "/servicos/seguranca-backups" },
+                              { id: "landing-pages-cro", href: "/servicos/landing-pages-cro" },
+                              { id: "seo-para-ia-geo", href: "/servicos/seo-para-ia-geo" },
+                            ]
+                          },
+                          {
+                            category: t('megaMenu.sectors'),
+                            items: [
+                              { id: "sites-para-clinicas", href: "/setores/sites-para-clinicas" },
+                              { id: "sites-para-imobiliarias", href: "/setores/sites-para-imobiliarias" },
+                              { id: "sites-para-restaurantes", href: "/setores/sites-para-restaurantes" },
+                              { id: "sites-para-ecommerce", href: "/setores/sites-para-ecommerce" },
+                            ]
+                          }
+                        ].map((section) => (
                           <div key={section.category}>
                             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
                               {section.category}
                             </h4>
                             <ul className="space-y-1">
                               {section.items.map((item) => (
-                                <li key={item.name}>
+                                <li key={item.id}>
                                   <Link
                                     href={item.href}
                                     className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                                     onClick={() => setIsOpen(false)}
                                   >
-                                    {item.name}
+                                    {t(`megaMenu.items.${item.id}.name`)}
                                   </Link>
                                 </li>
                               ))}
@@ -260,13 +302,6 @@ export function Header() {
                         Auditoria 48h
                       </Link>
                     </Button>
-                    <Link
-                      href="/auditoria-48h#contacto"
-                      onClick={() => setIsOpen(false)}
-                      className="block text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
-                    >
-                      Contacto rápido
-                    </Link>
                   </div>
                 </div>
               </div>

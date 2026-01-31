@@ -11,9 +11,10 @@ interface BlogCardProps {
     category: string;
     slug: string;
     imageUrl?: string;
+    readMoreLabel: string;
 }
 
-export function BlogCard({ title, excerpt, date, category, slug, imageUrl }: BlogCardProps) {
+export function BlogCard({ title, excerpt, date, category, slug, imageUrl, readMoreLabel }: BlogCardProps) {
     return (
         <Card className="flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-primary/5 group h-full">
             {imageUrl && (
@@ -49,7 +50,7 @@ export function BlogCard({ title, excerpt, date, category, slug, imageUrl }: Blo
             <CardFooter className="p-6 pt-0">
                 <Button variant="link" className="p-0 h-auto font-semibold text-primary group-hover:translate-x-1 transition-transform" asChild>
                     <Link href={`/blog/${slug}`}>
-                        Ler artigo <ArrowRight className="ml-1 h-3 w-3" />
+                        {readMoreLabel} <ArrowRight className="ml-1 h-3 w-3" />
                     </Link>
                 </Button>
             </CardFooter>

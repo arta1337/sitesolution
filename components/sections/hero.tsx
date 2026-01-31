@@ -58,7 +58,7 @@ export async function Hero() {
             </ScrollAnimationWrapper>
 
             <ScrollAnimationWrapper delay={0.4}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-8">
                 <Button asChild size="lg" className="relative overflow-hidden text-base transition-all hover:scale-105 hover:shadow-primary/40 bg-[linear-gradient(110deg,#e2e8f0,45%,#cbd5e1,55%,#e2e8f0)] dark:bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] animate-shimmer border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white">
                   <Link href="/auditoria-48h">
                     <Clock className="mr-2 h-4 w-4" />
@@ -66,12 +66,6 @@ export async function Hero() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Link
-                  href="/auditoria-48h#contacto"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
-                >
-                  {t('cta.secondary')}
-                </Link>
               </div>
             </ScrollAnimationWrapper>
 

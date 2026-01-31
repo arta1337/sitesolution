@@ -88,7 +88,7 @@ export function Contact() {
                     Resposta em 24h úteis
                   </div>
                   <div className="text-xs text-green-600 dark:text-green-400">
-                    Se precisar de falar connosco, use o contacto rápido na auditoria.
+                    Peça uma auditoria gratuita e entramos em contacto consigo.
                   </div>
                 </div>
               </div>
@@ -102,23 +102,16 @@ export function Contact() {
                 Fale connosco através da Auditoria 48h
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Mantemos um único formulário para reduzir fricção e garantir resposta rápida. 
-                Use “Contacto rápido” se não quiser pedir auditoria.
+                Mantemos um único formulário para reduzir fricção e garantir resposta rápida.
               </p>
 
-              <div className="mt-6 flex flex-col gap-3">
-                <Button asChild size="lg" variant="brand">
+              <div className="mt-6">
+                <Button asChild size="lg" variant="brand" className="w-full">
                   <Link href="/auditoria-48h">
                     Auditoria 48h
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Link
-                  href="/auditoria-48h#contacto"
-                  className="text-center text-sm text-muted-foreground hover:text-foreground underline"
-                >
-                  Contacto rápido
-                </Link>
               </div>
 
               <p className="mt-6 text-xs text-muted-foreground">

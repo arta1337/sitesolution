@@ -5,7 +5,7 @@
 // Para adicionar novos idiomas, siga os passos abaixo.
 // ============================================================
 
-export const locales = ["pt", "en", "es"] as const;
+export const locales = ["pt", "en"] as const;
 export type Locale = (typeof locales)[number];
 
 export const defaultLocale: Locale = "pt";
@@ -13,7 +13,6 @@ export const defaultLocale: Locale = "pt";
 export const localeNames: Record<Locale, string> = {
   pt: "Português",
   en: "English",
-  es: "Español",
 };
 
 // Configuração de routing para i18n
@@ -47,7 +46,7 @@ export const i18nConfig = {
 //
 //    export function middleware(request: NextRequest) {
 //      const pathname = request.nextUrl.pathname;
-//      
+//
 //      // Verificar se o pathname já tem um locale
 //      const pathnameHasLocale = locales.some(
 //        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`

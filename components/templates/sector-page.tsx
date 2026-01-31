@@ -64,19 +64,13 @@ export function SectorPageTemplate({
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
                 {subtitle}
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <div className="mt-8">
                 <Button asChild size="lg" variant="brand">
                   <Link href="/auditoria-48h">
                     Auditoria 48h
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Link 
-                  href="/auditoria-48h#contacto"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center"
-                >
-                  Contacto rápido
-                </Link>
               </div>
             </div>
           </div>
@@ -219,7 +213,7 @@ export function SectorPageTemplate({
             <p className="mt-4 text-lg text-background/70">
               Peça uma auditoria gratuita do seu site em 48h.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="mt-8">
               <Button
                 asChild
                 size="lg"
@@ -228,12 +222,6 @@ export function SectorPageTemplate({
               >
                 <Link href="/auditoria-48h">Auditoria 48h</Link>
               </Button>
-              <Link 
-                href="/auditoria-48h#contacto"
-                className="text-sm text-background/70 hover:text-background transition-colors flex items-center"
-              >
-                Contacto rápido
-              </Link>
             </div>
           </div>
         </section>

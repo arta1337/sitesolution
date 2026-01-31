@@ -76,7 +76,7 @@ export const navigation = {
       { name: "Sobre Nós", href: "/sobre" },
       { name: "Portfólio", href: "/portfolio" },
       { name: "Auditoria Gratuita 48h", href: "/auditoria-48h" },
-      { name: "Contacto", href: "/auditoria-48h#contacto" },
+      { name: "Contacto", href: "/auditoria-48h" },
     ],
     legal: [
       { name: "Política de Privacidade", href: "/privacidade" },
@@ -331,6 +331,18 @@ export const process = [
 ];
 
 export const caseStudies = [
+  {
+    id: "ui-design-futuro",
+    client: "Next-Gen Interfaces",
+    sector: "Tecnologia",
+    image: "", // We will handle this in the UI
+    objective: "Inovação Visual",
+    result: "UI/UX do Futuro",
+    description: "Interfaces com Glassmorphism, efeitos Néon e interações magnéticas. Uma demonstração das nossas capacidades de design avançado.",
+    testimonial: "Isto não é um site, é uma experiência.",
+    testimonialAuthor: "Futuro Cliente",
+    testimonialRole: "Visionário",
+  },
   {
     id: "clinica-exemplo",
     client: "Clínica Médica Premium",

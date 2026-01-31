@@ -1,370 +1,234 @@
-import type { Metadata } from "next";
+"use client";
+
+import { use } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { caseStudies } from "@/lib/content";
-import {
-  ArrowLeft,
-  ArrowRight,
-  TrendingUp,
-  Quote,
-  CheckCircle,
-  Target,
-  Package,
-  Clock,
-  ChevronRight,
-} from "lucide-react";
+import { ArrowLeft, CheckCircle, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Props {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
 }
 
-export async function generateStaticParams() {
-  const locales = ['pt', 'en', 'es', 'fr'];
+export default function CaseStudyPage({ params }: Props) {
+  const { id, locale } = use(params);
 
-  return locales.flatMap((locale) =>
-    caseStudies.map((study) => ({
-      locale,
-      id: study.id,
-    }))
-  );
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const study = caseStudies.find((s) => s.id === id);
-
-  if (!study) {
-    return {
-      title: "Caso não encontrado",
-    };
+  // Redirect to the special UI page if that's the ID
+  if (id === 'ui-design-futuro') {
+    redirect(`/${locale}/portfolio/ui-design-futuro`);
   }
 
-  return {
-    title: `${study.client} | Portfólio`,
-    description: study.description,
-  };
-}
-
-// Mock data for enhanced case study (in real app, this would come from CMS)
-const enhancedData: Record<
-  string,
-  {
-    context: string;
-    objectives: string[];
-    deliverables: string[];
-    stack: string[];
-    maintenance90Days: string[];
-    metrics: { label: string; value: string; timeframe: string }[];
-  }
-> = {
-  "clinica-exemplo": {
-    context:
-      "A Clínica Médica Premium procurava modernizar a sua presença digital e aumentar as marcações online. O site anterior era lento, não era responsivo e não inspirava confiança aos potenciais pacientes.",
-    objectives: [
-      "Aumentar marcações online em 30%",
-      "Melhorar a velocidade de carregamento",
-      "Criar uma experiência mobile-first",
-    ],
-    deliverables: [
-      "Website institucional responsivo",
-      "Sistema de marcação online integrado",
-      "Páginas de especialidades otimizadas",
-      "Blog para conteúdo de saúde",
-      "Otimização SEO técnico",
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "CRM Integração"],
-    maintenance90Days: [
-      "Semana 1-2: Monitorização intensiva e correções",
-      "Mês 1: 3 ajustes de conteúdo solicitados",
-      "Mês 2: Otimização de imagens e performance",
-      "Mês 3: Implementação de schema markup para médicos",
-    ],
-    metrics: [
-      { label: "Marcações online", value: "+45%", timeframe: "3 meses" },
-      { label: "Tempo de carregamento", value: "-60%", timeframe: "vs anterior" },
-      { label: "Taxa de rejeição", value: "-25%", timeframe: "3 meses" },
-    ],
-  },
-  "consultoria-exemplo": {
-    context:
-      "A Consultoria Financeira ABC precisava de um website que transmitisse profissionalismo e gerasse leads qualificados. O site existente não convertia visitantes em pedidos de proposta.",
-    objectives: [
-      "Aumentar pedidos de proposta em 25%",
-      "Posicionar a empresa como autoridade no setor",
-      "Captar leads através de conteúdo de valor",
-    ],
-    deliverables: [
-      "Website institucional premium",
-      "Landing pages para serviços",
-      "Formulários de captação otimizados",
-      "Recursos para download (lead magnets)",
-      "Integração com CRM",
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "HubSpot", "Vercel"],
-    maintenance90Days: [
-      "Semana 1: Setup de analytics e tracking",
-      "Mês 1: A/B testing em formulários",
-      "Mês 2: Adição de novos case studies",
-      "Mês 3: Otimização de CTAs baseada em dados",
-    ],
-    metrics: [
-      { label: "Pedidos de proposta", value: "+32%", timeframe: "6 meses" },
-      { label: "Qualidade dos leads", value: "+40%", timeframe: "vs anterior" },
-      { label: "Tempo no site", value: "+55%", timeframe: "média" },
-    ],
-  },
-  "ecommerce-exemplo": {
-    context:
-      "A Loja Gourmet Online enfrentava problemas de performance que impactavam as vendas. O checkout era lento e a experiência mobile era frustrante para os utilizadores.",
-    objectives: [
-      "Reduzir tempo de carregamento em 50%",
-      "Melhorar taxa de conversão do checkout",
-      "Otimizar experiência mobile",
-    ],
-    deliverables: [
-      "Auditoria completa de performance",
-      "Otimização de Core Web Vitals",
-      "Redesign do processo de checkout",
-      "Lazy loading de imagens",
-      "CDN e caching avançado",
-    ],
-    stack: ["Shopify", "Performance APIs", "Cloudflare", "Google Analytics"],
-    maintenance90Days: [
-      "Semana 1-2: Monitorização de métricas",
-      "Mês 1: Ajustes finos de performance",
-      "Mês 2: Otimização de imagens de produtos",
-      "Mês 3: Relatório completo de resultados",
-    ],
-    metrics: [
-      { label: "Tempo de carregamento", value: "-45%", timeframe: "imediato" },
-      { label: "Vendas", value: "+28%", timeframe: "3 meses" },
-      { label: "Abandono de carrinho", value: "-18%", timeframe: "3 meses" },
-    ],
-  },
-  "imobiliaria-exemplo": {
-    context:
-      "A Imobiliária Central queria modernizar a sua presença digital e tornar o site a principal fonte de contactos. A pesquisa de imóveis era limitada e o SEO estava muito fraco.",
-    objectives: [
-      "Aumentar tráfego orgânico em 40%",
-      "Criar pesquisa avançada de imóveis",
-      "Gerar mais contactos através do site",
-    ],
-    deliverables: [
-      "Website com pesquisa avançada",
-      "Páginas individuais de imóveis",
-      "Integração com CRM imobiliário",
-      "SEO técnico e local",
-      "Formulários de contacto contextuais",
-    ],
-    stack: ["Next.js", "TypeScript", "Algolia", "API Imobiliária", "Vercel"],
-    maintenance90Days: [
-      "Semana 1: Indexação de todas as páginas",
-      "Mês 1: Otimização de páginas de imóveis",
-      "Mês 2: Schema markup para imóveis",
-      "Mês 3: Relatório SEO e próximos passos",
-    ],
-    metrics: [
-      { label: "Tráfego orgânico", value: "+60%", timeframe: "6 meses" },
-      { label: "Contactos via site", value: "+85%", timeframe: "6 meses" },
-      { label: "Páginas indexadas", value: "3x", timeframe: "vs anterior" },
-    ],
-  },
-};
-
-export default async function CaseStudyPage({ params }: Props) {
-  const { id } = await params;
   const study = caseStudies.find((s) => s.id === id);
+  const t = useTranslations("Portfolio.caseStudies");
+  const tLabels = useTranslations("Portfolio.labels");
 
   if (!study) {
     notFound();
   }
 
-  const currentIndex = caseStudies.findIndex((s) => s.id === id);
-  const prevStudy = currentIndex > 0 ? caseStudies[currentIndex - 1] : null;
-  const nextStudy =
-    currentIndex < caseStudies.length - 1 ? caseStudies[currentIndex + 1] : null;
-
-  const enhanced = enhancedData[id] || {
-    context: study.description,
-    objectives: [study.objective],
-    deliverables: [
-      "Design personalizado",
-      "Desenvolvimento responsivo",
-      "Otimização de performance",
-      "SEO técnico",
-    ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    maintenance90Days: ["Em medição"],
-    metrics: [
-      { label: "Resultado principal", value: study.result, timeframe: "Em medição" },
-    ],
+  // Map images to IDs
+  const imageMap: Record<string, string> = {
+    "clinica-exemplo": "/clinic_portfolio_showcase.png",
+    "consultoria-exemplo": "/finance_portfolio_showcase.png",
+    "ecommerce-exemplo": "/ecommerce_portfolio_showcase.png",
+    "imobiliaria-exemplo": "/realestate_portfolio_showcase.png",
   };
+
+  const imagePath = imageMap[id];
+
+  // Translation helpers
+  // We assume the structure in JSON matches standard keys
+  const tStudy = (key: string) => t(`${id}.${key}`);
+
+  const getArray = (key: string) => {
+    try {
+      const items = t.raw(`${id}.${key}`);
+      return Array.isArray(items) ? items : [];
+    } catch (e) {
+      return [];
+    }
+  };
+
+  const getMetrics = () => {
+    try {
+      const metrics = t.raw(`${id}.metrics`);
+      return Array.isArray(metrics) ? metrics : [];
+    } catch (e) {
+      return [];
+    }
+  };
+
+  const objectives = getArray("objectives");
+  const deliverables = getArray("deliverables");
+  const maintenance = getArray("maintenance90Days");
+  const metrics = getMetrics();
 
   return (
     <>
       <Header />
       <main>
-        {/* Breadcrumbs & Navigation */}
-        <section className="bg-background pt-24 pb-4 lg:pt-32">
+        {/* Case Study Headers */}
+        <section className="bg-zinc-900 pt-24 pb-16 lg:pt-32 lg:pb-24 text-white">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Breadcrumbs */}
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-              <Link href="/" className="hover:text-foreground transition-colors">
-                Início
-              </Link>
-              <ChevronRight className="h-4 w-4" />
-              <Link
-                href="/portfolio"
-                className="hover:text-foreground transition-colors"
-              >
-                Portfólio
-              </Link>
-              <ChevronRight className="h-4 w-4" />
-              <span className="text-foreground">{study.client}</span>
-            </nav>
-
-            {/* Back link */}
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Voltar ao portfólio
-            </Link>
-          </div>
-        </section>
-
-        {/* Hero */}
-        <section className="bg-background pb-8">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-start">
-              {/* Content */}
+            <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div>
-                <div className="flex flex-wrap items-center gap-2 mb-4">
-                  <Badge variant="brand">{study.sector}</Badge>
-                  <Badge variant="secondary">{study.objective}</Badge>
+                <Link
+                  href="/portfolio"
+                  className="mb-8 inline-flex items-center text-sm font-medium text-zinc-400 hover:text-white"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  {tLabels("backToPortfolio")}
+                </Link>
+
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-medium text-indigo-400 border border-indigo-500/20">
+                    {tStudy("sector")}
+                  </span>
+                  <span className="rounded-full bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-400 border border-zinc-700">
+                    2024
+                  </span>
                 </div>
 
-                <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">
-                  {study.client}
+                <h1 className="text-4xl font-bold tracking-tight sm:text-5xl mb-6">
+                  {tStudy("client")}
                 </h1>
-
-                <p className="mt-4 text-base sm:text-lg text-muted-foreground">
-                  {study.description}
+                <p className="text-lg text-zinc-400 leading-relaxed mb-8">
+                  {tStudy("description")}
                 </p>
 
-                <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
-                  <Button asChild variant="brand" size="lg">
-                    <Link href="/auditoria-48h">Auditoria 48h</Link>
-                  </Button>
-
-                  <Link
-                    href="/auditoria-48h#contacto"
-                    className="inline-flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-                  >
-                    Contacto rápido
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-
-                <div className="mt-8 grid grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-border bg-card p-4">
-                    <div className="text-xs text-muted-foreground">Resultado</div>
-                    <div className="mt-1 text-lg font-semibold text-foreground">
-                      {study.result}
+                <div className="flex flex-wrap gap-4">
+                  <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700 min-w-[140px]">
+                    <div className="text-sm text-zinc-500 mb-1">{tLabels("result")}</div>
+                    <div className="text-xl font-bold text-emerald-400">
+                      {tStudy("result")}
                     </div>
                   </div>
-                  <div className="rounded-2xl border border-border bg-card p-4">
-                    <div className="text-xs text-muted-foreground">Setor</div>
-                    <div className="mt-1 text-lg font-semibold text-foreground">
-                      {study.sector}
+                  <div className="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700 min-w-[140px]">
+                    <div className="text-sm text-zinc-500 mb-1">{tLabels("service")}</div>
+                    <div className="text-xl font-bold text-white">
+                      {tStudy("serviceCategory")}
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Summary */}
-              <div className="rounded-3xl border border-border bg-card p-6">
-                <h2 className="text-sm font-semibold text-foreground mb-4">
-                  Resumo do projeto
-                </h2>
-
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Target className="h-5 w-5 text-muted-foreground mt-0.5" />
-                    <div>
-                      <div className="text-sm font-medium text-foreground">Objetivo</div>
-                      <div className="text-sm text-muted-foreground">{study.objective}</div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-zinc-800 border border-zinc-700 shadow-2xl">
+                <div className="absolute inset-0 flex items-center justify-center text-zinc-600">
+                  {imagePath ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={imagePath}
+                      alt={tStudy("client")}
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-full h-full bg-zinc-800 text-zinc-500">
+                      <span className="text-lg">Imagem indisponível</span>
                     </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <TrendingUp className="h-5 w-5 text-muted-foreground mt-0.5" />
-                    <div>
-                      <div className="text-sm font-medium text-foreground">Impacto</div>
-                      <div className="text-sm text-muted-foreground">{study.result}</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <Quote className="h-5 w-5 text-muted-foreground mt-0.5" />
-                    <div>
-                      <div className="text-sm font-medium text-foreground">Testemunho</div>
-                      <div className="text-sm text-muted-foreground">“{study.testimonial}”</div>
-                      <div className="mt-2 text-xs text-muted-foreground">
-                        {study.testimonialAuthor} • {study.testimonialRole}
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Prev/Next Navigation */}
-        <section className="py-12 bg-secondary/30">
+        {/* Detailed Case Study Content */}
+        <section className="py-12 lg:py-20 bg-background text-foreground">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row justify-between gap-4">
-              {prevStudy ? (
-                <Link
-                  href={`/portfolio/${prevStudy.id}`}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-foreground/20 transition-colors group"
-                >
-                  <ArrowLeft className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                  <div>
-                    <div className="text-xs text-muted-foreground">
-                      Projeto anterior
-                    </div>
-                    <div className="font-medium text-foreground">
-                      {prevStudy.client}
-                    </div>
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
+            <div className="grid gap-12 lg:grid-cols-3">
 
-              {nextStudy && (
-                <Link
-                  href={`/portfolio/${nextStudy.id}`}
-                  className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:border-foreground/20 transition-colors group text-right sm:ml-auto"
-                >
-                  <div>
-                    <div className="text-xs text-muted-foreground">
-                      Próximo projeto
-                    </div>
-                    <div className="font-medium text-foreground">
-                      {nextStudy.client}
-                    </div>
+              {/* Sidebar */}
+              <div className="lg:col-span-1 space-y-8">
+                <div className="p-6 rounded-2xl bg-secondary/30 border border-border">
+                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                    <Zap className="h-4 w-4 text-brand" />
+                    {tLabels("techStack")}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {["Next.js", "React", "TailwindCSS", "TypeScript"].map((tech) => (
+                      <span key={tech} className="px-2 py-1 bg-background rounded-md text-xs font-mono border border-border">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
-                  <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                </Link>
-              )}
+                </div>
+
+                <div className="p-6 rounded-2xl bg-secondary/30 border border-border">
+                  <h3 className="font-semibold text-foreground mb-4">
+                    {tLabels("maintenance")}
+                  </h3>
+                  <ul className="space-y-3">
+                    {maintenance.map((item, i) => (
+                      <li key={i} className="flex gap-3 text-sm text-muted-foreground">
+                        <div className="mt-1 h-1.5 w-1.5 rounded-full bg-green-500 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Main Content */}
+              <div className="lg:col-span-2 space-y-12">
+
+                {/* Context */}
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">{tLabels("challengeContext")}</h2>
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {tStudy("context")}
+                  </p>
+                </div>
+
+                {/* Objectives */}
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">{tLabels("objectives")}</h2>
+                  <ul className="grid gap-4 sm:grid-cols-2">
+                    {objectives.map((obj, i) => (
+                      <li key={i} className="flex gap-3 p-4 rounded-xl bg-card border border-border">
+                        <CheckCircle className="h-5 w-5 text-brand shrink-0" />
+                        <span className="text-sm font-medium text-foreground">{obj}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Deliverables */}
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">{tLabels("solution")}</h2>
+                  <ul className="space-y-3 pl-4 border-l-2 border-border ml-2">
+                    {deliverables.map((item, i) => (
+                      <li key={i} className="text-muted-foreground pl-4 relative">
+                        <span className="absolute -left-[21px] top-2 h-2 w-2 rounded-full bg-background border-2 border-border" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Metrics */}
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-6">{tLabels("impactMetrics")}</h2>
+                  <div className="grid gap-4 sm:grid-cols-3">
+                    {metrics.map((metric, i) => (
+                      <div key={i} className="p-4 rounded-xl bg-secondary/20 border border-border">
+                        <div className="text-sm text-muted-foreground mb-1">{metric.label}</div>
+                        <div className="text-2xl font-bold text-foreground">{metric.value}</div>
+                        <div className="text-xs font-medium text-brand mt-1">{metric.timeframe}</div>
+                        <div className="h-1.5 w-full bg-border rounded-full mt-3 overflow-hidden">
+                          <div
+                            className="h-full bg-brand rounded-full"
+                            style={{ width: '75%' }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </section>

@@ -106,7 +106,7 @@ export async function POST(req: Request) {
   };
 
   // eslint-disable-next-line no-console
-  console.log("[leads] new lead", record);
+
 
   // Optional: forward to an email provider (Resend) if env is configured
   // Set:

@@ -1,16 +1,15 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Clock,
   CheckCircle,
@@ -24,7 +23,6 @@ import {
   Lock,
   Smartphone,
   AlertTriangle,
-  MessageSquare,
 } from "lucide-react";
 
 import { auditFaq } from "@/lib/content";
@@ -35,64 +33,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const auditItems = [
-  {
-    icon: Gauge,
-    title: "Performance & Core Web Vitals",
-    description: "Análise completa de velocidade, LCP, FID, CLS e recomendações de otimização.",
-  },
-  {
-    icon: Search,
-    title: "SEO Técnico",
-    description: "Verificação de meta tags, estrutura de URLs, sitemap, robots.txt e indexação.",
-  },
-  {
-    icon: Lock,
-    title: "Segurança",
-    description: "Verificação de SSL, headers de segurança, vulnerabilidades comuns.",
-  },
-  {
-    icon: Smartphone,
-    title: "Responsividade",
-    description: "Teste em múltiplos dispositivos e identificação de problemas mobile.",
-  },
-  {
-    icon: AlertTriangle,
-    title: "Erros Críticos",
-    description: "Identificação de links quebrados, erros 404, problemas de carregamento.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Oportunidades de Melhoria",
-    description: "Lista priorizada de ações para melhorar conversões e visibilidade.",
-  },
-];
-
-const benefits = [
-  "Relatório PDF profissional",
-  "Análise por especialista (não automática)",
-  "Recomendações priorizadas por impacto",
-  "Estimativa de tempo/custo por correção",
-  "Sem compromisso de contratação",
-];
-
-type LeadType = "auditoria" | "contacto";
+const auditIcons = [Gauge, Search, Lock, Smartphone, AlertTriangle, TrendingUp];
 
 export default function Auditoria48hPage() {
+  const t = useTranslations("Auditoria");
   const searchParams = useSearchParams();
-
-  // Determine initial tab based on URL hash
-  const [activeTab, setActiveTab] = useState<LeadType>("auditoria");
-
-  useEffect(() => {
-    // Check for hash in URL
-    const hash = window.location.hash;
-    if (hash === "#contacto") {
-      setActiveTab("contacto");
-    } else if (hash === "#auditoria") {
-      setActiveTab("auditoria");
-    }
-  }, []);
 
   // Auditoria form state
   const [auditoriaForm, setAuditoriaForm] = useState({
@@ -100,15 +45,6 @@ export default function Auditoria48hPage() {
     email: "",
     website: "",
     phone: "",
-    company: "", // honeypot
-  });
-
-  // Contacto form state
-  const [contactoForm, setContactoForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
     company: "", // honeypot
   });
 
@@ -121,7 +57,7 @@ export default function Auditoria48hPage() {
 
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      throw new Error(data?.error || "Falha ao enviar. Tente novamente.");
+      throw new Error(data?.error || "Failed to submit. Please try again.");
     }
 
     return res.json().catch(() => ({}));
@@ -129,7 +65,6 @@ export default function Auditoria48hPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [submittedType, setSubmittedType] = useState<LeadType>("auditoria");
 
   const handleAuditoriaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -146,36 +81,10 @@ export default function Auditoria48hPage() {
       });
 
       setIsSubmitted(true);
-      setSubmittedType("auditoria");
     } catch (err: any) {
       // eslint-disable-next-line no-console
       console.error(err);
-      alert(err?.message || "Falha ao enviar. Tente novamente.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleContactoSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      await submitLead({
-        lead_type: "contacto",
-        name: contactoForm.name,
-        email: contactoForm.email,
-        phone: contactoForm.phone,
-        message: contactoForm.message,
-        company: contactoForm.company,
-      });
-
-      setIsSubmitted(true);
-      setSubmittedType("contacto");
-    } catch (err: any) {
-      // eslint-disable-next-line no-console
-      console.error(err);
-      alert(err?.message || "Falha ao enviar. Tente novamente.");
+      alert(err?.message || "Failed to submit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -184,8 +93,12 @@ export default function Auditoria48hPage() {
   const resetForm = () => {
     setIsSubmitted(false);
     setAuditoriaForm({ name: "", email: "", website: "", phone: "", company: "" });
-    setContactoForm({ name: "", email: "", phone: "", message: "", company: "" });
   };
+
+  // Get benefits and included items from translations
+  const benefits = t.raw("benefits") as string[];
+  const includedItems = t.raw("included.items") as { title: string; description: string }[];
+  const reportFeatures = t.raw("report.features") as string[];
 
   return (
     <>
@@ -203,16 +116,15 @@ export default function Auditoria48hPage() {
               <div>
                 <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-sm text-muted-foreground">
                   <Clock className="h-4 w-4" />
-                  Entrega em 48 horas úteis
+                  {t("badge")}
                 </div>
 
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl text-balance">
-                  Auditoria Gratuita do Seu Website
+                  {t("title")}
                 </h1>
 
                 <p className="mt-6 text-lg leading-relaxed text-muted-foreground lg:text-xl text-pretty">
-                  Descubra o que está a impedir o seu site de converter mais visitantes em clientes.
-                  Receba um relatório detalhado com recomendações práticas em 48 horas.
+                  {t("subtitle")}
                 </p>
 
                 {/* Benefits list */}
@@ -229,20 +141,20 @@ export default function Auditoria48hPage() {
                 <div className="mt-10 flex flex-wrap gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Shield className="h-4 w-4" />
-                    <span>100% gratuito</span>
+                    <span>{t("trust.free")}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Zap className="h-4 w-4" />
-                    <span>Sem compromisso</span>
+                    <span>{t("trust.noCommitment")}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
-                    <span>Relatório PDF completo</span>
+                    <span>{t("trust.fullReport")}</span>
                   </div>
                 </div>
               </div>
 
-              {/* Form with Tabs */}
+              {/* Form */}
               <div className="lg:sticky lg:top-24" id="form">
                 <Card className="border-2">
                   <CardContent className="p-6 lg:p-8">
@@ -252,229 +164,113 @@ export default function Auditoria48hPage() {
                           <CheckCircle className="h-8 w-8 text-green-600" />
                         </div>
                         <h3 className="text-xl font-semibold text-foreground mb-2">
-                          {submittedType === "auditoria" ? "Pedido Recebido!" : "Mensagem Recebida!"}
+                          {t("success.title")}
                         </h3>
                         <p className="text-muted-foreground mb-6">
-                          {submittedType === "auditoria"
-                            ? `Vamos analisar o seu website e enviar o relatório para ${auditoriaForm.email} dentro de 48 horas úteis.`
-                            : `Respondemos em até 24 horas úteis para ${contactoForm.email}.`
-                          }
+                          {t("success.message", { email: auditoriaForm.email })}
                         </p>
                         <Button variant="outline" className="bg-transparent" onClick={resetForm}>
-                          Enviar novo pedido
+                          {t("success.newRequest")}
                         </Button>
                       </div>
                     ) : (
-                      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as LeadType)}>
-                        <TabsList className="grid w-full grid-cols-2 mb-6">
-                          <TabsTrigger value="auditoria" className="flex items-center gap-2">
-                            <FileText className="h-4 w-4" />
-                            Auditoria 48h
-                          </TabsTrigger>
-                          <TabsTrigger value="contacto" className="flex items-center gap-2">
-                            <MessageSquare className="h-4 w-4" />
-                            Contacto rápido
-                          </TabsTrigger>
-                        </TabsList>
+                      <>
+                        <div className="mb-6">
+                          <h2 className="text-xl font-semibold text-foreground">
+                            {t("form.title")}
+                          </h2>
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            {t("form.subtitle")}
+                          </p>
+                        </div>
 
-                        {/* Auditoria Tab */}
-                        <TabsContent value="auditoria">
-                          <div className="mb-6">
-                            <h2 className="text-xl font-semibold text-foreground">
-                              Pedir Auditoria Gratuita
-                            </h2>
-                            <p className="mt-1 text-sm text-muted-foreground">
-                              Preencha o formulário e receba o relatório em 48h.
-                            </p>
+                        <form onSubmit={handleAuditoriaSubmit} className="space-y-4">
+                          <input type="hidden" name="lead_type" value="auditoria" />
+                          <div className="hidden">
+                            <Label htmlFor="audit-company">{t("form.company")}</Label>
+                            <Input
+                              id="audit-company"
+                              type="text"
+                              tabIndex={-1}
+                              autoComplete="off"
+                              value={auditoriaForm.company}
+                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, company: e.target.value })}
+                            />
                           </div>
 
-                          <form onSubmit={handleAuditoriaSubmit} className="space-y-4">
-                            <input type="hidden" name="lead_type" value="auditoria" />
-                            <div className="hidden">
-                              <Label htmlFor="audit-company">Empresa</Label>
-                              <Input
-                                id="audit-company"
-                                type="text"
-                                tabIndex={-1}
-                                autoComplete="off"
-                                value={auditoriaForm.company}
-                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, company: e.target.value })}
-                              />
-                            </div>
-
-                            <div className="space-y-2">
-                              <Label htmlFor="audit-name">Nome *</Label>
-                              <Input
-                                id="audit-name"
-                                type="text"
-                                placeholder="O seu nome"
-                                required
-                                value={auditoriaForm.name}
-                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, name: e.target.value })}
-                              />
-                            </div>
-
-                            <div className="space-y-2">
-                              <Label htmlFor="audit-email">Email *</Label>
-                              <Input
-                                id="audit-email"
-                                type="email"
-                                placeholder="email@exemplo.pt"
-                                required
-                                value={auditoriaForm.email}
-                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, email: e.target.value })}
-                              />
-                            </div>
-
-                            <div className="space-y-2">
-                              <Label htmlFor="audit-website">URL do Website *</Label>
-                              <Input
-                                id="audit-website"
-                                type="url"
-                                placeholder="https://www.exemplo.pt"
-                                required
-                                value={auditoriaForm.website}
-                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, website: e.target.value })}
-                              />
-                            </div>
-
-                            <div className="space-y-2">
-                              <Label htmlFor="audit-phone">Telefone (opcional)</Label>
-                              <Input
-                                id="audit-phone"
-                                type="tel"
-                                placeholder="+351 912 345 678"
-                                value={auditoriaForm.phone}
-                                onChange={(e) => setAuditoriaForm({ ...auditoriaForm, phone: e.target.value })}
-                              />
-                            </div>
-
-                            <Button
-                              type="submit"
-                              size="lg"
-                              variant="brand"
-                              className="w-full mt-6"
-                              disabled={isSubmitting}
-                            >
-                              {isSubmitting ? (
-                                "A enviar..."
-                              ) : (
-                                <>
-                                  Receber Auditoria Gratuita
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </>
-                              )}
-                            </Button>
-
-                            <p className="text-xs text-center text-muted-foreground mt-4">
-                              Ao submeter, concorda com a nossa{" "}
-                              <Link href="/privacidade" className="underline hover:text-foreground">
-                                política de privacidade
-                              </Link>
-                              . Não enviamos spam.
-                            </p>
-                          </form>
-                        </TabsContent>
-
-                        {/* Contacto Tab */}
-                        <TabsContent value="contacto">
-                          <div className="mb-6">
-                            <h2 className="text-xl font-semibold text-foreground">
-                              Contacto Rápido
-                            </h2>
-                            <p className="mt-1 text-sm text-muted-foreground">
-                              Envie-nos uma mensagem e respondemos em até 24h.
-                            </p>
+                          <div className="space-y-2">
+                            <Label htmlFor="audit-name">{t("form.name")}</Label>
+                            <Input
+                              id="audit-name"
+                              type="text"
+                              placeholder={t("form.namePlaceholder")}
+                              required
+                              value={auditoriaForm.name}
+                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, name: e.target.value })}
+                            />
                           </div>
 
-                          <form onSubmit={handleContactoSubmit} className="space-y-4">
-                            <input type="hidden" name="lead_type" value="contacto" />
-                            <div className="hidden">
-                              <Label htmlFor="contact-company">Empresa</Label>
-                              <Input
-                                id="contact-company"
-                                type="text"
-                                tabIndex={-1}
-                                autoComplete="off"
-                                value={contactoForm.company}
-                                onChange={(e) => setContactoForm({ ...contactoForm, company: e.target.value })}
-                              />
-                            </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="audit-email">{t("form.email")}</Label>
+                            <Input
+                              id="audit-email"
+                              type="email"
+                              placeholder={t("form.emailPlaceholder")}
+                              required
+                              value={auditoriaForm.email}
+                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, email: e.target.value })}
+                            />
+                          </div>
 
-                            <div className="space-y-2">
-                              <Label htmlFor="contact-name">Nome *</Label>
-                              <Input
-                                id="contact-name"
-                                type="text"
-                                placeholder="O seu nome"
-                                required
-                                value={contactoForm.name}
-                                onChange={(e) => setContactoForm({ ...contactoForm, name: e.target.value })}
-                              />
-                            </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="audit-website">{t("form.website")}</Label>
+                            <Input
+                              id="audit-website"
+                              type="url"
+                              placeholder={t("form.websitePlaceholder")}
+                              required
+                              value={auditoriaForm.website}
+                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, website: e.target.value })}
+                            />
+                          </div>
 
-                            <div className="space-y-2">
-                              <Label htmlFor="contact-email">Email *</Label>
-                              <Input
-                                id="contact-email"
-                                type="email"
-                                placeholder="email@exemplo.pt"
-                                required
-                                value={contactoForm.email}
-                                onChange={(e) => setContactoForm({ ...contactoForm, email: e.target.value })}
-                              />
-                            </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="audit-phone">{t("form.phone")}</Label>
+                            <Input
+                              id="audit-phone"
+                              type="tel"
+                              placeholder={t("form.phonePlaceholder")}
+                              value={auditoriaForm.phone}
+                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, phone: e.target.value })}
+                            />
+                          </div>
 
-                            <div className="space-y-2">
-                              <Label htmlFor="contact-phone">Telefone (opcional)</Label>
-                              <Input
-                                id="contact-phone"
-                                type="tel"
-                                placeholder="+351 912 345 678"
-                                value={contactoForm.phone}
-                                onChange={(e) => setContactoForm({ ...contactoForm, phone: e.target.value })}
-                              />
-                            </div>
+                          <Button
+                            type="submit"
+                            size="lg"
+                            variant="brand"
+                            className="w-full mt-6"
+                            disabled={isSubmitting}
+                          >
+                            {isSubmitting ? (
+                              t("form.submitting")
+                            ) : (
+                              <>
+                                {t("form.submit")}
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                              </>
+                            )}
+                          </Button>
 
-                            <div className="space-y-2">
-                              <Label htmlFor="contact-message">Mensagem *</Label>
-                              <Textarea
-                                id="contact-message"
-                                placeholder="Como podemos ajudar?"
-                                required
-                                rows={4}
-                                value={contactoForm.message}
-                                onChange={(e) => setContactoForm({ ...contactoForm, message: e.target.value })}
-                              />
-                            </div>
-
-                            <Button
-                              type="submit"
-                              size="lg"
-                              variant="brand"
-                              className="w-full mt-6"
-                              disabled={isSubmitting}
-                            >
-                              {isSubmitting ? (
-                                "A enviar..."
-                              ) : (
-                                <>
-                                  Enviar Mensagem
-                                  <ArrowRight className="ml-2 h-4 w-4" />
-                                </>
-                              )}
-                            </Button>
-
-                            <p className="text-xs text-center text-muted-foreground mt-4">
-                              Ao submeter, concorda com a nossa{" "}
-                              <Link href="/privacidade" className="underline hover:text-foreground">
-                                política de privacidade
-                              </Link>
-                              . Não enviamos spam.
-                            </p>
-                          </form>
-                        </TabsContent>
-                      </Tabs>
+                          <p className="text-xs text-center text-muted-foreground mt-4">
+                            {t("form.privacy")}{" "}
+                            <Link href="/privacidade" className="underline hover:text-foreground">
+                              {t("form.privacyLink")}
+                            </Link>
+                            {t("form.noSpam")}
+                          </p>
+                        </form>
+                      </>
                     )}
                   </CardContent>
                 </Card>
@@ -488,25 +284,28 @@ export default function Auditoria48hPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                O Que Está Incluído na Auditoria
+                {t("included.title")}
               </h2>
               <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Análise profissional e detalhada do seu website em 6 áreas críticas.
+                {t("included.subtitle")}
               </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {auditItems.map((item) => (
-                <Card key={item.title} className="bg-card">
-                  <CardContent className="p-6">
-                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4">
-                      <item.icon className="h-6 w-6 text-foreground" />
-                    </div>
-                    <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+              {includedItems.map((item, index) => {
+                const Icon = auditIcons[index] || Gauge;
+                return (
+                  <Card key={item.title} className="bg-card">
+                    <CardContent className="p-6">
+                      <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center mb-4">
+                        <Icon className="h-6 w-6 text-foreground" />
+                      </div>
+                      <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -517,36 +316,25 @@ export default function Auditoria48hPage() {
             <div className="grid gap-12 lg:grid-cols-2 items-center">
               <div>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Exemplo de Relatório
+                  {t("report.title")}
                 </h2>
                 <p className="mt-4 text-lg text-muted-foreground">
-                  Cada auditoria inclui um relatório PDF profissional com análise detalhada,
-                  capturas de ecrã, métricas e recomendações priorizadas.
+                  {t("report.subtitle")}
                 </p>
 
                 <ul className="mt-6 space-y-3">
-                  <li className="flex items-start gap-3 text-muted-foreground">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Sumário executivo com problemas críticos destacados</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-muted-foreground">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Análise técnica com capturas de ecrã e evidências</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-muted-foreground">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Lista de ações priorizadas por impacto vs. esforço</span>
-                  </li>
-                  <li className="flex items-start gap-3 text-muted-foreground">
-                    <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <span>Estimativa de tempo e custo para cada correção</span>
-                  </li>
+                  {reportFeatures.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3 text-muted-foreground">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
                 </ul>
 
                 <div className="mt-8">
                   <Button asChild size="lg" variant="brand">
                     <a href="#form">
-                      Pedir Auditoria Gratuita
+                      {t("report.cta")}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Button>
@@ -561,40 +349,40 @@ export default function Auditoria48hPage() {
                       <span className="text-background font-bold text-sm">SS</span>
                     </div>
                     <div>
-                      <div className="font-semibold text-foreground">Relatório de Auditoria</div>
-                      <div className="text-xs text-muted-foreground">SiteSolutions.pt</div>
+                      <div className="font-semibold text-foreground">{t("report.mockup.title")}</div>
+                      <div className="text-xs text-muted-foreground">{t("report.mockup.brand")}</div>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-center justify-between p-3 rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900">
-                      <span className="text-sm font-medium text-red-800 dark:text-red-200">Performance</span>
+                      <span className="text-sm font-medium text-red-800 dark:text-red-200">{t("report.mockup.performance")}</span>
                       <span className="text-sm font-bold text-red-600">32/100</span>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-900">
-                      <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">SEO</span>
+                      <span className="text-sm font-medium text-yellow-800 dark:text-yellow-200">{t("report.mockup.seo")}</span>
                       <span className="text-sm font-bold text-yellow-600">58/100</span>
                     </div>
                     <div className="flex items-center justify-between p-3 rounded-lg bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-900">
-                      <span className="text-sm font-medium text-green-800 dark:text-green-200">Segurança</span>
+                      <span className="text-sm font-medium text-green-800 dark:text-green-200">{t("report.mockup.security")}</span>
                       <span className="text-sm font-bold text-green-600">85/100</span>
                     </div>
                   </div>
 
                   <div className="mt-6 pt-4 border-t">
-                    <div className="text-xs text-muted-foreground mb-2">Problemas Críticos Encontrados</div>
+                    <div className="text-xs text-muted-foreground mb-2">{t("report.mockup.criticalIssues")}</div>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 rounded-full bg-red-500" />
-                        <span className="text-muted-foreground">LCP muito alto (4.2s)</span>
+                        <span className="text-muted-foreground">{t("report.mockup.issue1")}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 rounded-full bg-red-500" />
-                        <span className="text-muted-foreground">Imagens não otimizadas</span>
+                        <span className="text-muted-foreground">{t("report.mockup.issue2")}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm">
                         <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                        <span className="text-muted-foreground">Meta descriptions em falta</span>
+                        <span className="text-muted-foreground">{t("report.mockup.issue3")}</span>
                       </div>
                     </div>
                   </div>
@@ -627,7 +415,7 @@ export default function Auditoria48hPage() {
           />
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold tracking-tight text-foreground text-center mb-12">
-              Perguntas Frequentes
+              {t("faq.title")}
             </h2>
 
             <Accordion type="single" collapsible className="w-full">
@@ -649,25 +437,18 @@ export default function Auditoria48hPage() {
         <section className="py-16 lg:py-24">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Descubra o Potencial do Seu Website
+              {t("finalCta.title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Peça já a sua auditoria gratuita e receba um diagnóstico completo em 48 horas.
+              {t("finalCta.subtitle")}
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button asChild size="lg" variant="brand">
                 <a href="#form">
-                  Pedir Auditoria Gratuita
+                  {t("finalCta.button")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
               </Button>
-              <Link
-                href="#form"
-                onClick={() => setActiveTab("contacto")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Ou envie uma mensagem rápida
-              </Link>
             </div>
           </div>
         </section>

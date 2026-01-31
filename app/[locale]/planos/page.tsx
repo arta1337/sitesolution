@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import Link from "next/link";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
-import { plans, seoMeta, plansFaq } from "@/lib/content";
 import { Check, X, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -13,91 +13,27 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { StickyCTA } from "@/components/sections/sticky-cta";
-
-export const metadata: Metadata = {
-  title: seoMeta.plans.title,
-  description: seoMeta.plans.description,
-  keywords: seoMeta.plans.keywords,
-};
-
-// Price anchors for each plan
-const priceAnchors: Record<string, string> = {
-  essencial: "a partir de 149€/mês",
-  profissional: "a partir de 299€/mês",
-  premium: "a partir de 499€/mês",
-};
-
-// Outcome-focused comparison features
-const comparisonFeatures = [
-  {
-    name: "SLA (tempo de resposta)",
-    essencial: "48h úteis",
-    profissional: "24h úteis",
-    premium: "4h úteis",
-  },
-  {
-    name: "Horas de alterações incluídas",
-    essencial: "1h/mês",
-    profissional: "3h/mês",
-    premium: "6h/mês",
-  },
-  {
-    name: "Backups",
-    essencial: "Semanais",
-    profissional: "Diários",
-    premium: "Diários + 90 dias retenção",
-  },
-  {
-    name: "Monitorização de uptime",
-    essencial: true,
-    profissional: "24/7",
-    premium: "24/7 + alertas",
-  },
-  {
-    name: "Otimização de performance",
-    essencial: false,
-    profissional: "Básica",
-    premium: "Avançada (Core Web Vitals)",
-  },
-  {
-    name: "SEO técnico",
-    essencial: false,
-    profissional: "Verificação mensal",
-    premium: "Auditoria trimestral",
-  },
-  {
-    name: "Pequenas evoluções",
-    essencial: "Sob orçamento",
-    profissional: "Até 3h incluídas",
-    premium: "Até 6h incluídas",
-  },
-  {
-    name: "Relatório mensal",
-    essencial: false,
-    profissional: true,
-    premium: "Detalhado + consultoria",
-  },
-  {
-    name: "Suporte por email",
-    essencial: true,
-    profissional: true,
-    premium: true,
-  },
-  {
-    name: "Suporte prioritário",
-    essencial: false,
-    profissional: true,
-    premium: true,
-  },
-  {
-    name: "Suporte WhatsApp/Telefone",
-    essencial: false,
-    profissional: false,
-    premium: true,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function PlanosPage() {
+  const t = useTranslations("Plans");
+
+  // Helper to get array from translation object keys
+  const planKeys = ["essencial", "profissional", "premium"];
+  const comparisonFeatures = [
+    "sla",
+    "hours",
+    "backups",
+    "uptime",
+    "performance",
+    "seo",
+    "evolutions",
+    "report",
+    "supportEmail",
+    "supportPriority",
+    "supportPhone"
+  ];
+
   return (
     <>
       <Header />
@@ -107,11 +43,10 @@ export default function PlanosPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                Planos de Manutenção
+                {t("hero.title")}
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                Escolha o plano ideal para manter o seu site sempre atualizado,
-                seguro e a funcionar sem interrupções.
+                {t("hero.subtitle")}
               </p>
             </div>
           </div>
@@ -121,90 +56,69 @@ export default function PlanosPage() {
         <section className="py-16 lg:py-20 bg-secondary/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-3">
-              {plans.map((plan) => (
-                <div
-                  key={plan.id}
-                  className={cn(
-                    "relative rounded-2xl border bg-card p-8 transition-all duration-300",
-                    plan.popular
-                      ? "border-foreground shadow-xl lg:scale-105 z-10"
-                      : "border-border hover:border-foreground/20 hover:shadow-lg"
-                  )}
-                >
-                  {/* Popular badge */}
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="rounded-full bg-foreground px-4 py-1.5 text-sm font-semibold text-background">
-                        Mais Popular
-                      </span>
-                    </div>
-                  )}
+              {planKeys.map((key) => {
+                const isPopular = key === "profissional";
+                return (
+                  <div
+                    key={key}
+                    className={cn(
+                      "relative rounded-2xl border bg-card p-8 transition-all duration-300",
+                      isPopular
+                        ? "border-foreground shadow-xl lg:scale-105 z-10"
+                        : "border-border hover:border-foreground/20 hover:shadow-lg"
+                    )}
+                  >
+                    {/* Popular badge */}
+                    {isPopular && (
+                      <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                        <span className="rounded-full bg-foreground px-4 py-1.5 text-sm font-semibold text-background">
+                          {t(`list.${key}.badge`)}
+                        </span>
+                      </div>
+                    )}
 
-                  {/* Plan header */}
-                  <div className="text-center">
-                    <h2 className="text-2xl font-bold text-foreground">
-                      {plan.name}
-                    </h2>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {plan.description}
-                    </p>
+                    {/* Plan header */}
+                    <div className="text-center">
+                      <h2 className="text-2xl font-bold text-foreground">
+                        {t(`list.${key}.name`)}
+                      </h2>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {t(`list.${key}.description`)}
+                      </p>
 
-                    {/* Price anchor */}
-                    <div className="mt-4 py-4 border-y border-border">
-                      <div className="text-2xl font-bold text-foreground">
-                        {priceAnchors[plan.id]}
+                      {/* Price anchor */}
+                      <div className="mt-4 py-4 border-y border-border">
+                        <div className="text-2xl font-bold text-foreground">
+                          {t(`prices.${key}`)}
+                        </div>
+                      </div>
+
+                      {/* Features */}
+                      <ul className="mt-6 space-y-4">
+                        <PlanFeatures t={t} planKey={key} />
+                      </ul>
+
+                      {/* CTA */}
+                      <div className="mt-8">
+                        <Button
+                          asChild
+                          className="w-full"
+                          variant={isPopular ? "default" : "outline"}
+                          size="lg"
+                        >
+                          <Link href={`/auditoria-48h`}>
+                            {t(`list.${key}.cta`)}
+                          </Link>
+                        </Button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Features */}
-                  <ul className="mt-6 space-y-4">
-                    {plan.features?.map((feature) => (
-                      <li
-                        key={feature.text}
-                        className={cn(
-                          "flex items-start gap-3",
-                          !feature.included && "opacity-50"
-                        )}
-                      >
-                        {feature.included ? (
-                          <Check className="h-5 w-5 flex-shrink-0 text-green-600 mt-0.5" />
-                        ) : (
-                          <X className="h-5 w-5 flex-shrink-0 text-muted-foreground mt-0.5" />
-                        )}
-
-                        <span
-                          className={cn(
-                            "text-sm text-muted-foreground",
-                            !feature.included && "line-through"
-                          )}
-                        >
-                          {feature.text}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <div className="mt-8">
-                    <Button
-                      asChild
-                      className="w-full"
-                      variant={plan.popular ? "default" : "outline"}
-                      size="lg"
-                    >
-                      <Link href={`/auditoria-48h#contacto`}>
-                        Escolher {plan.name}
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <p className="mt-8 text-center text-sm text-muted-foreground">
-              Valores podem variar consoante complexidade e stack. Inclui
-              manutenção e suporte conforme SLA.
+              * {t("prices.essencial")}
             </p>
           </div>
         </section>
@@ -214,10 +128,10 @@ export default function PlanosPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                Comparação de Planos
+                {t("comparison.title")}
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Veja em detalhe o que cada plano inclui, focado em resultados.
+                {t("comparison.subtitle")}
               </p>
             </div>
 
@@ -227,33 +141,33 @@ export default function PlanosPage() {
                 <thead>
                   <tr className="bg-secondary/50">
                     <th className="px-6 py-4 text-left text-sm font-semibold text-foreground">
-                      O que recebe
+                      {t("comparison.cols.feature")}
                     </th>
                     <th className="px-6 py-4 text-center text-sm font-semibold text-foreground">
-                      Essencial
+                      {t("comparison.cols.essencial")}
                     </th>
                     <th className="px-6 py-4 text-center text-sm font-semibold text-foreground bg-foreground/5">
-                      Profissional
+                      {t("comparison.cols.profissional")}
                     </th>
                     <th className="px-6 py-4 text-center text-sm font-semibold text-foreground">
-                      Premium
+                      {t("comparison.cols.premium")}
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border">
                   {comparisonFeatures.map((feature) => (
-                    <tr key={feature.name} className="bg-card">
+                    <tr key={feature} className="bg-card">
                       <td className="px-6 py-4 text-sm text-foreground">
-                        {feature.name}
+                        {t(`comparison.features.${feature}`)}
                       </td>
                       <td className="px-6 py-4 text-center text-sm text-muted-foreground">
-                        {renderFeatureValue(feature.essencial)}
+                        {renderFeatureValue(t(`comparison.values.${feature}.essencial`))}
                       </td>
                       <td className="px-6 py-4 text-center text-sm text-muted-foreground bg-foreground/5">
-                        {renderFeatureValue(feature.profissional)}
+                        {renderFeatureValue(t(`comparison.values.${feature}.profissional`))}
                       </td>
                       <td className="px-6 py-4 text-center text-sm text-muted-foreground">
-                        {renderFeatureValue(feature.premium)}
+                        {renderFeatureValue(t(`comparison.values.${feature}.premium`))}
                       </td>
                     </tr>
                   ))}
@@ -265,30 +179,30 @@ export default function PlanosPage() {
             <div className="mt-8 space-y-6 lg:hidden">
               {comparisonFeatures.map((feature) => (
                 <div
-                  key={feature.name}
+                  key={feature}
                   className="rounded-lg border border-border bg-card p-4"
                 >
                   <div className="font-medium text-foreground mb-3">
-                    {feature.name}
+                    {t(`comparison.features.${feature}`)}
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-sm">
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">
-                        Essencial
+                        {t("comparison.cols.essencial")}
                       </div>
-                      {renderFeatureValue(feature.essencial)}
+                      {renderFeatureValue(t(`comparison.values.${feature}.essencial`))}
                     </div>
                     <div className="text-center bg-secondary/50 rounded-lg py-2">
                       <div className="text-xs text-muted-foreground mb-1">
-                        Profissional
+                        {t("comparison.cols.profissional")}
                       </div>
-                      {renderFeatureValue(feature.profissional)}
+                      {renderFeatureValue(t(`comparison.values.${feature}.profissional`))}
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">
-                        Premium
+                        {t("comparison.cols.premium")}
                       </div>
-                      {renderFeatureValue(feature.premium)}
+                      {renderFeatureValue(t(`comparison.values.${feature}.premium`))}
                     </div>
                   </div>
                 </div>
@@ -299,23 +213,6 @@ export default function PlanosPage() {
 
         {/* Purchase FAQ */}
         <section className="py-16 lg:py-24 bg-secondary/30">
-          {/* FAQPage JSON-LD */}
-          <script
-            type="application/ld+json"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                mainEntity: plansFaq.map((item) => ({
-                  "@type": "Question",
-                  name: item.question,
-                  acceptedAnswer: { "@type": "Answer", text: item.answer },
-                })),
-              }),
-            }}
-          />
-
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <div className="text-center">
@@ -323,67 +220,62 @@ export default function PlanosPage() {
                   <HelpCircle className="h-6 w-6 text-muted-foreground" />
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-                  Dúvidas Frequentes sobre Contratação
+                  {t("faq.title")}
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Respostas às perguntas mais comuns antes de contratar.
+                  {t("faq.subtitle")}
                 </p>
               </div>
 
               <Accordion type="single" collapsible className="mt-8">
-                {plansFaq.map((item, index) => (
+                {Array.from({ length: 7 }).map((_, index) => (
                   <AccordionItem
                     key={index}
                     value={`item-${index}`}
                     className="border-border"
                   >
                     <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
-                      {item.question}
+                      {t(`faq.items.${index}.question`)}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground leading-relaxed">
-                      {item.answer}
+                      {t(`faq.items.${index}.answer`)}
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
-
-              <div className="mt-8 text-center">
-                <Link
-                  href="/#faq"
-                  className="text-sm text-muted-foreground hover:text-foreground underline"
-                >
-                  Ver todas as perguntas frequentes
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-16 lg:py-24 bg-foreground">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-background sm:text-4xl">
-              Não sabe qual escolher?
+        {/* CTA */}
+        <section className="py-16 lg:py-24 bg-zinc-950 text-white relative overflow-hidden border-t border-white/10">
+          {/* Background Grid Pattern */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-zinc-950/80"></div>
+
+          <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              {t("cta_bottom.title")}
             </h2>
-            <p className="mt-4 text-lg text-background/70">
-              Fale connosco e recomendamos o plano ideal para o seu caso.
+            <p className="mt-4 text-lg text-zinc-400">
+              {t("cta_bottom.subtitle")}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button
                 asChild
                 size="lg"
-                variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90"
+                className="bg-white text-zinc-950 hover:bg-zinc-200 font-semibold"
               >
-                <Link href="/auditoria-48h#contacto">Falar com especialista</Link>
+                <Link href="/auditoria-48h">{t("cta_bottom.primary")}</Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-background/30 text-background hover:bg-background/10 bg-transparent"
+                className="border-white/20 text-white hover:bg-white/10 bg-transparent"
               >
-                <Link href="/auditoria-48h">Receber auditoria grátis</Link>
+                <Link href="/auditoria-48h">{t("cta_bottom.secondary")}</Link>
               </Button>
             </div>
           </div>
@@ -398,11 +290,53 @@ export default function PlanosPage() {
   );
 }
 
-function renderFeatureValue(value: boolean | string) {
-  if (value === true) {
+function PlanFeatures({ t, planKey }: { t: any, planKey: string }) {
+  try {
+    const features = t.raw(`list.${planKey}.features`) as Record<string, string>;
+    if (features && typeof features === 'object') {
+      return (
+        <>
+          {Object.values(features).map((featureText, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <Check className="h-5 w-5 flex-shrink-0 text-green-600 mt-0.5" />
+              <span className="text-sm text-muted-foreground">
+                {featureText}
+              </span>
+            </li>
+          ))}
+        </>
+      );
+    }
+  } catch (e) {
+    // Fallback
+  }
+
+  // Fallback loop
+  return (
+    <>
+      {Array.from({ length: 8 }).map((_, i) => {
+        try {
+          const val = t(`list.${planKey}.features.${i}`);
+          if (val === `list.${planKey}.features.${i}`) return null;
+          return (
+            <li key={i} className="flex items-start gap-3">
+              <Check className="h-5 w-5 flex-shrink-0 text-green-600 mt-0.5" />
+              <span className="text-sm text-muted-foreground">
+                {val}
+              </span>
+            </li>
+          );
+        } catch { return null; }
+      })}
+    </>
+  );
+}
+
+function renderFeatureValue(value: string) {
+  if (value === "true") {
     return <Check className="h-5 w-5 text-green-600 mx-auto" />;
   }
-  if (value === false) {
+  if (value === "false") {
     return <X className="h-5 w-5 text-muted-foreground/50 mx-auto" />;
   }
   return <span>{value}</span>;

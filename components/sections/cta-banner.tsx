@@ -20,7 +20,7 @@ export function CTABanner({
   title = "Pronto para ter um site sem preocupações?",
   subtitle = "Peça uma auditoria gratuita e descubra como podemos ajudar o seu negócio.",
   primaryCTA = { text: "Auditoria 48h", href: "/auditoria-48h" },
-  secondaryCTA = { text: "Contacto rápido", href: "/auditoria-48h#contacto" },
+  secondaryCTA,
   variant = "default",
 }: CTABannerProps) {
   if (variant === "subtle") {

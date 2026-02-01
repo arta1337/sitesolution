@@ -23,15 +23,16 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   };
 }
 
-const relatedServices = [
-  { title: "Performance", href: "/servicos/performance-core-web-vitals" },
-  { title: "SEO para IA (GEO)", href: "/servicos/seo-para-ia-geo" },
-  { title: "Landing Pages & CRO", href: "/servicos/landing-pages-cro" },
-];
-
 export default async function SeoTecnicoPage() {
   const t = await getTranslations('Services.seoTecnico');
+  const tServices = await getTranslations('ServicesPage');
   const canonicalUrl = `${SITE_URL}/servicos/seo-tecnico`;
+
+  const relatedServices = [
+    { title: tServices('items.performance.title'), href: "/servicos/performance-core-web-vitals" },
+    { title: tServices('items.aiSeoGeo.title'), href: "/servicos/seo-para-ia-geo" },
+    { title: tServices('items.landingPages.title'), href: "/servicos/landing-pages-cro" },
+  ];
 
   const includes = [0, 1, 2, 3, 4, 5, 6, 7].map(i => t(`includes.${i}`));
 

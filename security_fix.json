@@ -1,0 +1,85 @@
+        "security": {
+            "title": "Segurança e Backups",
+            "subtitle": "Protegemos o seu site contra ameaças e garantimos que os seus dados estão sempre seguros com backups automáticos e recuperação rápida.",
+            "hero": {
+                "title": "Segurança Blindada",
+                "subtitle": "Durma descansado. Protegemos o seu investimento contra hackers, malware e perda de dados."
+            },
+            "includes": {
+                "0": "Auditoria de Segurança Completa (Vulnerability Scan)",
+                "1": "Configuração SSL/HTTPS e Security Headers",
+                "2": "Web Application Firewall (WAF)",
+                "3": "Backups automáticos diários para cloud externa",
+                "4": "Monitorização de Uptime e segurança 24/7",
+                "5": "Proteção contra Brute Force e ataques DDoS",
+                "6": "Limpeza de Malware (se necessário)",
+                "7": "Plano de Recuperação de Desastres"
+            },
+            "process": {
+                "0": {
+                    "title": "Auditoria de Risco",
+                    "description": "Identificamos portas abertas, plugins vulneráveis e configurações inseguras no servidor e no site."
+                },
+                "1": {
+                    "title": "Hardening",
+                    "description": "Fechamos as portas. Implementamos regras de firewall, bloqueio de bots e autenticação de dois fatores."
+                },
+                "2": {
+                    "title": "Estratégia de Backup",
+                    "description": "Configuramos backups automáticos e testamos a restauração para garantir que funcionam quando precisar."
+                },
+                "3": {
+                    "title": "Vigilância Ativa",
+                    "description": "O nosso sistema monitoriza o seu site a cada minuto. Se algo acontecer, agimos imediatamente."
+                }
+            },
+            "deliverables": {
+                "0": "Relatório inicial de segurança",
+                "1": "Certificado SSL Válido",
+                "2": "Selo de 'Site Seguro'",
+                "3": "Acesso ao histórico de backups",
+                "4": "Alertas em tempo real",
+                "5": "Garantia de limpeza de hack"
+            },
+            "timelines": {
+                "0": {
+                    "type": "Auditoria e Hardening",
+                    "duration": "2-3 dias úteis"
+                },
+                "1": {
+                    "type": "Setup de Backup",
+                    "duration": "Imediato"
+                },
+                "2": {
+                    "type": "Restauração de Emergência",
+                    "duration": "< 2 horas"
+                }
+            },
+            "faq": {
+                "0": {
+                    "question": "Com que frequência são feitos backups?",
+                    "answer": "Por defeito, diariamente. Para sites críticos (e-commerce, notícias), podemos configurar backups em tempo real ou horários."
+                },
+                "1": {
+                    "question": "Onde são guardados os backups?",
+                    "answer": "Nunca no mesmo servidor do site. Usamos armazenamento cloud encriptado (AWS S3 ou similar) na Europa para garantir redundância e conformidade com RGPD."
+                },
+                "2": {
+                    "question": "O que acontece se o meu site for hackeado?",
+                    "answer": "Se estiver sob a nossa proteção, limpamos o site gratuitamente e restauramos a versão segura mais recente. A prioridade é repor o serviço."
+                },
+                "3": {
+                    "question": "O SSL (cadeado verde) está incluído?",
+                    "answer": "Sim. Configuramos e gerimos a renovação automática de certificados SSL (Let's Encrypt). Também podemos instalar certificados EV/OV pagos."
+                },
+                "4": {
+                    "question": "Isto afeta a velocidade do site?",
+                    "answer": "Pelo contrário. Uma boa firewall consegue bloquear tráfego malicioso de bots que consome recursos, libertando o servidor para clientes reais."
+                },
+                "5": {
+                    "question": "Tenho acesso aos backups?",
+                    "answer": "Sim, fornecemos acesso direto ou enviamos os ficheiros se solicitado. Os dados são seus."
+                }
+            }
+        }
+    },

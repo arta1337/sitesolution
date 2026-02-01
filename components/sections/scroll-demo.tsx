@@ -4,47 +4,51 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Layout, Code, Rocket, BarChart } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const cards = [
-    {
-        icon: Zap,
-        title: "Estratégia Digital",
-        description: "Análise profunda do seu mercado e definição de KPIs claros para garantir retorno.",
-        color: "bg-blue-500",
-    },
-    {
-        icon: Layout,
-        title: "UI/UX Design",
-        description: "Interfaces intuitivas e modernas que guiam o utilizador até à conversão.",
-        color: "bg-purple-500",
-    },
-    {
-        icon: Code,
-        title: "Desenvolvimento",
-        description: "Código limpo em Next.js, rápido e seguro, construído para escalar.",
-        color: "bg-pink-500",
-    },
-    {
-        icon: Rocket,
-        title: "Lançamento",
-        description: "Setup de servidores, CDN global e verificações de segurança finais.",
-        color: "bg-orange-500",
-    },
-    {
-        icon: BarChart,
-        title: "Crescimento",
-        description: "Monitorização contínua e otimização baseada em dados reais.",
-        color: "bg-green-500",
-    },
-];
+
 
 export function ScrollDemo() {
+    const t = useTranslations("HomePage.scrollDemo");
     const targetRef = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+
+    const cards = [
+        {
+            icon: Zap,
+            title: t("items.0.title"),
+            description: t("items.0.description"),
+            color: "bg-blue-500",
+        },
+        {
+            icon: Layout,
+            title: t("items.1.title"),
+            description: t("items.1.description"),
+            color: "bg-purple-500",
+        },
+        {
+            icon: Code,
+            title: t("items.2.title"),
+            description: t("items.2.description"),
+            color: "bg-pink-500",
+        },
+        {
+            icon: Rocket,
+            title: t("items.3.title"),
+            description: t("items.3.description"),
+            color: "bg-orange-500",
+        },
+        {
+            icon: BarChart,
+            title: t("items.4.title"),
+            description: t("items.4.description"),
+            color: "bg-green-500",
+        },
+    ];
 
     return (
         <section ref={targetRef} className="relative h-[300vh] bg-background">
@@ -74,7 +78,7 @@ export function ScrollDemo() {
                                 </div>
 
                                 <div className="flex items-center gap-2 text-sm font-medium text-foreground opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                                    Saber mais <ArrowRight className="h-4 w-4" />
+                                    {t("learnMore")} <ArrowRight className="h-4 w-4" />
                                 </div>
 
                                 <div className="absolute -bottom-12 -right-12 h-64 w-64 rounded-full bg-gradient-to-br from-foreground/5 to-transparent blur-3xl" />
@@ -85,9 +89,9 @@ export function ScrollDemo() {
                     {/* Final Call to Action Card */}
                     <div className="relative h-[450px] w-[350px] sm:w-[500px] flex-shrink-0 flex items-center justify-center">
                         <div className="text-center">
-                            <h3 className="text-4xl font-bold text-foreground mb-6">Pronto para começar?</h3>
+                            <h3 className="text-4xl font-bold text-foreground mb-6">{t("cta.title")}</h3>
                             <Button size="lg" variant="brand" className="text-lg px-8 py-6 h-auto">
-                                Pedir Proposta
+                                {t("cta.button")}
                             </Button>
                         </div>
                     </div>

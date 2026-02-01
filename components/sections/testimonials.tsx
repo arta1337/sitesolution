@@ -1,20 +1,63 @@
-import { testimonials } from "@/lib/content";
+"use client";
+
 import { Star, Quote } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Testimonials() {
+  const t = useTranslations("HomePage.testimonials");
+
+  const testimonials = [
+    {
+      name: t("items.0.name"),
+      role: t("items.0.role"),
+      content: t("items.0.content"),
+      rating: 5,
+    },
+    {
+      name: t("items.1.name"),
+      role: t("items.1.role"),
+      content: t("items.1.content"),
+      rating: 5,
+    },
+    {
+      name: t("items.2.name"),
+      role: t("items.2.role"),
+      content: t("items.2.content"),
+      rating: 5,
+    },
+    {
+      name: t("items.3.name"),
+      role: t("items.3.role"),
+      content: t("items.3.content"),
+      rating: 5,
+    },
+    {
+      name: t("items.4.name"),
+      role: t("items.4.role"),
+      content: t("items.4.content"),
+      rating: 5,
+    },
+    {
+      name: t("items.5.name"),
+      role: t("items.5.role"),
+      content: t("items.5.content"),
+      rating: 5,
+    },
+  ];
+
   return (
     <section className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            O Que Dizem os Nossos Clientes
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            A satisfação dos nossos clientes é a nossa maior recompensa.
+            {t("subtitle")}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Testemunhos verificados por email (a pedido).
+            {t("note")}
           </p>
         </div>
 

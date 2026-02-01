@@ -1,5 +1,6 @@
+"use client";
+
 import Link from "next/link";
-import { faq } from "@/lib/content";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -8,8 +9,17 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function FAQ() {
+  const t = useTranslations("HomePage.faq");
+
+  const faq = [
+    { question: t("items.0.question"), answer: t("items.0.answer") },
+    { question: t("items.1.question"), answer: t("items.1.answer") },
+    { question: t("items.2.question"), answer: t("items.2.answer") },
+  ];
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -39,10 +49,10 @@ export function FAQ() {
               <HelpCircle className="h-6 w-6 text-muted-foreground" />
             </div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Perguntas Frequentes
+              {t("title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Respostas rápidas às dúvidas mais comuns antes de avançar.
+              {t("subtitle")}
             </p>
           </div>
 
@@ -65,21 +75,20 @@ export function FAQ() {
 
           <div className="mt-10 rounded-2xl border border-border bg-card p-6 text-center">
             <h3 className="text-lg font-semibold text-foreground">
-              Quer uma resposta aplicada ao seu site?
+              {t("ctaBox.title")}
             </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Peça uma auditoria gratuita em 48h e receba um relatório com quick
-              wins priorizados.
+              {t("ctaBox.description")}
             </p>
             <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild variant="brand">
-                <Link href="/auditoria-48h">Auditoria 48h</Link>
+                <Link href="/auditoria-48h">{t("ctaBox.button")}</Link>
               </Button>
               <Link
                 href="/planos"
                 className="text-sm text-muted-foreground hover:text-foreground underline"
               >
-                Ver planos
+                {t("ctaBox.link")}
               </Link>
             </div>
           </div>

@@ -1,7 +1,8 @@
-import React from "react"
+import React from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Button } from "@/components/ui/button";
@@ -42,88 +43,24 @@ const servicePageLinks: Record<string, string> = {
   "hosting": "/servicos/manutencao-sites", // Hosting included in maintenance
 };
 
-const extendedServices = [
-  {
-    ...services[0],
-    extendedFeatures: [
-      "Design personalizado e exclusivo",
-      "Layout 100% responsivo (mobile, tablet, desktop)",
-      "Otimização para conversão e leads",
-      "Integração com ferramentas de analytics",
-      "Formulários de contacto personalizados",
-      "Estrutura SEO otimizada",
-    ],
-    cta: "Ideal para empresas que querem uma presença online profissional.",
-    pageLink: "/servicos/landing-pages-cro",
-  },
-  {
-    ...services[1],
-    extendedFeatures: [
-      "Atualizações de segurança regulares",
-      "Correção de bugs e erros",
-      "Pequenas alterações de conteúdo",
-      "Monitorização de uptime 24/7",
-      "Backups automáticos",
-      "Relatórios mensais de performance",
-    ],
-    cta: "Mantenha o seu site sempre atualizado sem preocupações.",
-    pageLink: "/servicos/manutencao-sites",
-  },
-  {
-    ...services[2],
-    extendedFeatures: [
-      "Otimização de Core Web Vitals",
-      "Compressão e otimização de imagens",
-      "Minificação de CSS e JavaScript",
-      "Implementação de CDN",
-      "Cache avançado",
-      "Lazy loading de recursos",
-    ],
-    cta: "Sites rápidos convertem mais e posicionam melhor no Google.",
-    pageLink: "/servicos/performance-core-web-vitals",
-  },
-  {
-    ...services[3],
-    extendedFeatures: [
-      "Estrutura de URLs otimizada",
-      "Meta tags e Open Graph",
-      "Schema markup (dados estruturados)",
-      "Sitemap e robots.txt",
-      "Indexação correta no Google",
-      "Auditoria técnica SEO",
-    ],
-    cta: "Garanta que o Google encontra e indexa o seu site corretamente.",
-    pageLink: "/servicos/seo-tecnico",
-  },
-  {
-    ...services[4],
-    extendedFeatures: [
-      "Certificado SSL/HTTPS",
-      "Firewall e proteção contra ataques",
-      "Monitorização de vulnerabilidades",
-      "Backups diários automáticos",
-      "Restauração rápida em caso de problema",
-      "Atualizações de segurança prioritárias",
-    ],
-    cta: "Proteja o seu site e os dados dos seus clientes.",
-    pageLink: "/servicos/seguranca-backups",
-  },
-  {
-    ...services[5],
-    extendedFeatures: [
-      "Servidores de alta performance",
-      "SSD NVMe para velocidade máxima",
-      "Certificado SSL incluído",
-      "99.9% de uptime garantido",
-      "Suporte técnico dedicado",
-      "Escalabilidade conforme necessidade",
-    ],
-    cta: "Alojamento profissional sem as dores de cabeça técnicas.",
-    pageLink: "/servicos/manutencao-sites",
-  },
-];
-
 export default function ServicosPage() {
+  const t = useTranslations("ServicesPage");
+
+  // Merge content services with translations
+  const localizedServices = services.map((service) => {
+    // Cast to expected type since t.raw returns unknown
+    const extendedFeatures = t.raw(`items.${service.id}.extendedFeatures`) as string[];
+
+    return {
+      ...service,
+      title: t(`items.${service.id}.title`),
+      description: t(`items.${service.id}.description`),
+      extendedFeatures,
+      cta: t(`items.${service.id}.cta`),
+      pageLink: servicePageLinks[service.id] || "/servicos/manutencao-sites",
+    };
+  });
+
   return (
     <>
       <Header />
@@ -133,15 +70,14 @@ export default function ServicosPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                Os Nossos Serviços
+                {t("hero.title")}
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-                Soluções completas para criar, otimizar e manter a sua presença
-                digital. Desde o design inicial até à manutenção contínua.
+                {t("hero.subtitle")}
               </p>
               <div className="mt-8">
                 <Button asChild size="lg" variant="brand">
-                  <Link href="/auditoria-48h">Auditoria 48h</Link>
+                  <Link href="/auditoria-48h">{t("hero.cta")}</Link>
                 </Button>
               </div>
             </div>
@@ -152,7 +88,7 @@ export default function ServicosPage() {
         <section className="py-16 lg:py-24 bg-secondary/30">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="space-y-16 lg:space-y-24">
-              {extendedServices.map((service, index) => {
+              {localizedServices.map((service, index) => {
                 const Icon = iconMap[service.icon] || Globe;
                 const isEven = index % 2 === 0;
 
@@ -178,8 +114,8 @@ export default function ServicosPage() {
 
                       {/* Features list */}
                       <ul className="mt-6 space-y-3">
-                        {service.extendedFeatures.map((feature) => (
-                          <li key={feature} className="flex items-start gap-3">
+                        {service.extendedFeatures.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 flex-shrink-0 text-green-600 mt-0.5" />
                             <span className="text-muted-foreground">{feature}</span>
                           </li>
@@ -193,7 +129,7 @@ export default function ServicosPage() {
                       <div className="mt-6 flex flex-wrap items-center gap-4">
                         <Button asChild variant="outline" className="bg-transparent">
                           <Link href={service.pageLink}>
-                            Saber mais
+                            {t("common.more_info")}
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Link>
                         </Button>
@@ -201,7 +137,7 @@ export default function ServicosPage() {
                           href="/auditoria-48h"
                           className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         >
-                          Pedir auditoria
+                          {t("common.request_audit")}
                         </Link>
                       </div>
                     </div>
@@ -230,7 +166,6 @@ export default function ServicosPage() {
                     </div>
                   </div>
                 );
-
               })}
             </div>
           </div>
@@ -240,10 +175,10 @@ export default function ServicosPage() {
         <section className="py-16 lg:py-24 bg-foreground">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-background sm:text-4xl">
-              Pronto para começar?
+              {t("cta_section.title")}
             </h2>
             <p className="mt-4 text-lg text-background/70">
-              Peça uma auditoria gratuita e descubra como podemos ajudar.
+              {t("cta_section.subtitle")}
             </p>
             <div className="mt-8">
               <Button
@@ -252,7 +187,7 @@ export default function ServicosPage() {
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/auditoria-48h">Auditoria 48h</Link>
+                <Link href="/auditoria-48h">{t("cta_section.button")}</Link>
               </Button>
             </div>
           </div>

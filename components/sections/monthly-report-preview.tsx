@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,41 +10,44 @@ import {
   Wrench,
   ArrowRight,
 } from "lucide-react";
-
-const reportSections = [
-  {
-    title: "Uptime",
-    value: "99.98%",
-    status: "ok",
-    icon: Activity,
-  },
-  {
-    title: "Atualizações",
-    value: "3 aplicadas",
-    status: "ok",
-    icon: Wrench,
-  },
-  {
-    title: "Performance",
-    value: "92/100",
-    status: "ok",
-    icon: Clock,
-  },
-  {
-    title: "SEO",
-    value: "A verificar",
-    status: "pending",
-    icon: Search,
-  },
-];
-
-const nextSteps = [
-  "Atualizar plugin de formulários (v3.2)",
-  "Otimizar imagens da galeria",
-  "Rever meta descriptions das páginas de serviços",
-];
+import { useTranslations } from "next-intl";
 
 export function MonthlyReportPreview() {
+  const t = useTranslations("HomePage.monthlyReport");
+
+  const reportSections = [
+    {
+      title: t("mockup.metrics.uptime"),
+      value: "99.98%",
+      status: "ok",
+      icon: Activity,
+    },
+    {
+      title: t("mockup.metrics.updates"),
+      value: t("mockup.metrics.updatesValue"),
+      status: "ok",
+      icon: Wrench,
+    },
+    {
+      title: t("mockup.metrics.performance"),
+      value: "92/100",
+      status: "ok",
+      icon: Clock,
+    },
+    {
+      title: t("mockup.metrics.seo"),
+      value: t("mockup.metrics.seoValue"),
+      status: "pending",
+      icon: Search,
+    },
+  ];
+
+  const nextSteps = [
+    t("mockup.nextSteps.0"),
+    t("mockup.nextSteps.1"),
+    t("mockup.nextSteps.2"),
+  ];
+
   return (
     <section className="py-16 lg:py-24 bg-secondary/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -50,21 +55,19 @@ export function MonthlyReportPreview() {
           {/* Content */}
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              Exemplo de Relatório Mensal
+              {t("title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Todos os meses recebe um relatório claro com o estado do seu site,
-              o que foi feito e os próximos passos.
+              {t("subtitle")}
             </p>
             <p className="mt-4 text-muted-foreground">
-              Sem jargão técnico desnecessário. Informação útil para tomar
-              decisões.
+              {t("note")}
             </p>
 
             <div className="mt-8">
               <Button asChild size="lg">
                 <Link href="/auditoria-48h">
-                  Quero um relatório destes
+                  {t("cta")}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -77,7 +80,7 @@ export function MonthlyReportPreview() {
             <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
               <div>
                 <div className="text-xs text-muted-foreground uppercase tracking-wider">
-                  Relatório Mensal
+                  {t("mockup.header")}
                 </div>
                 <div className="text-lg font-semibold text-foreground mt-1">
                   Janeiro 2026
@@ -89,7 +92,7 @@ export function MonthlyReportPreview() {
             </div>
 
             {/* Metrics grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 mb-6">
               {reportSections.map((section) => {
                 const Icon = section.icon;
                 return (
@@ -119,17 +122,17 @@ export function MonthlyReportPreview() {
             {/* Pedidos realizados */}
             <div className="border-t border-border pt-4 mb-4">
               <div className="text-sm font-medium text-foreground mb-2">
-                Pedidos Realizados
+                {t("mockup.requestsTitle")}
               </div>
               <div className="text-sm text-muted-foreground">
-                2 alterações de conteúdo, 1 correção de formulário
+                {t("mockup.requestsText")}
               </div>
             </div>
 
             {/* Next steps */}
             <div className="border-t border-border pt-4">
               <div className="text-sm font-medium text-foreground mb-3">
-                Próximos Passos
+                {t("mockup.nextStepsTitle")}
               </div>
               <ul className="space-y-2">
                 {nextSteps.map((step, index) => (

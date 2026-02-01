@@ -1,6 +1,17 @@
-import { stats } from "@/lib/content";
+"use client";
+
+import { useTranslations } from "next-intl";
 
 export function Stats() {
+  const t = useTranslations("HomePage.stats");
+
+  const stats = [
+    { label: t("0.label"), value: t("0.value") },
+    { label: t("1.label"), value: t("1.value") },
+    { label: t("2.label"), value: t("2.value") },
+    { label: t("3.label"), value: t("3.value") },
+  ];
+
   return (
     <section className="border-y border-border bg-secondary/30 py-12 lg:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

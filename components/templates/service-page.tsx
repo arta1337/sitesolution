@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface ServicePageProps {
   title: string;
@@ -39,6 +40,8 @@ export function ServicePageTemplate({
   faq,
   relatedServices,
 }: ServicePageProps) {
+  const t = useTranslations("ServicePageTemplate");
+
   return (
     <>
       <Header />
@@ -49,14 +52,14 @@ export function ServicePageTemplate({
             {/* Breadcrumbs */}
             <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
               <Link href="/" className="hover:text-foreground transition-colors">
-                Início
+                {t("breadcrumbs.home")}
               </Link>
               <ChevronRight className="h-4 w-4" />
               <Link
                 href="/servicos"
                 className="hover:text-foreground transition-colors"
               >
-                Serviços
+                {t("breadcrumbs.services")}
               </Link>
               <ChevronRight className="h-4 w-4" />
               <span className="text-foreground">{title}</span>
@@ -77,7 +80,7 @@ export function ServicePageTemplate({
               <div className="mt-8">
                 <Button asChild size="lg" variant="brand">
                   <Link href="/auditoria-48h">
-                    Auditoria 48h
+                    {t("cta.audit")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -91,7 +94,7 @@ export function ServicePageTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-                O Que Inclui
+                {t("sections.includes")}
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
                 {includes.map((item, index) => (
@@ -109,7 +112,7 @@ export function ServicePageTemplate({
         <section className="py-16 lg:py-20 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-              Processo
+              {t("sections.process")}
             </h2>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {process.map((step) => (
@@ -136,7 +139,7 @@ export function ServicePageTemplate({
               {/* Entregáveis */}
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                  Entregáveis
+                  {t("sections.deliverables")}
                 </h2>
                 <ul className="mt-6 space-y-3">
                   {deliverables.map((item, index) => (
@@ -156,7 +159,7 @@ export function ServicePageTemplate({
                 <div className="flex items-center gap-3 mb-6">
                   <Clock className="h-6 w-6 text-foreground" />
                   <h2 className="text-2xl font-bold tracking-tight text-foreground">
-                    Prazos Típicos
+                    {t("sections.timelines")}
                   </h2>
                 </div>
                 <div className="space-y-4">
@@ -175,7 +178,7 @@ export function ServicePageTemplate({
                   ))}
                 </div>
                 <p className="mt-4 text-sm text-muted-foreground">
-                  Prazos podem variar conforme a complexidade do projeto.
+                  {t("sections.timelines_disclaimer")}
                 </p>
               </div>
             </div>
@@ -187,7 +190,7 @@ export function ServicePageTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-                Perguntas Frequentes
+                {t("sections.faq")}
               </h2>
               <Accordion type="single" collapsible className="mt-8">
                 {faq.map((item, index) => (
@@ -209,23 +212,24 @@ export function ServicePageTemplate({
           </div>
         </section>
 
-        {/* Related Services */}
-        {relatedServices && relatedServices.length > 0 && (
+        {/* Related Services - if provided */}
+        {relatedServices && (
           <section className="py-16 lg:py-20 bg-secondary/30">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-bold tracking-tight text-foreground text-center">
-                Serviços Relacionados
+              <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center mb-8">
+                {t("sections.related_services")}
               </h2>
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
-                {relatedServices.map((service) => (
+              <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+                {relatedServices.map((service, index) => (
                   <Link
-                    key={service.href}
+                    key={index}
                     href={service.href}
-                    className="rounded-xl border border-border bg-card px-6 py-4 hover:border-foreground/20 hover:shadow-lg transition-all"
+                    className="block p-6 bg-card border border-border rounded-xl hover:border-primary/50 transition-colors"
                   >
-                    <span className="font-medium text-foreground">
-                      {service.title}
-                    </span>
+                    <h3 className="font-semibold text-foreground">{service.title}</h3>
+                    <div className="mt-2 text-primary flex items-center text-sm font-medium">
+                      {t("common.more_info")} <ArrowRight className="ml-1 h-4 w-4" />
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -237,10 +241,10 @@ export function ServicePageTemplate({
         <section className="py-16 lg:py-24 bg-foreground">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-background sm:text-4xl">
-              Pronto para começar?
+              {t("footer.title")}
             </h2>
             <p className="mt-4 text-lg text-background/70">
-              Peça uma auditoria gratuita do seu site em 48h.
+              {t("footer.subtitle")}
             </p>
             <div className="mt-8">
               <Button
@@ -249,7 +253,7 @@ export function ServicePageTemplate({
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/auditoria-48h">Auditoria 48h</Link>
+                <Link href="/auditoria-48h">{t("footer.button")}</Link>
               </Button>
             </div>
           </div>

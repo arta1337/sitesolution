@@ -1,53 +1,53 @@
+"use client";
+
 import Link from "next/link";
 import { Gauge, Search, Shield, TrendingUp } from "lucide-react";
-
-const measurementCards = [
-  {
-    title: "Performance",
-    subtitle: "Core Web Vitals",
-    description:
-      "Medimos e otimizamos LCP, FID e CLS para garantir uma experiência rápida e fluida.",
-    icon: Gauge,
-    href: "/servicos/performance-core-web-vitals",
-  },
-  {
-    title: "SEO Técnico",
-    subtitle: "Indexação e Estrutura",
-    description:
-      "Verificamos estrutura, metadados, schema markup e indexação nos motores de busca.",
-    icon: Search,
-    href: "/servicos/seo-tecnico",
-  },
-  {
-    title: "Segurança & Backups",
-    subtitle: "Proteção Contínua",
-    description:
-      "Monitorização de vulnerabilidades, SSL, headers de segurança e backups automáticos.",
-    icon: Shield,
-    href: "/servicos/seguranca-backups",
-  },
-  {
-    title: "Conversão (CRO)",
-    subtitle: "Otimização Leve",
-    description:
-      "Analisamos comportamento dos utilizadores e sugerimos melhorias para aumentar pedidos.",
-    icon: TrendingUp,
-    href: "/servicos/landing-pages-cro",
-  },
-];
+import { useTranslations } from "next-intl";
 
 export function ResultsMeasurement() {
+  const t = useTranslations("HomePage.resultsMeasurement");
+
+  const measurementCards = [
+    {
+      title: t("cards.0.title"),
+      subtitle: t("cards.0.subtitle"),
+      description: t("cards.0.description"),
+      icon: Gauge,
+      href: "/servicos/performance-core-web-vitals",
+    },
+    {
+      title: t("cards.1.title"),
+      subtitle: t("cards.1.subtitle"),
+      description: t("cards.1.description"),
+      icon: Search,
+      href: "/servicos/seo-tecnico",
+    },
+    {
+      title: t("cards.2.title"),
+      subtitle: t("cards.2.subtitle"),
+      description: t("cards.2.description"),
+      icon: Shield,
+      href: "/servicos/seguranca-backups",
+    },
+    {
+      title: t("cards.3.title"),
+      subtitle: t("cards.3.subtitle"),
+      description: t("cards.3.description"),
+      icon: TrendingUp,
+      href: "/servicos/landing-pages-cro",
+    },
+  ];
+
   return (
     <section className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Como Medimos Resultados
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Não nos baseamos em métricas vagas. Acompanhamos indicadores
-            concretos que impactam o seu negócio.
+            {t("subtitle")}
           </p>
         </div>
 

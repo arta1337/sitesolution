@@ -23,15 +23,16 @@ export async function generateMetadata(props: { params: Promise<{ locale: string
   };
 }
 
-const relatedServices = [
-  { title: "SEO Técnico", href: "/servicos/seo-tecnico" },
-  { title: "Manutenção de Sites", href: "/servicos/manutencao-sites" },
-  { title: "Landing Pages & CRO", href: "/servicos/landing-pages-cro" },
-];
-
 export default async function PerformancePage() {
   const t = await getTranslations('Services.performance');
+  const tServices = await getTranslations('ServicesPage');
   const canonicalUrl = `${SITE_URL}/servicos/performance-core-web-vitals`;
+
+  const relatedServices = [
+    { title: tServices('items.seo.title'), href: "/servicos/seo-tecnico" },
+    { title: tServices('items.manutencao.title'), href: "/servicos/manutencao-sites" },
+    { title: tServices('items.landingPages.title'), href: "/servicos/landing-pages-cro" },
+  ];
 
   // Helper to get array from translations
   // Since we know the structure, we can map indices.

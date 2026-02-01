@@ -16,8 +16,11 @@ import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { ScrollDemo } from "@/components/sections/scroll-demo";
+import { useTranslations } from "next-intl";
 
 export default function HomePage() {
+  const t = useTranslations("HomePage");
+
   return (
     <>
       <Header />
@@ -32,10 +35,10 @@ export default function HomePage() {
         <MonthlyReportPreview />
         <CTABanner
           variant="subtle"
-          title="Precisa de um site novo ou de uma reformulação?"
-          subtitle="Criamos websites modernos, rápidos e otimizados para conversão."
-          primaryCTA={{ text: "Auditoria 48h", href: "/auditoria-48h" }}
-          secondaryCTA={{ text: "Ver portfólio", href: "/portfolio" }}
+          title={t("ctaBanner1.title")}
+          subtitle={t("ctaBanner1.subtitle")}
+          primaryCTA={{ text: t("ctaBanner1.primaryCTA"), href: "/auditoria-48h" }}
+          secondaryCTA={{ text: t("ctaBanner1.secondaryCTA"), href: "/portfolio" }}
         />
         <Pricing />
         <TrustGuarantees />
@@ -43,9 +46,9 @@ export default function HomePage() {
         <CaseStudies />
         <Testimonials />
         <CTABanner
-          title="Pronto para ter um site sem preocupações?"
-          subtitle="Peça uma auditoria gratuita e descubra como podemos ajudar o seu negócio a crescer online."
-          primaryCTA={{ text: "Auditoria 48h", href: "/auditoria-48h" }}
+          title={t("ctaBanner2.title")}
+          subtitle={t("ctaBanner2.subtitle")}
+          primaryCTA={{ text: t("ctaBanner2.primaryCTA"), href: "/auditoria-48h" }}
         />
         <FAQ />
         <Contact />

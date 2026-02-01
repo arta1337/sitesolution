@@ -96,7 +96,7 @@ export async function Hero() {
                     {t('results.title')}
                   </span>
                 </div>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <Link href="/portfolio/clinica-exemplo" className="group">
                     <div className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">+45%</div>
                     <div className="text-xs text-muted-foreground">{t('results.clinics')}</div>
@@ -188,14 +188,14 @@ export async function Hero() {
                   <div className="mt-6 pt-4 border-t border-border flex flex-wrap items-center gap-4 relative">
                     <Button asChild size="sm" variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-colors">
                       <Link href="/auditoria-48h">
-                        Auditoria 48h
+                        {t('cta.primary')}
                       </Link>
                     </Button>
                     <Link
                       href="/portfolio"
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Ver portfólio
+                      {t('method.ctaSecondary')}
                     </Link>
                   </div>
                 </div>

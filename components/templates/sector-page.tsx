@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import { CheckCircle, ArrowRight, ChevronRight, TrendingUp } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface SectorPageProps {
   title: string;
@@ -36,6 +37,8 @@ export function SectorPageTemplate({
   caseStudy,
   faq,
 }: SectorPageProps) {
+  const t = useTranslations("SectorPage");
+
   return (
     <>
       <Header />
@@ -46,7 +49,7 @@ export function SectorPageTemplate({
             {/* Breadcrumbs */}
             <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8">
               <Link href="/" className="hover:text-foreground transition-colors">
-                Início
+                {t("breadcrumbs.home")}
               </Link>
               <ChevronRight className="h-4 w-4" />
               <span className="text-foreground">{title}</span>
@@ -67,7 +70,7 @@ export function SectorPageTemplate({
               <div className="mt-8">
                 <Button asChild size="lg" variant="brand">
                   <Link href="/auditoria-48h">
-                    Auditoria 48h
+                    {t("cta.audit")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
@@ -81,10 +84,10 @@ export function SectorPageTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-                Desafios Comuns
+                {t("headings.challenges")}
               </h2>
               <p className="mt-4 text-center text-muted-foreground">
-                Problemas que ouvimos frequentemente de empresas do setor.
+                {t("headings.challenges_desc")}
               </p>
               <ul className="mt-8 space-y-4">
                 {challenges.map((challenge, index) => (
@@ -107,7 +110,7 @@ export function SectorPageTemplate({
         <section className="py-16 lg:py-20 bg-background">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-              Como Ajudamos
+              {t("headings.solutions")}
             </h2>
             <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {solutions.map((solution, index) => (
@@ -132,7 +135,7 @@ export function SectorPageTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-                O Que Incluímos
+                {t("headings.features")}
               </h2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
                 {features.map((feature, index) => (
@@ -157,7 +160,7 @@ export function SectorPageTemplate({
                 >
                   <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                     <TrendingUp className="h-4 w-4 text-green-600" />
-                    <span>Exemplo de projeto</span>
+                    <span>{t("caseStudy.example")}</span>
                   </div>
                   <h3 className="text-xl font-semibold text-foreground">
                     {caseStudy.client}
@@ -167,7 +170,7 @@ export function SectorPageTemplate({
                       {caseStudy.result}
                     </span>
                     <span className="text-sm text-muted-foreground flex items-center gap-1">
-                      Ver caso
+                      {t("caseStudy.view")}
                       <ArrowRight className="h-4 w-4" />
                     </span>
                   </div>
@@ -182,7 +185,7 @@ export function SectorPageTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl">
               <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl text-center">
-                Perguntas Frequentes
+                {t("headings.faq")}
               </h2>
               <Accordion type="single" collapsible className="mt-8">
                 {faq.map((item, index) => (
@@ -208,10 +211,10 @@ export function SectorPageTemplate({
         <section className="py-16 lg:py-24 bg-foreground">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-background sm:text-4xl">
-              Pronto para melhorar a sua presença digital?
+              {t("footer.title")}
             </h2>
             <p className="mt-4 text-lg text-background/70">
-              Peça uma auditoria gratuita do seu site em 48h.
+              {t("footer.subtitle")}
             </p>
             <div className="mt-8">
               <Button
@@ -220,7 +223,7 @@ export function SectorPageTemplate({
                 variant="secondary"
                 className="bg-background text-foreground hover:bg-background/90"
               >
-                <Link href="/auditoria-48h">Auditoria 48h</Link>
+                <Link href="/auditoria-48h">{t("footer.button")}</Link>
               </Button>
             </div>
           </div>

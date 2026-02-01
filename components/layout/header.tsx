@@ -299,7 +299,7 @@ export function Header() {
                     <Button asChild className="w-full" variant="default">
                       <Link href="/auditoria-48h" onClick={() => setIsOpen(false)}>
                         <Clock className="mr-2 h-4 w-4" />
-                        Auditoria 48h
+                        {t('audit')}
                       </Link>
                     </Button>
                   </div>

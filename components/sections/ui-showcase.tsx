@@ -60,21 +60,21 @@ export function UiShowcase() {
                                 <div className="flex-1 flex items-center justify-center relative my-4">
                                     {/* Central Orb */}
                                     <div className="relative flex items-center justify-center">
-                                        <div className="absolute h-32 w-32 rounded-full bg-cyan-400/30 dark:bg-cyan-500/20 blur-xl animate-pulse" />
-                                        <div className="relative h-24 w-24 rounded-full bg-gradient-to-br from-cyan-100 to-indigo-100 dark:from-cyan-400/20 dark:to-indigo-500/20 border border-white dark:border-border backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.2)]">
-                                            <Zap className="h-8 w-8 text-cyan-600 dark:text-cyan-400 fill-cyan-400/20" />
+                                        <div className="absolute h-20 w-20 sm:h-32 sm:w-32 rounded-full bg-cyan-400/30 dark:bg-cyan-500/20 blur-xl animate-pulse" />
+                                        <div className="relative h-16 w-16 sm:h-24 sm:w-24 rounded-full bg-gradient-to-br from-cyan-100 to-indigo-100 dark:from-cyan-400/20 dark:to-indigo-500/20 border border-white dark:border-border backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+                                            <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-600 dark:text-cyan-400 fill-cyan-400/20" />
                                         </div>
 
-                                        {/* Orbiting Elements */}
-                                        <div className="absolute h-48 w-48 rounded-full border border-zinc-200 dark:border-border animate-[spin_10s_linear_infinite]" />
-                                        <div className="absolute h-64 w-64 rounded-full border border-zinc-200 dark:border-border animate-[spin_15s_linear_infinite_reverse]" />
+                                        {/* Orbiting Elements - hidden on mobile */}
+                                        <div className="absolute h-48 w-48 rounded-full border border-zinc-200 dark:border-border animate-[spin_10s_linear_infinite] hidden sm:block" />
+                                        <div className="absolute h-64 w-64 rounded-full border border-zinc-200 dark:border-border animate-[spin_15s_linear_infinite_reverse] hidden sm:block" />
 
-                                        {/* Floating Data Points */}
-                                        <div className="absolute -top-12 left-0 p-3 rounded-lg bg-white/90 dark:bg-card/80 border border-zinc-200 dark:border-border backdrop-blur-md animate-[bounce_3s_infinite] shadow-lg dark:shadow-none">
+                                        {/* Floating Data Points - hidden on mobile */}
+                                        <div className="absolute -top-12 left-0 p-3 rounded-lg bg-white/90 dark:bg-card/80 border border-zinc-200 dark:border-border backdrop-blur-md animate-[bounce_3s_infinite] shadow-lg dark:shadow-none hidden sm:block">
                                             <div className="text-xs text-muted-foreground">{t("neuralEngine.processing")}</div>
                                             <div className="text-sm font-mono text-cyan-600 dark:text-cyan-400">24.5 TB/s</div>
                                         </div>
-                                        <div className="absolute -bottom-8 right-0 p-3 rounded-lg bg-white/90 dark:bg-card/80 border border-zinc-200 dark:border-border backdrop-blur-md animate-[bounce_4s_infinite] shadow-lg dark:shadow-none">
+                                        <div className="absolute -bottom-8 right-0 p-3 rounded-lg bg-white/90 dark:bg-card/80 border border-zinc-200 dark:border-border backdrop-blur-md animate-[bounce_4s_infinite] shadow-lg dark:shadow-none hidden sm:block">
                                             <div className="text-xs text-muted-foreground">{t("neuralEngine.learningRate")}</div>
                                             <div className="text-sm font-mono text-indigo-600 dark:text-indigo-400">0.00451</div>
                                         </div>
@@ -137,7 +137,7 @@ export function UiShowcase() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
 
                         <motion.div
-                            className="relative w-64 h-40 rounded-2xl bg-gradient-to-br from-zinc-800 to-black border border-white/20 shadow-2xl p-6 flex flex-col justify-between z-10"
+                            className="relative w-48 sm:w-64 h-32 sm:h-40 rounded-2xl bg-gradient-to-br from-zinc-800 to-black border border-white/20 shadow-2xl p-4 sm:p-6 flex flex-col justify-between z-10"
                             whileHover={{
                                 rotateX: 10,
                                 rotateY: -10,

@@ -1,19 +1,51 @@
+"use client";
+
 import Link from "next/link";
-import { process } from "@/lib/content";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Process() {
+  const t = useTranslations("HomePage.process");
+
+  const process = [
+    {
+      step: 1,
+      title: t("steps.0.title"),
+      description: t("steps.0.description"),
+    },
+    {
+      step: 2,
+      title: t("steps.1.title"),
+      description: t("steps.1.description"),
+    },
+    {
+      step: 3,
+      title: t("steps.2.title"),
+      description: t("steps.2.description"),
+    },
+    {
+      step: 4,
+      title: t("steps.3.title"),
+      description: t("steps.3.description"),
+    },
+    {
+      step: 5,
+      title: t("steps.4.title"),
+      description: t("steps.4.description"),
+    },
+  ];
+
   return (
     <section className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Como Trabalhamos
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Um processo claro e transparente do início ao fim.
+            {t("subtitle")}
           </p>
         </div>
 
@@ -50,7 +82,7 @@ export function Process() {
         <div className="mt-12 text-center">
           <Button asChild variant="outline" size="lg" className="bg-transparent">
             <Link href="/auditoria-48h">
-              Iniciar o meu projeto
+              {t("cta")}
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

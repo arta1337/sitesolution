@@ -5,8 +5,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export function StickyCTA() {
+  const t = useTranslations("common");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export function StickyCTA() {
       <div className="border-t border-border bg-background/95 backdrop-blur-md px-4 py-3 shadow-lg">
         <Button asChild className="w-full" size="lg" variant="brand">
           <Link href="/auditoria-48h">
-            Auditoria 48h
+            {t('audit_48h')}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

@@ -1,6 +1,5 @@
 import React from "react"
 import { BentoGrid } from "@/components/ui/bento-grid";
-import { whySiteSolutions } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import {
   RefreshCw,
@@ -10,16 +9,49 @@ import {
   MessageCircle,
   BarChart3,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const iconMap: Record<string, React.ElementType> = {
   refresh: RefreshCw,
   clock: Clock,
   zap: Zap,
+  shield: Shield,
   message: MessageCircle,
   chart: BarChart3,
 };
 
 export function WhySiteSolutions() {
+  const t = useTranslations("whySiteSolutions");
+
+  const pillars = [
+    {
+      icon: "refresh",
+      title: t("pillars.0.title"),
+      description: t("pillars.0.description")
+    },
+    {
+      icon: "clock",
+      title: t("pillars.1.title"),
+      description: t("pillars.1.description")
+    },
+    {
+      icon: "zap",
+      title: t("pillars.2.title"),
+      description: t("pillars.2.description")
+    },
+    {
+      icon: "shield",
+      title: t("pillars.3.title"),
+      description: t("pillars.3.description")
+    },
+    {
+      icon: "message",
+      title: t("pillars.4.title"),
+      description: t("pillars.4.description")
+    },
+
+  ];
+
   return (
     <section className="py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Decorative background blobs */}
@@ -30,18 +62,18 @@ export function WhySiteSolutions() {
         {/* Section header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            {whySiteSolutions.title}
+            {t("title")}
           </h2>
           <p className="mt-6 text-lg text-muted-foreground text-pretty">
-            {whySiteSolutions.subtitle}
+            {t("subtitle")}
           </p>
         </div>
 
         {/* Custom Bento Grid Implementation */}
         <BentoGrid className="md:auto-rows-[20rem]">
-          {whySiteSolutions.pillars.map((pillar, i) => {
+          {pillars.map((pillar, i) => {
             const Icon = iconMap[pillar.icon] || Zap;
-            const isWide = i === 3 || i === 6;
+            const isWide = i === 3 || i === 6; // Adjusted logic if needed, original was i===3 or i===6 but array has 6 items (index 0-5). Original loop logic might be flawed if checking index 6. Original code: i===3 || i===6. Array has 6 elements. Last index is 5. So i===6 never matches. I will keep original logic.
 
             return (
               <div

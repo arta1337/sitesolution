@@ -1,11 +1,22 @@
+"use client";
+
 import Link from "next/link";
-import { siteConfig, contactForm } from "@/lib/content";
+import { siteConfig } from "@/lib/content";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, Clock, Shield, CheckCircle, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Contact section (info-only) — all lead capture routes to /auditoria-48h
 export function Contact() {
+  const t = useTranslations("HomePage.contact");
+
+  const trustItems = [
+    t("trust.0"),
+    t("trust.1"),
+    t("trust.2"),
+  ];
+
   return (
     <section id="contacto" className="py-16 lg:py-24 bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -13,10 +24,10 @@ export function Contact() {
           {/* Left column - Info */}
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl text-balance">
-              {contactForm.title}
+              {t("title")}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              {contactForm.subtitle}
+              {t("subtitle")}
             </p>
 
             {/* Contact info */}
@@ -26,7 +37,7 @@ export function Contact() {
                   <Mail className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Email</div>
+                  <div className="text-sm text-muted-foreground">{t("labels.email")}</div>
                   <a
                     href={`mailto:${siteConfig.contact.email}`}
                     className="text-sm font-medium text-foreground hover:underline"
@@ -41,7 +52,7 @@ export function Contact() {
                   <Phone className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Telefone</div>
+                  <div className="text-sm text-muted-foreground">{t("labels.phone")}</div>
                   <a
                     href={`tel:${siteConfig.contact.phone.replace(/\s/g, "")}`}
                     className="text-sm font-medium text-foreground hover:underline"
@@ -56,7 +67,7 @@ export function Contact() {
                   <Clock className="h-5 w-5 text-foreground" />
                 </div>
                 <div>
-                  <div className="text-sm text-muted-foreground">Horário</div>
+                  <div className="text-sm text-muted-foreground">{t("labels.hours")}</div>
                   <div className="text-sm font-medium text-foreground">
                     {siteConfig.contact.hours}
                   </div>
@@ -66,7 +77,7 @@ export function Contact() {
 
             {/* Trust badges */}
             <div className="mt-8 flex flex-wrap gap-4">
-              {contactForm.trust.map((item) => (
+              {trustItems.map((item) => (
                 <div
                   key={item}
                   className="flex items-center gap-2 text-sm text-muted-foreground"
@@ -85,10 +96,10 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-sm font-medium text-green-800 dark:text-green-300">
-                    Resposta em 24h úteis
+                    {t("responseBadge.title")}
                   </div>
                   <div className="text-xs text-green-600 dark:text-green-400">
-                    Peça uma auditoria gratuita e entramos em contacto consigo.
+                    {t("responseBadge.subtitle")}
                   </div>
                 </div>
               </div>
@@ -99,23 +110,23 @@ export function Contact() {
           <Card className="border-2 h-fit lg:sticky lg:top-24">
             <CardContent className="p-6 lg:p-8">
               <h3 className="text-xl font-semibold text-foreground">
-                Fale connosco através da Auditoria 48h
+                {t("ctaBox.title")}
               </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                Mantemos um único formulário para reduzir fricção e garantir resposta rápida.
+                {t("ctaBox.description")}
               </p>
 
               <div className="mt-6">
                 <Button asChild size="lg" variant="brand" className="w-full">
                   <Link href="/auditoria-48h">
-                    Auditoria 48h
+                    {t("ctaBox.button")}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
 
               <p className="mt-6 text-xs text-muted-foreground">
-                Sem spam. Usamos os seus dados apenas para responder ao pedido.
+                {t("ctaBox.note")}
               </p>
             </CardContent>
           </Card>

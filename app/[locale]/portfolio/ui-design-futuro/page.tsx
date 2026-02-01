@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { UiShowcase } from "@/components/sections/ui-showcase";
 import { ParallaxScroll } from "@/components/sections/parallax-scroll";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { ArrowLeft, MousePointerClick, Zap } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";

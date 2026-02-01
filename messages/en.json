@@ -515,7 +515,7 @@
             "ctaSecondary": "See portfolio"
         }
     },
-    "Blog": {
+    "BlogSection": {
         "title": "Insights & Articles",
         "subtitle": "News on web design, SEO, and performance to help your business grow.",
         "readMore": "Read article",
@@ -1351,7 +1351,8 @@
             "privacy": "By submitting, you agree to our",
             "privacyLink": "privacy policy",
             "noSpam": ". We don't send spam.",
-            "company": "Company"
+            "company": "Company",
+            "emailError": "Please enter a valid email address"
         },
         "success": {
             "title": "Request Received!",
@@ -1411,7 +1412,33 @@
             }
         },
         "faq": {
-            "title": "Frequently Asked Questions"
+            "title": "Frequently Asked Questions",
+            "items": [
+                {
+                    "question": "Is the audit really free?",
+                    "answer": "Yes. The audit is free and serves to identify improvement opportunities. There is no hiring commitment."
+                },
+                {
+                    "question": "How long does it take to receive the report?",
+                    "answer": "Up to 48 business hours after submitting the request (may vary during high demand periods)."
+                },
+                {
+                    "question": "Am I required to hire anything afterwards?",
+                    "answer": "No. The report is yours. You can use it to improve the site yourself, hire another team, or work with us if you wish."
+                },
+                {
+                    "question": "What type of sites do you analyze?",
+                    "answer": "Institutional sites, online stores (e-commerce), blogs, and landing pages. We analyze WordPress, Shopify, Webflow, React/Next.js, and other technologies."
+                },
+                {
+                    "question": "Is my data safe?",
+                    "answer": "Yes. We only use the URL you provide to run public tests. We do not need access to your site's administration area."
+                },
+                {
+                    "question": "What do I do with the report afterwards?",
+                    "answer": "The report includes a clear action plan. You can implement the changes yourself or ask us for a proposal to implement everything for you."
+                }
+            ]
         },
         "finalCta": {
             "title": "Discover Your Website's Potential",

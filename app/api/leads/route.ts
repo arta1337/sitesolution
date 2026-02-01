@@ -44,6 +44,28 @@ function isEmailValid(email: string): boolean {
 export async function POST(req: Request) {
   const ip = getClientIp(req);
 
+  // CSRF Protection: Validate Origin header
+  // This prevents malicious websites from submitting forms on behalf of users
+  const origin = req.headers.get("origin");
+  const allowedOrigins = [
+    process.env.NEXT_PUBLIC_SITE_URL,
+    "https://sitesolutions.pt",
+    "https://www.sitesolutions.pt",
+    // Allow Vercel deployments
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined,
+    // Allow localhost in development
+    ...(process.env.NODE_ENV === "development"
+      ? ["http://localhost:3000", "http://127.0.0.1:3000"]
+      : []),
+  ].filter(Boolean);
+
+  if (!origin || !allowedOrigins.includes(origin)) {
+    return NextResponse.json(
+      { ok: false, error: "Request blocked" },
+      { status: 403 }
+    );
+  }
+
   if (!rateLimitOk(ip)) {
     return NextResponse.json(
       { ok: false, error: "Rate limit exceeded" },
@@ -105,14 +127,10 @@ export async function POST(req: Request) {
     userAgent: req.headers.get("user-agent") ?? undefined,
   };
 
-  // eslint-disable-next-line no-console
-
+  // Log lead for Vercel logs (visible in Vercel dashboard > Functions > Logs)
+  console.log("[LEAD RECEIVED]", JSON.stringify(record, null, 2));
 
   // Optional: forward to an email provider (Resend) if env is configured
-  // Set:
-  // - RESEND_API_KEY
-  // - LEADS_TO_EMAIL
-  // - LEADS_FROM_EMAIL (optional, defaults to "SiteSolutions <onboarding@resend.dev>")
   const resendKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.LEADS_TO_EMAIL;
   const fromEmail =
@@ -120,7 +138,7 @@ export async function POST(req: Request) {
 
   if (resendKey && toEmail) {
     try {
-      await fetch("https://api.resend.com/emails", {
+      const emailRes = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${resendKey}`,
@@ -142,9 +160,15 @@ export async function POST(req: Request) {
             .join("\n"),
         }),
       });
+
+      const emailData = await emailRes.json().catch(() => ({}));
+      if (!emailRes.ok) {
+        console.error("[LEAD EMAIL FAILED]", emailRes.status, emailData);
+      } else {
+        console.log("[LEAD EMAIL SENT]", emailData);
+      }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.warn("[leads] resend forward failed", err);
+      console.error("[LEAD EMAIL ERROR]", err);
     }
   }
 

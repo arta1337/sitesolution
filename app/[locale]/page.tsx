@@ -16,10 +16,10 @@ import { FAQ } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { ScrollDemo } from "@/components/sections/scroll-demo";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function HomePage() {
-  const t = useTranslations("HomePage");
+export default async function HomePage() {
+  const t = await getTranslations("HomePage");
 
   return (
     <>

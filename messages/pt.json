@@ -515,7 +515,7 @@
             "ctaSecondary": "Ver portfólio"
         }
     },
-    "Blog": {
+    "BlogSection": {
         "title": "Insights & Artigos",
         "subtitle": "Novidades sobre web design, SEO e performance para ajudar o seu negócio a crescer.",
         "readMore": "Ler artigo",
@@ -1351,7 +1351,8 @@
             "privacy": "Ao submeter, concorda com a nossa",
             "privacyLink": "política de privacidade",
             "noSpam": ". Não enviamos spam.",
-            "company": "Empresa"
+            "company": "Empresa",
+            "emailError": "Por favor, insira um email válido"
         },
         "success": {
             "title": "Pedido Recebido!",
@@ -1411,7 +1412,33 @@
             }
         },
         "faq": {
-            "title": "Perguntas Frequentes"
+            "title": "Perguntas Frequentes",
+            "items": [
+                {
+                    "question": "A auditoria é mesmo gratuita?",
+                    "answer": "Sim. A auditoria é gratuita e serve para identificar oportunidades de melhoria. Não há compromisso de contratação."
+                },
+                {
+                    "question": "Em quanto tempo recebo o relatório?",
+                    "answer": "Em até 48 horas úteis após o envio do pedido (pode variar em períodos de maior procura)."
+                },
+                {
+                    "question": "Sou obrigado a contratar algo depois?",
+                    "answer": "Não. O relatório é seu. Pode utilizá-lo para melhorar o site você mesmo, contratar outra equipa, ou trabalhar connosco se desejar."
+                },
+                {
+                    "question": "Que tipo de sites analisam?",
+                    "answer": "Sites institucionais, lojas online (e-commerce), blogs e landing pages. Analisamos WordPress, Shopify, Webflow, React/Next.js e outras tecnologias."
+                },
+                {
+                    "question": "Os meus dados ficam seguros?",
+                    "answer": "Sim. Apenas usamos o URL que nos fornecer para correr testes públicos. Não precisamos de acesso à área de administração do seu site."
+                },
+                {
+                    "question": "O que faço com o relatório depois?",
+                    "answer": "O relatório inclui um plano de ação claro. Pode implementar as mudanças você mesmo, ou pedir-nos uma proposta para implementarmos tudo por si."
+                }
+            ]
         },
         "finalCta": {
             "title": "Descubra o Potencial do Seu Website",

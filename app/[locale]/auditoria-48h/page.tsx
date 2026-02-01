@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Header } from "@/components/layout/header";
@@ -25,7 +25,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 
-import { auditFaq } from "@/lib/content";
+
 import {
   Accordion,
   AccordionContent,
@@ -65,9 +65,24 @@ export default function Auditoria48hPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [emailError, setEmailError] = useState("");
+
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
 
   const handleAuditoriaSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate email before submission
+    if (!isValidEmail(auditoriaForm.email)) {
+      setEmailError(t("form.emailError") || "Please enter a valid email address");
+      return;
+    }
+    setEmailError("");
+
     setIsSubmitting(true);
 
     try {
@@ -218,8 +233,15 @@ export default function Auditoria48hPage() {
                               placeholder={t("form.emailPlaceholder")}
                               required
                               value={auditoriaForm.email}
-                              onChange={(e) => setAuditoriaForm({ ...auditoriaForm, email: e.target.value })}
+                              onChange={(e) => {
+                                setAuditoriaForm({ ...auditoriaForm, email: e.target.value });
+                                if (emailError) setEmailError("");
+                              }}
+                              className={emailError ? "border-red-500" : ""}
                             />
+                            {emailError && (
+                              <p className="text-sm text-red-500">{emailError}</p>
+                            )}
                           </div>
 
                           <div className="space-y-2">
@@ -405,7 +427,7 @@ export default function Auditoria48hPage() {
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
-                mainEntity: auditFaq.map((item) => ({
+                mainEntity: (t.raw('faq.items') as { question: string, answer: string }[]).map((item) => ({
                   "@type": "Question",
                   name: item.question,
                   acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -419,7 +441,7 @@ export default function Auditoria48hPage() {
             </h2>
 
             <Accordion type="single" collapsible className="w-full">
-              {auditFaq.map((item, index) => (
+              {(t.raw('faq.items') as { question: string, answer: string }[]).map((item, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-border">
                   <AccordionTrigger className="text-left text-base font-medium text-foreground hover:no-underline">
                     {item.question}

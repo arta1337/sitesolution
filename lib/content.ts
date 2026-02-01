@@ -13,7 +13,7 @@ export const siteConfig = {
   locale: "pt-PT",
   // Contactos - Edite aqui os seus dados reais
   contact: {
-    email: "geral@sitesolutions.pt",
+    email: "sitesolutions12@gmail.com",
     phone: "+351 210 000 000",
     whatsapp: "+351 910 000 000",
     address: "Av. da Liberdade, 110, 1250-146 Lisboa",
@@ -653,7 +653,7 @@ Os seus dados são conservados durante o período necessário para as finalidade
 
 ## 6. Direitos do Titular
 
-Tem direito a aceder, retificar, apagar, limitar o tratamento, portabilidade e oposição ao tratamento dos seus dados. Para exercer estes direitos, contacte-nos através de geral@sitesolutions.pt.
+Tem direito a aceder, retificar, apagar, limitar o tratamento, portabilidade e oposição ao tratamento dos seus dados. Para exercer estes direitos, contacte-nos através de sitesolutions12@gmail.com.
 
 ## 7. Segurança
 
@@ -669,7 +669,7 @@ Esta política pode ser atualizada periodicamente. A data da última atualizaç�
 
 ## 10. Contacto
 
-Para questões sobre privacidade: geral@sitesolutions.pt
+Para questões sobre privacidade: sitesolutions12@gmail.com
     `,
   },
   terms: {
@@ -731,7 +731,7 @@ Estes termos são regidos pela lei portuguesa. Qualquer litígio será submetido
 
 ## 11. Contacto
 
-Para questões sobre estes termos: geral@sitesolutions.pt
+Para questões sobre estes termos: sitesolutions12@gmail.com
     `,
   },
 };

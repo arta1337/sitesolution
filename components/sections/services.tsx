@@ -1,6 +1,6 @@
 import React from "react"
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {

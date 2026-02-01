@@ -4,7 +4,7 @@ import { CTABanner } from "@/components/sections/cta-banner";
 import { notFound } from "next/navigation";
 import { getTranslations, getLocale } from "next-intl/server";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 
 import { client } from "@/sanity/lib/client";

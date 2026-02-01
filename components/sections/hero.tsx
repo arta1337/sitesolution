@@ -1,5 +1,5 @@
 import React from "react"
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { hero } from "@/lib/content";
 import { motion } from "framer-motion";

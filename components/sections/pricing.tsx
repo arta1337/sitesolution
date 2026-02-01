@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Button } from "@/components/ui/button";
 import { Check, X, Clock, Wrench, Database, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";

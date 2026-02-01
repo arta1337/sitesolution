@@ -150,7 +150,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           from: fromEmail,
           to: [toEmail],
-          subject: `[SiteSolutions] Novo lead (${lead_type})`,
+          subject: `[SiteSolutions] Lead: ${name} (${lead_type})`,
           text: [
             `Tipo: ${lead_type}`,
             `Nome: ${name}`,

@@ -59,7 +59,10 @@ export async function POST(req: Request) {
       : []),
   ].filter(Boolean);
 
-  if (!origin || !allowedOrigins.includes(origin)) {
+  if (
+    !origin ||
+    (!allowedOrigins.includes(origin) && !origin.endsWith(".vercel.app"))
+  ) {
     return NextResponse.json(
       { ok: false, error: "Request blocked" },
       { status: 403 }

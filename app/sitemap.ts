@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { caseStudies, siteConfig } from "@/lib/content";
+import { locales } from "@/navigation";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? siteConfig.url).replace(/\/$/, "");
 
@@ -37,19 +38,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { path: "/termos", changeFrequency: "yearly", priority: 0.3 },
     ];
 
-  const staticPages: MetadataRoute.Sitemap = staticPaths.map((p) => ({
-    url: `${SITE_URL}${p.path}`,
-    lastModified: now,
-    changeFrequency: p.changeFrequency,
-    priority: p.priority,
-  }));
+  const staticPages = staticPaths.flatMap((p) => {
+    return locales.map((locale) => ({
+      url: `${SITE_URL}/${locale}${p.path === "/" ? "" : p.path}`,
+      lastModified: now,
+      changeFrequency: p.changeFrequency,
+      priority: p.priority,
+    }));
+  });
 
-  const caseStudyPages: MetadataRoute.Sitemap = caseStudies.map((study) => ({
-    url: `${SITE_URL}/portfolio/${study.id}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  const caseStudyPages = caseStudies.flatMap((study) => {
+    return locales.map((locale) => ({
+      url: `${SITE_URL}/${locale}/portfolio/${study.id}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+  });
 
   // Note: /contactos is intentionally excluded (redirects to /auditoria-48h)
   return [...staticPages, ...caseStudyPages];
